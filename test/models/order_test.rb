@@ -137,7 +137,6 @@ describe Order do
     end
 
     it "must have a unique email id" do
-      exisiting_email = Order.first.email
       order.email = "some_person@testing.com"
       order.valid?.must_equal false
     end
