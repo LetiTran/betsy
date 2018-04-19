@@ -9,7 +9,7 @@ describe Review do
   end
 
   it "must be have a rating" do
-    
+
     review.rating = nil
     review.valid?.must_equal false
   end
