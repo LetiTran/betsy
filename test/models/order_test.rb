@@ -5,7 +5,6 @@ describe Order do
 
 
   describe 'validations' do
-
     it "must be valid" do
       value(order).must_be :valid?
     end
