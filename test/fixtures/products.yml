@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  price: 1
-  category: MyString
+candy:
+  name: Candy
+  price: 10
+  category: candy
   quantity: 1
 
 two:

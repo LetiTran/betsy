@@ -3,8 +3,8 @@ class Order < ApplicationRecord
 
   has_many :products, through: :orderproduct
 
-  validates :address, presence: true
-  validates :card_name, presence: true
+  validates :address, presence: true, length: { in: 1..35  }
+  validates :card_name, presence: true, length: { minimum: 1  }
   validates :cc_number, presence: true, length: { is: 16 }
   validates :cc_expiration, presence: true
   validates :cvv, presence: true, length: { is: 3 }
