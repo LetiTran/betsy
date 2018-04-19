@@ -3,7 +3,9 @@ class Merchant < ApplicationRecord
 
   has_many :products
 
-  validates :username, presence: true
+  validates :username, presence: true,
+                      length: { :minimum => 0 },
+                      uniqueness: true
   validates :email, presence: true,
                     format: { with:  VALID_EMAIL },
                     uniqueness: { case_sensitive: false }
