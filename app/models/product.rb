@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  has_many :orders, through: :orderproduct
-  has_many :categories, through: :categoryproduct
+  has_and_belongs_to_many :orders, through: :orderproduct
+  has_and_belongs_to_many :categories, through: :categoryproduct
   has_many :reviews
 
   validates :name, presence: true, length: { minimum: 1 }
