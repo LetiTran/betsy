@@ -1,25 +1,41 @@
 require "test_helper"
 
 describe Category do
-  let(:category) { Category.new name: "candy" }
+  let(:category) { Category.new name: "candy", product_id: (Product.create name: "thing", category: "choco", quantity: 2).id }
 
-  it 'must have a name' do
-    category.name = nil
-    category.valid?.must_equal false
+  describe "validations" do
+    it "must be valid" do
+      category.valid?.must_equal true
+    end
+
+    it 'must have a name' do
+      category.name = nil
+      category.valid?.must_equal false
+    end
+
+    it 'must have at least one character' do
+      category.name = ""
+      category.valid?.must_equal false
+    end
+
+    it 'cannot have more than 25 characters' do
+      category.name = "12345678901234567890123456"
+      category.valid?.must_equal false
+    end
+
+    it 'name must be unique' do
+      category.name = "Chocolate"
+      category.valid?.must_equal false
+    end
   end
 
-  it 'must have at least one character' do
-    category.name = ""
-    category.valid?.must_equal false
-  end
+  describe "relations" do
+    it "has a list of products" do
+      category.must_respond_to :products
 
-  it 'cannot have more than 25 characters' do
-    category.name = "12345678901234567890123456"
-    category.valid?.must_equal false
-  end
-
-  it 'name must be unique' do
-    category.name = "Chocolate"
-    category.valid?.must_equal false
+      category.products.each do |product|
+        product.must_be_kind_of Product
+      end
+    end
   end
 end
