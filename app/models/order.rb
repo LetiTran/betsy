@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   validates :card_name, presence: true
   validates :cc_number, presence: true, length: { is: 16 }
   validates :cc_expiration, presence: true
-  validates :ccv, presence: true, length: { is: 3 }
+  validates :cvv, presence: true, length: { is: 3 }
   validates :zip_code, presence: true, length: { is: 5 }
   validates :email, presence: true,
                     format: { with:  VALID_EMAIL },
