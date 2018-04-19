@@ -9,7 +9,7 @@ one:
   cc_number: MyString
   cc_expiration: 2018-04-19
   cvv: MyString
-  zip: MyString
+  zip_code: MyString
 
 two:
   status: MyString
@@ -20,4 +20,4 @@ two:
   cc_number: MyString
   cc_expiration: 2018-04-19
   cvv: MyString
-  zip: MyString
+  zip_code: MyString
