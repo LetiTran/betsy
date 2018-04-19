@@ -11,14 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20180419220012) do
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-=======
->>>>>>> 97a05a3abc9531f2f9de2813b8384fd659a53d60
-
->>>>>>> 16d4ed36a4e17483f7a2010b1bd5ec4764096de9
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +81,6 @@ ActiveRecord::Schema.define(version: 20180419220012) do
 
   add_foreign_key "categories", "products"
   add_foreign_key "orders", "products"
->>>>>>> 16d4ed36a4e17483f7a2010b1bd5ec4764096de9
+
   add_foreign_key "reviews", "products"
 end
