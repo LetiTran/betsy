@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'merchants/index'
 
   get 'merchants/show'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get 'products/update'
 
   get 'products/destroy'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -28,6 +28,11 @@ describe Review do
 
   it "belongs to a product and creates an error message if no product is given" do
 
+<<<<<<< HEAD
+=======
+  it "belongs to a product and creates an error message if no product is given" do
+
+>>>>>>> 4abfedf6e5f3b151bcc59d057c836b4ac4634c6e
     review = Review.new(rating: 1, comment:"qwewe")
     review.must_respond_to :product
 
