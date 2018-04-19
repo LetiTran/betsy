@@ -156,9 +156,6 @@ describe Order do
     order.email = "some_person@testing.com"
     order.valid?.must_equal false
   end
-  
-
-
 
 
 end
