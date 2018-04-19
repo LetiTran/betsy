@@ -7,9 +7,32 @@ describe Order do
     value(order).must_be :valid?
   end
 
-it 'must have a address' do
-  order.address = nil
-  order.valid? 
-end
+  it 'must have a address' do
+    order.address = nil
+    order.valid?.must_equal false
+  end
+
+  it 'must have a address with length more' do
+    order.address = nil
+    order.valid?.must_equal false
+  end
+
+  it 'must have a card name' do
+    order.card_name = nil
+    order.valid?.must_equal false
+  end
+
+  it 'must have a card number' do
+    order.cc_number = nil
+    order.valid?.must_equal false
+  end
+
+  it 'must have a card expiration' do
+    order.cc_expiration = nil
+    order.valid?.must_equal false
+  end
+
+
+
 
 end
