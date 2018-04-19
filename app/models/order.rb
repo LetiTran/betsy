@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
   VALID_EMAIL = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-
-  has_many :products, through: :orderproduct
+  has_and_belongs_to_many :products, through: :orderproduct
 
   validates :address, presence: true, length: { in: 1..35  }
   validates :card_name, presence: true, length: { minimum: 1  }
@@ -10,6 +9,6 @@ class Order < ApplicationRecord
   validates :cvv, presence: true, length: { is: 3 }
   validates :zip_code, presence: true, length: { is: 5 }
   validates :email, presence: true,
-                    format: { with:  VALID_EMAIL },
-                    uniqueness: { case_sensitive: false }
+  format: { with:  VALID_EMAIL },
+  uniqueness: { case_sensitive: false }
 end
