@@ -3,7 +3,7 @@
 one:
   name: MyString
   price: 1
-  category: MyString
+  category: sweets
   quantity: 1
 
 two:
