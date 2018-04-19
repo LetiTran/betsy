@@ -1,10 +1,10 @@
 require "test_helper"
 
 describe Merchant do
-  let(:merchant) { Merchant.new username: "person", email: "email@email.com"}
+  let(:merchant) { Merchant.new username: "person", email: "email@email.com" }
 
   it "must be valid" do
-    value(merchant).must_be :valid?
+    merchant.must_be :valid?
   end
 
   it "must have a username" do
@@ -51,7 +51,7 @@ describe Merchant do
     merchant.email = existing_email
 
     merchant.valid?.must_equal false
-    merchant.errors.must_include :email 
+    merchant.errors.must_include :email
   end
 
 
