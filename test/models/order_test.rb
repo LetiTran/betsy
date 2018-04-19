@@ -32,6 +32,41 @@ describe Order do
     order.valid?.must_equal false
   end
 
+  it 'must have a cvv' do
+    order.cvv = nil
+    order.valid?.must_equal false
+  end
+  it "must have a length of three characters" do
+    order.cvv = "cvvv"
+    order.valid?.must_equal false
+  end
+
+  it 'must have a zipcode' do
+    order.zip_code = nil
+    order.valid?.must_equal false
+  end
+
+  it "zipcode length must be 5 " do
+    order.zip_code = "980756"
+    order.valid?.must_equal false
+  end
+
+  it 'must have a email' do
+    order.email = nil
+    order.valid?.must_equal false
+  end
+
+  it "must have a valid email format" do
+    order.email = "12345@.email.com"
+    order.valid?.must_equal false
+  end
+
+  it "must have a unique email id" do
+    exisiting_email = Order.first.email
+    order.email = "some_person@testing.com"
+    order.valid?.must_equal false
+  end
+
 
 
 
