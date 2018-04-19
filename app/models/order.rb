@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   VALID_EMAIL = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-  has_many :products, through :orderproduct
+  has_many :products, through: :orderproduct
 
   validates :address, presence: true
   validtes :card_name, presence: true
