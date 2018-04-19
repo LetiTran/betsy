@@ -1,12 +1,11 @@
 require "test_helper"
 
 describe Review do
-  let(:review) { Review.new rating:1,comment:"hdjdjhjj" }
+  let(:review) { Review.new rating:1, comment:"hdjdjhjj" }
 
   it "must be valid" do
-    review.product = Product.create name:"candy",category:"sweets",quantity:3
-    
-    review.must_be :valid?
+    review.product = products(:candy)
+    review.valid?.must_equal true
   end
 
   it "must be have a rating" do
