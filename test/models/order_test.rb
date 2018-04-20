@@ -53,6 +53,7 @@ describe Order do
       order.cvv = nil
       order.valid?.must_equal false
     end
+
     it "must have a length of three characters" do
       order.cvv = "cvvv"
       order.valid?.must_equal false
@@ -150,9 +151,5 @@ describe Order do
       end
     end
   end
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 97a05a3abc9531f2f9de2813b8384fd659a53d60
 end
