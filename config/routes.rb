@@ -5,6 +5,23 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
+  # Products:
+  root 'products#root'
+
+  get 'products/index'
+
+  get 'products/:id', to: 'products#show', as: 'product'
+
+  get 'products/new'
+
+  get 'products/create'
+
+  get 'products/edit'
+
+  get 'products/update'
+
+  get 'products/destroy'
+
 
   # Merchants:
   get 'merchants/index'
