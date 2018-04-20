@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :orderproducts
+
   #sessions
   get '/login', to: 'sessions#new', as: 'login_form'
   post '/login', to: 'sessions#create'
