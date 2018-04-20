@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :orderproducts
+
   #sessions
   get '/login', to: 'sessions#new', as: 'login_form'
   post '/login', to: 'sessions#create'
@@ -9,8 +11,8 @@ Rails.application.routes.draw do
   root 'products#root', as: 'homepage'
   resources :products do
     # add orderproducts (cart#index)
-    #resources :reviews, only: [:new]
-    #resources :merchants, only: [:index]
+    # resources :reviews, only: [:new]
+    # resources :merchants, only: [:index]
     resources :categories, only: [:index]
   end
 
