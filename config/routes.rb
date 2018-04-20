@@ -37,20 +37,7 @@ Rails.application.routes.draw do
 
   get 'merchants/destroy'
 
-  # Sessions:
-  get '/login', to: 'sessions#new', as: 'login_form'
-  post '/login', to: 'sessions#create'
-  delete '/login', to: 'sessions#destroy', as: 'logout'
 
-  get 'sessions/index'
-
-  get 'sessions/show'
-
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
 
   # Reviews:
   get 'reviews/index'
