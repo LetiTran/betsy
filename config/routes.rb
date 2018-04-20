@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 
   get 'products/destroy'
 
-
   get 'reviews/index'
 
   get 'reviews/show'
