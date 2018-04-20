@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Category do
-  let(:category) { Category.new name: "candy", product_id: (Product.create name: "thing", category: "choco", quantity: 2).id }
+  let(:category) { Category.new name: "candy", product_id: (Product.create name: "thing", quantity: 2).id }
 
   describe "validations" do
     it "must be valid" do
@@ -15,14 +15,14 @@ describe Category do
       category.errors.must_include :name
     end
 
-    it 'must have at least one character' do
+    it 'name must have at least one character' do
       category.name = ""
 
       category.valid?.must_equal false
       category.errors.must_include :name
     end
 
-    it 'cannot have more than 25 characters' do
+    it 'name cannot have more than 25 characters' do
       category.name = "12345678901234567890123456"
 
       category.valid?.must_equal false

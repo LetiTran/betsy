@@ -33,3 +33,4 @@ class CategoriesController < ApplicationController
   def find_category
     @category = Category.find_by(id: params[:id])
   end
+end

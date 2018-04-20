@@ -3,11 +3,9 @@
 candy:
   name: Candy
   price: 10
-  category: candy
   quantity: 1
 
 two:
   name: MyString
   price: 1
-  category: MyString
   quantity: 1

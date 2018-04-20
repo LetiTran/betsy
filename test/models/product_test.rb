@@ -1,11 +1,18 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new name: "thing", price: 1, category: "red", quantity: 2 }
+  let(:product) { Product.new name: "thing", price: 1, quantity: 2, categories: [Category.first, Category.last] }
 
   describe 'Validations' do
     it "must be valid" do
       product.must_be :valid?
+    end
+
+    it "must have at least one category" do
+      product.categories.delete_all
+
+      product.valid?.must_equal false
+      product.errors.must_include :categories
     end
 
     it "must have a name" do
@@ -20,20 +27,6 @@ describe Product do
 
       product.valid?.must_equal false
       product.errors.must_include :name
-    end
-
-    it "must have a category" do
-      product.category = nil
-
-      product.valid?.must_equal false
-      product.errors.must_include :category
-    end
-
-    it "must have category length greater than zero" do
-      product.category = ""
-
-      product.valid?.must_equal false
-      product.errors.must_include :category
     end
 
     it "must have a quantity" do
@@ -84,10 +77,10 @@ describe Product do
 
     it "has a list of reviews" do
       product.must_respond_to :reviews
-      
-      product.reviews.each do |review|
-        review.must_be_kind_of Review
-      end
+
+      # product.reviews.each do |review|
+      #   review.must_be_kind_of Review
+      # end
     end
 
   end
