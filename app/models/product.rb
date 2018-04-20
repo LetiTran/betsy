@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_and_belongs_to_many :orders
+  has_many :orders,through: :orderproduct
   has_and_belongs_to_many :categories, join_table: "category_product"
   has_many :reviews
 
@@ -11,7 +11,7 @@ class Product < ApplicationRecord
 
   private
   def has_atleast_one_category
-    
+
     if categories.empty?
       errors.add(:categories, "must have atleat one category")
     end
