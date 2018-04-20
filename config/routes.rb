@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'products/index'
 
-  get 'products/show'
+  get 'products/:id', to: 'products#show', as: 'product'
 
   get 'products/new'
 
