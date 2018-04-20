@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  #sessions
+  get '/login', to: 'sessions#new', as: 'login_form'
+  post '/login', to: 'sessions#create'
+  delete '/login', to: 'sessions#destroy', as: 'logout'
+
   # Products:
   root 'products#root', as: 'homepage'
   resources :products do
@@ -13,12 +18,6 @@ Rails.application.routes.draw do
   resources :merchants do
     resources :products, only: [:index]
   end
-
-  # Sessions:
-  get '/login', to: 'sessions#new', as: 'login_form'
-  post '/login', to: 'sessions#create'
-  delete '/login', to: 'sessions#destroy', as: 'logout'
-  resources :sessions, only: [:index, :show]
 
   # Reviews:
   resources :reviews
