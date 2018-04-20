@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'sessions/index'
-
-  get 'sessions/show'
-
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
+  get '/login', to: 'sessions#new', as: 'login_form'
+  post '/login', to: 'sessions#create'
+  delete '/login', to: 'sessions#destroy', as: 'logout'
 
   get 'merchants/index'
 
