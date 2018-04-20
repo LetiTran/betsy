@@ -4,7 +4,6 @@ describe Product do
   let(:product) { Product.new name: "thing", price: 1, category: "red", quantity: 2 }
 
   describe 'Validations' do
-
     it "must be valid" do
       product.must_be :valid?
     end
@@ -66,28 +65,31 @@ describe Product do
     end
   end
 
-describe 'relations' do
-  it "has a list of orders" do
-    product.must_respond_to :orders
-    product.orders.each do |order|
-      order.must_be_kind_of Order
-    end
-  end
+  describe 'relations' do
+    it "has a list of orders" do
+      product.must_respond_to :orders
 
-  it "has a list of categories" do
-    product.must_respond_to :categories
-    product.categories.each do |category|
-      category.must_be_kind_of Category
+      product.orders.each do |order|
+        order.must_be_kind_of Order
+      end
     end
-  end
 
-  it "has a list of reviews" do
-    product.must_respond_to :reviews
-    product.reviews.each do |review|
-      review.must_be_kind_of Review
+    it "has a list of categories" do
+      product.must_respond_to :categories
+
+      product.categories.each do |category|
+        category.must_be_kind_of Category
+      end
     end
-  end
 
-end
+    it "has a list of reviews" do
+      product.must_respond_to :reviews
+      
+      product.reviews.each do |review|
+        review.must_be_kind_of Review
+      end
+    end
+
+  end
 
 end
