@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 20180420184237) do
     t.index ["product_id"], name: "index_category_product_on_product_id"
   end
 
+  create_table "categoryproducts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "merchants", force: :cascade do |t|
     t.string "username"
     t.string "email"
