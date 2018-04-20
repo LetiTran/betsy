@@ -78,9 +78,9 @@ describe Product do
     it "has a list of reviews" do
       product.must_respond_to :reviews
 
-      # product.reviews.each do |review|
-      #   review.must_be_kind_of Review
-      # end
+      product.reviews.each do |review|
+        review.must_be_kind_of Review
+      end
     end
 
   end

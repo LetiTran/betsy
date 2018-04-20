@@ -194,7 +194,9 @@ describe Order do
     it "has a list of products" do
       order.must_respond_to :products
 
-      order.products.last.must_be_kind_of Product
+      order.products.each do |product|
+        product.must_be_kind_of Product
+      end
     end
   end
 
