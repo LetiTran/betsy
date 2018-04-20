@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'faker'
+
+category = Category.new(name: "Dessert")
+
+20.times do |t|
+  product = Product.create(name: Faker::Dessert.variety, price: 1, category: category , quantity: 2 )
+  puts "#{product.name} created!"
+  # puts "   category: #{product.category.name}"
+end
+
+p "Created #{Product.count} desserts"

@@ -70,3 +70,5 @@ group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
 end
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

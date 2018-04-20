@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+
   get '/login', to: 'sessions#new', as: 'login_form'
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
+
+  # Merchants:
   get 'merchants/index'
 
   get 'merchants/show'
@@ -18,21 +21,18 @@ Rails.application.routes.draw do
 
   get 'merchants/destroy'
 
-  get 'products/index'
+  # Sessions:
+  get 'sessions/index'
 
-  get 'products/show'
+  get 'sessions/show'
 
-  get 'products/new'
+  get 'sessions/new'
 
-  get 'products/create'
+  get 'sessions/create'
 
-  get 'products/edit'
+  get 'sessions/destroy'
 
-  get 'products/update'
-
-  get 'products/destroy'
-
-
+  # Reviews:
   get 'reviews/index'
 
   get 'reviews/show'
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
   get 'reviews/destroy'
 
+  # Categories:
   get 'categories/index'
 
   get 'categories/show'
@@ -61,6 +62,7 @@ Rails.application.routes.draw do
 
   get 'categories/destroy'
 
+  # Orders:
   get 'orders/index'
 
   get 'orders/show'
