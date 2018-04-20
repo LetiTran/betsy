@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420210623) do
+ActiveRecord::Schema.define(version: 20180420210248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,6 @@ ActiveRecord::Schema.define(version: 20180420210623) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_category_product_on_category_id"
     t.index ["product_id"], name: "index_category_product_on_product_id"
-  end
-
-  create_table "categoryproducts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -53,8 +48,8 @@ ActiveRecord::Schema.define(version: 20180420210623) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id"
     t.bigint "order_id"
+    t.bigint "product_id"
     t.index ["order_id"], name: "index_orderproducts_on_order_id"
     t.index ["product_id"], name: "index_orderproducts_on_product_id"
   end
@@ -82,8 +77,6 @@ ActiveRecord::Schema.define(version: 20180420210623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.bigint "order_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -99,6 +92,5 @@ ActiveRecord::Schema.define(version: 20180420210623) do
   add_foreign_key "orderproducts", "orders"
   add_foreign_key "orderproducts", "products"
   add_foreign_key "orders", "products"
-  add_foreign_key "products", "orders"
   add_foreign_key "reviews", "products"
 end
