@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :orderproducts
   has_and_belongs_to_many :categories, join_table: "category_product"
   has_many :reviews
+  belongs_to :merchant
 
   validates :name, presence: true, length: { minimum: 1 }
   validate :has_at_least_one_category

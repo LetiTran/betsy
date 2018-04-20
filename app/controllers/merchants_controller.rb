@@ -31,6 +31,6 @@ class MerchantsController < ApplicationController
   end
 
   def find_merchant
-    @merchant = Merchant.find_by(:id params[:id])
+    @merchant = Merchant.find_by(id: params[:id])
   end
 end

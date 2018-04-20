@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Yummsy!" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "Sweetsy!" %></title>
 
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,35 +12,38 @@
 </head>
 
 <header class="nav-bar">
-  <secion class="top-bar" data-topbar role="navigation">
+  <section class="top-bar" data-topbar role="navigation">
+    <div class="nav-item">
+      <%= link_to image_tag("/assets/images/candy-icon.jpg", alt: "Home"), homepage_path, class: "button" %>
+    </div>
+    <div>
+      <%= link_to "View all products", products_path, class: "button" %>
+      <ul class="dropdown menu" data-options="align:left" data-dropdown="drop">
+        <li></li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <%= link_to "View all merchants", merchants_path, class: "button" %>
+    </div>
+    <div class="nav-item">
+      <%= link_to "Shop by Category", categories_path, class: "button" %>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <% Category.all.each do |cat|%>
+        <li>  <%= link_to cat.name, category_path(cat.id), class: "button" %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <% if @login_user %>
+      <%= link_to "Logged in as #{@login_user.username}", user_path(@login_user), class: "button" %>
+      <%= link_to "Log Out", logout_path, method: :post, class: "button" %>
+      <% else %>
+      <%= link_to "Log In", login_path, class: "button" %>
+      <% end %>
+      <%= link_to "Cart", cart_path, class: "button" %>
+    </div>
 
-
-    <%= link_to image_tag("/assets/images/candy-icon.jpg", alt: "Home"), homepage_path, class: "button" %>
-    <%= link_to "View all products", products_path, class: "button" %>
-
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li>
-        <%= link_to "Shop by Category", categories_path, class: "button" %>
-        <ul class="menu">
-          <% Category.all.each do |cat|%>
-          <li>  <%= link_to cat.name, category_path(cat.id), class: "button" %></li>
-          <% end %>
-        </ul>
-      </li>
-    </ul>
-
-
-    <% if @login_user %>
-    <%= link_to "Logged in as #{@login_user.username}", user_path(@login_user), class: "button" %>
-    <%= link_to "Log Out", logout_path, method: :post, class: "button" %>
-    <% else %>
-    <%= link_to "Log In", login_path, class: "button" %>
-    <% end %>
-
-    <%= link_to "Cart", cart_path, class: "button" %>   <!-- change -->
-  </div>
-
-
+  </section>
 </header>
 
 <body>
