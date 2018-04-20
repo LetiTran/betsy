@@ -1,28 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'sessions/index'
-
-  get 'sessions/show'
-
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
-  get 'merchants/index'
-
-  get 'merchants/show'
-
-  get 'merchants/new'
-
-  get 'merchants/create'
-
-  get 'merchants/edit'
-
-  get 'merchants/update'
-
-  get 'merchants/destroy'
+  # Products:
+  get 'products/root', to: 'products#root', as: 'root'
 
   get 'products/index'
 
@@ -38,7 +17,33 @@ Rails.application.routes.draw do
 
   get 'products/destroy'
 
+  # Merchants:
+  get 'merchants/index'
 
+  get 'merchants/show'
+
+  get 'merchants/new'
+
+  get 'merchants/create'
+
+  get 'merchants/edit'
+
+  get 'merchants/update'
+
+  get 'merchants/destroy'
+
+  # Sessions:
+  get 'sessions/index'
+
+  get 'sessions/show'
+
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  # Reviews:
   get 'reviews/index'
 
   get 'reviews/show'
@@ -53,6 +58,7 @@ Rails.application.routes.draw do
 
   get 'reviews/destroy'
 
+  # Categories:
   get 'categories/index'
 
   get 'categories/show'
@@ -67,6 +73,7 @@ Rails.application.routes.draw do
 
   get 'categories/destroy'
 
+  # Orders:
   get 'orders/index'
 
   get 'orders/show'
