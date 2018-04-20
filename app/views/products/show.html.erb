@@ -1,2 +1,36 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<h2>Product Details</h2>
+
+
+<div>
+  <strong><%= "Product : #{@product.name}" %></strong>
+
+    <p><%= "Price:#{ @product.price}" %>
+
+  <p><%= "Stock: #{@product.quantity}" %></p>
+</div>
+<%= form_for @orderproduct do |f| %>
+        <%= f.label :quantity %>
+        <%= f.select :quantity, options_for_select(1..10)%>
+        <%= f.submit "Add to Cart", class: "button" %>
+      <% end %>
+<div>
+  <p><%="Description:#{@product.description}" %>
+</div>
+
+<div>
+  <%= button_to "Add to Cart", edit_product_path(@product.id), method: :get %>
+
+</div>
+
+<div>
+  <ul>
+    <% @product.reviews.each do |review| %>
+      <li>
+
+        <%= "Rating:#{review.rating}" %>
+        <%= "Comment:#{review.comment}" %>
+        <%= link_to "Review: #{review.id}", review_path(review.id) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
