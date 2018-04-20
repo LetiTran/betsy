@@ -9,13 +9,38 @@
 
 require 'faker'
 
-category = Category.create!(name: "Dessert")
+# Categories:
+  category = Category.create!(name: "Caramel")
+  puts "#{category.name} created!"
+
+  category = Category.create!(name: "Gummy")
+  puts "#{category.name} created!"
+
+  category = Category.create!(name: "Cakes")
+  puts "#{category.name} created!"
+
+  category = Category.create!(name: Faker::Dessert.topping)
+  puts "#{category.name} created!"
+
+  category = Category.create!(name: Faker::Dessert.topping)
+  puts "#{category.name} created!"
+p "Created #{Category.count} categories"
 
 
+# Products
 20.times do |t|
-  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [category] , quantity: 2 )
+  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.first] , quantity: 2 )
   puts "#{product.name} created!"
    puts "   category: #{product.categories.first.name}"
 end
 
 p "Created #{Product.count} desserts"
+
+
+# Mercahnts
+5.times do |t|
+  merchant = Merchant.create!(username: Faker::Name.name, email: Faker::Internet.email )
+  puts "#{merchant.username} created!"
+end
+
+p "Created #{Merchant.count} merchants"

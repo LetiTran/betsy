@@ -68,6 +68,6 @@ class OrderproductsController < ApplicationController
     params.require(:order_product).permit(:quantity)
   end
   def find_orderproduct
-    @order_product = Orderproduct.find_by(:id params[:id])
+    @order_product = Orderproduct.find_by(params[:id])
   end
 end

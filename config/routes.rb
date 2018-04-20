@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
+  get '/cart', to:'orderproducts#index', as: 'cart'
+
   # Products:
   root 'products#root', as: 'homepage'
   resources :products do
