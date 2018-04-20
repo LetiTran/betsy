@@ -1,1 +1,10 @@
-<h1>root</h1>
+<h1>Splash page...</h1>
+
+
+<section>
+  <ul>
+    <% @products.each do |product|%>
+    <li><%= product.name %></li>
+    <% end %>
+  </ul>
+</section>
