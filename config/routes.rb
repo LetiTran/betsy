@@ -7,7 +7,7 @@ root 'products#root', as: 'homepage'
   # Reviews:
   #
   # Products:
-
+resources :products
   resources :products do
     # add orderproducts (cart#index)
     resources :reviews,only: [:new,:create]

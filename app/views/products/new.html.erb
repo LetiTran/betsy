@@ -7,7 +7,7 @@
 
       <%= f.label :quantity %>
       <%= f.text_field :quantity %>
-      
+
       <%= f.label :description %>
       <%= f.text_area :description %>
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
@@ -15,9 +15,8 @@
         <%= b.label %>
       <% end %>
 
-      <div class="submit">
-        <%= f.submit class: "cart button"%>
-      </div>
+        <%= f.submit %>
+
 
 
   <% end %>

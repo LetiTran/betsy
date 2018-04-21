@@ -20,7 +20,7 @@
 
       <h4>Ratings Summary</h4>
     <p>
-      <%= @product.average_rating %>
+      <%="Average rating: #{@product.average_rating}" %>
     </p>
   <% if @product.reviews.empty? %>
   <p>
@@ -31,9 +31,8 @@
     <% @product.reviews.each do |review| %>
     <article>
     <li>
-      <% review.rating.times do%>
-      <%= "🍦"  %>
-      <% end %>
+      <% review.rating%>
+  
     </li>
     <p>
       <%= review.comment %>
