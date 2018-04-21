@@ -1,20 +1,15 @@
 <h1>Merchants</h1>
 
-<section class="all-merchants">
-  <table>
-    <tr>
-      <th>Username</th>
-      <th>Email</th>
-    </tr>
-    <% @merchants.each do |merchant| %>
-    <tr>
-      <td>
-        <%= link_to merchant.username, merchant_path(merchant.id) %>
-      </td>
-      <td>
-        <%= merchant.email %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+<section>
+  <% @merchants.each do |merchant| %>
+  <div class="merch-container">
+    <a href="https://placeholder.com"><img src="http://via.placeholder.com/120x120" alt="merchant pic"></a>
+    <p>
+      <strong>Username: </strong><%= link_to merchant.username, merchant_path(merchant.id) %>
+    </p>
+    <p>
+      <strong>Email: </strong><%= merchant.email %>
+    </p>
+  </div>
+  <% end %>
 </section>
