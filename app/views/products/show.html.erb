@@ -3,7 +3,7 @@
 
 <div>
   <strong><%= "Product : #{@product.name}" %></strong>
-  <%= image_tag "https://placeholder.com" %>
+  <%= image_tag "https://picsum.photos" %>
   <p><%= "Price:#{ @product.price}" %>
 
     <p><%= "Stock: #{@product.quantity}" %></p>
@@ -17,21 +17,31 @@
     <p><%="Description:#{@product.description}" %>
     </div>
     <div>
-      <h3>Reviews:</h3>
-      <p><strong>Average Rating:</strong><%= "#{@product.average_rating}" %></p>
-      <% @product.reviews.each do |review| %>
-      <ul id = "show-review">
-        <li>
-          Rating: <%= review.rating %>
-        </li>
-        <li>
-          <%= review.comment %>
-        </li>
-      </ul>
+
+      <h4>Ratings Summary</h4>
+    <p>
+      <%= @product.average_rating %>
+    </p>
+  <% if @product.reviews.empty? %>
+  <p>
+    Be the first to review!
+  </p>
+  <%else %>
+  <ul>
+    <% @product.reviews.each do |review| %>
+    <article>
+    <li>
+      <% review.rating.times do%>
+      <%= "🍦"  %>
       <% end %>
+    </li>
+    <p>
+      <%= review.comment %>
 
-
-      <%= link_to("Add a Review", new_product_review_path(@product.id), :class => "button") %>
-
-
+    </article>
+    <%end %>
+  </ul>
+  <% end %>
+  <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
+</section>
     </div>

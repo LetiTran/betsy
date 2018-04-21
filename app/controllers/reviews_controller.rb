@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-    product = Product.find_by(id: params[:product_id])
+    #product = Product.find_by(id: params[:product_id])
 
   end
 
@@ -24,31 +24,24 @@ class ReviewsController < ApplicationController
     #   redirect_to product_path(@product.id)
     # else
     @review = Review.new(review_params)
-    @review.product_id = @product.id
+    #@review.product_id = @product.id
 
    if @review.save
      flash[:success] = "#{@review.rating} saved"
-     redirect_to product_path(@review.product)
+     redirect_to products_path
    else
      flash[:alert] = "Could not create #{@review.rating}"
-     render :new
+     redirect_to products_path
+
    end
  #end
   end
 
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
 
   private
 
   def review_params
-     return params.require(:review).permit(:rating, :comment)
+     return params.require(:review).permit(:rating, :comment,:product_id)
   end
 
   def find_review

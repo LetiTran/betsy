@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     #@product.merchant_id = session[:merchant_id]
     if @product.save
       flash[:status] = :success
-      redirect_to product_path(@product.id)
+      redirect_to products_path
     else
       flash[:failure] = :failure
       flash.now[:result_text]= "Error: product was not added"
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    render_404 unless @product
+
   end
 
   def update
