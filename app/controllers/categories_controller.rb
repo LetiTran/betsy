@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    find_category
   end
 
   def new
@@ -13,12 +14,15 @@ class CategoriesController < ApplicationController
   end
 
   def create
+
   end
 
   def update
+    find_category
   end
 
   def edit
+    find_category
   end
 
   def destroy
