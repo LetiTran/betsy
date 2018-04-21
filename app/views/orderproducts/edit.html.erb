@@ -1,2 +1,15 @@
-<h1>Orderproducts#edit</h1>
-<p>Find me in app/views/orderproducts/edit.html.erb</p>
+<h1>Update Product Quantity</h1>
+
+  <article>
+    <%= image_tag @order_product.product.image, alt: @order_product.product.name%>
+  </article>
+  <article>
+  <%= link_to @order_product.product.name.titleize ,product_path(@order_product.product_id)%>
+  <%= form_for @order_product do |f| %>
+  <%= f.label :quantity %>
+  <%= f.select :quantity, options_for_select(1..10, @order_product.quantity) %>
+  <%= f.submit "Update Quantity", class: "button" %>
+  <% end %>
+  </article>
+</section>
+</section>
