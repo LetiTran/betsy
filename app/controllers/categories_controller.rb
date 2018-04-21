@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    find_category
   end
 
   def new
@@ -27,14 +26,21 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    find_category
+    if @category.update(category_params)
+      flash[:status] = :success
+      redirect_to categories_path(@category)
+    else
+      flash.now[:status] = :failure
+    end
   end
 
   def edit
-    find_category
   end
 
   def destroy
+    # shouls a user be able to delete a category? Maybe not...
+  @category.destroy if @category
+  redirect_to categories_path
   end
 
   private
