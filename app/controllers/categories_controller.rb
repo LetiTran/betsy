@@ -14,7 +14,16 @@ class CategoriesController < ApplicationController
   end
 
   def create
-
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created #{@category.name}"
+      redirect_to categories_path(@category.id)
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create this category"
+      redirect_to categories_path
+    end
   end
 
   def update
