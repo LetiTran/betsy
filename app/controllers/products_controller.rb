@@ -17,15 +17,38 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @product = Product.new(product_params)
+    #@product.merchant_id = session[:merchant_id]
+    if @product.save
+      flash[:status] = :success
+      redirect_to product_path(@product.id)
+    else
+      flash[:failure] = :failure
+      flash.now[:result_text]= "Error: product was not added"
+      render :new
+    end
   end
 
   def edit
+    render_404 unless @product
   end
 
   def update
+    if @product.update(product_params)
+      flash[:success] = "#{@product.name} updated"
+      redirect_to product_path(@product.id)
+    else
+      flash[:alert] = "A problem occured:Could not update"
+
+      render :edit
+    end
   end
 
   def destroy
+    if @product.destroy
+      flash[:message] = "Deleted #{@product.category} #{@product.name}"
+      redirect_to products_path
+    end
   end
 
   private

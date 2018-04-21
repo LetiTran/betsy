@@ -8,7 +8,14 @@ class Product < ApplicationRecord
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
 
-
+  def average_rating
+    return "No reviews yet" if reviews.count == 0
+    sum = 0
+    reviews.each do |review|
+      sum += review.rating
+    end
+    return (sum.to_f/reviews.count).round(1)
+  end
   private
   def has_atleast_one_category
 
@@ -16,4 +23,5 @@ class Product < ApplicationRecord
       errors.add(:categories, "must have atleat one category")
     end
   end
+
 end

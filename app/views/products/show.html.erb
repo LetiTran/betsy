@@ -3,34 +3,35 @@
 
 <div>
   <strong><%= "Product : #{@product.name}" %></strong>
+  <%= image_tag "https://placeholder.com" %>
+  <p><%= "Price:#{ @product.price}" %>
 
-    <p><%= "Price:#{ @product.price}" %>
-
-  <p><%= "Stock: #{@product.quantity}" %></p>
-</div>
-<%= form_for @orderproduct do |f| %>
-        <%= f.label :quantity %>
-        <%= f.select :quantity, options_for_select(1..10)%>
-        <%= f.submit "Add to Cart", class: "button" %>
+    <p><%= "Stock: #{@product.quantity}" %></p>
+  </div>
+  <%= form_for @product do |f| %>
+  <%= f.label :quantity %>
+  <%= f.select :quantity, options_for_select(1..10)%>
+  <%= f.submit "Add to Cart", class: "button" %>
+  <% end %>
+  <div>
+    <p><%="Description:#{@product.description}" %>
+    </div>
+    <div>
+      <h3>Reviews:</h3>
+      <p><strong>Average Rating:</strong><%= "#{@product.average_rating}" %></p>
+      <% @product.reviews.each do |review| %>
+      <ul id = "show-review">
+        <li>
+          Rating: <%= review.rating %>
+        </li>
+        <li>
+          <%= review.comment %>
+        </li>
+      </ul>
       <% end %>
-<div>
-  <p><%="Description:#{@product.description}" %>
-</div>
 
-<div>
-  <%= button_to "Add to Cart", edit_product_path(@product.id), method: :get %>
 
-</div>
+      <%= link_to("Add a Review", new_product_review_path(@product.id), :class => "button") %>
 
-<div>
-  <ul>
-    <% @product.reviews.each do |review| %>
-      <li>
 
-        <%= "Rating:#{review.rating}" %>
-        <%= "Comment:#{review.comment}" %>
-        <%= link_to "Review: #{review.id}", review_path(review.id) %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+    </div>
