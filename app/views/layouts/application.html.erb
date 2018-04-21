@@ -12,23 +12,50 @@
 </head>
 
 <header class="nav-bar">
-  <secion class="top-bar" data-topbar role="navigation">
+  <section class="top-bar" data-topbar role="navigation">
 
+    <div>
+      <%= link_to image_tag("/assets/images/candy-icon.jpg", alt: "Home"), homepage_path, class: "button" %>
+    </div>
 
-    <%= link_to image_tag("/assets/images/candy-icon.jpg", alt: "Home"), homepage_path, class: "button" %>
-    <%= link_to "View all products", products_path, class: "button" %>
+    <div>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          <%= link_to "View all products", products_path, class: "button" %>
+          <ul class="menu">
+            <% Product.all.each do |product|%>
+            <li>  <%= link_to product.name, product_path(product.id), class: "button" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li>
-        <%= link_to "Shop by Category", categories_path, class: "button" %>
-        <ul class="menu">
-          <% Category.all.each do |cat|%>
-          <li>  <%= link_to cat.name, category_path(cat.id), class: "button" %></li>
-          <% end %>
-        </ul>
-      </li>
-    </ul>
+    <div>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          <%= link_to "View all merchants", merchants_path, class: "button" %>
+          <ul class="menu">
+            <% Merchant.all.each do |merchant|%>
+            <li>  <%= link_to merchant.username, merchant_path(merchant.id), class: "button" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
+    <div>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          <%= link_to "Shop by Category", categories_path, class: "button" %>
+          <ul class="menu">
+            <% Category.all.each do |cat|%>
+            <li><%= link_to cat.name, category_path(cat.id), class: "button" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
     <% if @login_user %>
     <%= link_to "Logged in as #{@login_user.username}", user_path(@login_user), class: "button" %>
@@ -36,11 +63,9 @@
     <% else %>
     <%= link_to "Log In", login_path, class: "button" %>
     <% end %>
+    <%= link_to "Cart", cart_path, class: "button" %>
 
-    <%= link_to "Cart", cart_path, class: "button" %>   <!-- change -->
-  </div>
-
-
+  </section>
 </header>
 
 <body>
