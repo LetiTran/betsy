@@ -10,34 +10,34 @@
 require 'faker'
 
 # Categories:
-  category = Category.create!(name: "Caramel")
+puts "\n"
+10.times do |t|
+    category = Category.create(name: Faker::Dessert.topping)
+  until category.name do
+      category = Category.create!(name: Faker::Dessert.topping)
+  end
   puts "#{category.name} created!"
-
-  category = Category.create!(name: "Gummy")
-  puts "#{category.name} created!"
-
-  category = Category.create!(name: "Cakes")
-  puts "#{category.name} created!"
-
-  category = Category.create!(name: Faker::Dessert.topping)
-  puts "#{category.name} created!"
-
-p "Created #{Category.count} categories"
+end
+p "**Created #{Category.count} categories**"
 
 # Mercahnts
-5.times do |t|
-  merchant = Merchant.create!(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
+puts "\n"
+10.times do |t|
+    merchant = Merchant.create(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
+  until merchant.username do
+    merchant = Merchant.create!(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
+  end
   puts "#{merchant.username} created!"
 end
 
-p "Created #{Merchant.count} merchants"
+p "**Created #{Merchant.count} merchants**"
 
 
 # Products
+puts "\n"
 10.times do |t|
-  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.first] , quantity: 2, merchant_id: Merchant.first.id )
-  puts "#{product.name} created!"
-   puts "   category: #{product.categories.first.name}"
+  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, merchant_id: Merchant.order("RANDOM()").first.id )
+  puts "#{product.name} created in the category: #{product.categories.first.name}"
 end
 
-p "Created #{Product.count} desserts"
+p "**Created #{Product.count} desserts**"
