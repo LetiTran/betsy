@@ -25,7 +25,7 @@
 .top-bar {
    background-color:  #009999;
    border-bottom: dotted;
-   border-bottom-color: grey;
+   border-bottom-color: skyblue;
    padding: 0;
    margin: 0;
  }
@@ -41,11 +41,11 @@
    justify-content: center;
    padding-top: 20px;
  }
- .all-merchants {
+ .item-box {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
-   justify-content: center;
+   justify-content: space-around;
    align-content: center;
  }
  .merch-container {
@@ -53,9 +53,7 @@
    grid-template:
                  "image"
                  "text";
-  padding-bottom: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
+   padding: 2em;
  }
 
  .merch-container #pic {
@@ -74,3 +72,26 @@
  strong {
    margin-right: .3em;
  }
+
+ .product-container {
+   padding: 2em;
+ }
+
+ .product-container h4 {
+   display: flex;
+   justify-content: center;
+ }
+
+.product-info {
+  border: solid;
+  border-style: outset;
+  background-color: #ffaa80;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-info p {
+  margin: 0;
+  padding-left: .5em;
+}
