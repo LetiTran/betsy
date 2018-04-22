@@ -13,15 +13,34 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created #{@category.name}"
+      redirect_to categories_path(@category.id)
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create this category"
+      redirect_to categories_path
+    end
   end
 
   def update
+    if @category.update(category_params)
+      flash[:status] = :success
+      redirect_to categories_path(@category)
+    else
+      flash.now[:status] = :failure
+    end
   end
 
   def edit
   end
 
   def destroy
+    # shouls a user be able to delete a category? Maybe not...
+  @category.destroy if @category
+  redirect_to categories_path
   end
 
   private

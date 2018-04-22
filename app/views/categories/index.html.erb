@@ -1,12 +1,15 @@
-<<<<<<< HEAD
-<
-=======
 
->>>>>>> product_controller
 <section>
   <ul>
     <% @categories.each do |category|%>
     <li><%= link_to categories.name, categories_path(category.id) %></li>
+<h1>Categories</h1>
+
+<section>
+  <ul>
+    <% @categories.each do |category|%>
+    <li><%= link_to category.name, category_path(category.id) %></li>
+
     <% end %>
   </ul>
 </section>
