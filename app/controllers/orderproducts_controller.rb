@@ -7,33 +7,31 @@ class OrderproductsController < ApplicationController
 
   def show
   end
+  def new
+    @orderproduct = Orderproduct.new(orderproduct_params)
+    @product = Product.find_by(id: params[:product_id])
+  end
 
   def create
 
-    if @order.nil?
-      @order = Order.create(status: "pending")
-    end
-    @op = @order.orderproducts.find_by(product_id: params[:id])
-    if @op
-      @op.quantity += params[:orderproduct][:quantity].to_i
+    @product = Product.find_by(id: params[:product_id])
+    @orderproduct = OrderProduct.new(orderproduct_params)
+    @orderproduct.product_id = @product.id
+    #@orderproduct.order_id = @order.id
+
+    if @orderproduct.save
+      status = :success
+      flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
+      redirect_to products_path
     else
-      @op = Orderproduct.new(orderproduct_params)
-      @op.product_id = params[:id]
-    end
-    if @op.save
-      flash[:status] = :success
-      flash[:result_text] = "Successfully added to cart"
-      redirect_to product_path(params[:id])
-    else
-      flash[:status] = :failure
-      flash[:result_text] = "Sorry"
-      flash[:messages] = @op.errors.messages
-      redirect_to product_path(params[:id]), status: :bad_request
+      status = :bad_request
+      flash[:result_text] = "Error - products not added to your order"
+      render :new, status: status
+
     end
   end
 
-  def new
-  end
+
 
   def edit
   end
@@ -65,9 +63,9 @@ class OrderproductsController < ApplicationController
 
   private
   def orderproduct_params
-    params.require(:order_product).permit(:quantity)
+    params.require(:order_product).permit(:quantity,:product_id)
   end
   def find_orderproduct
-    @order_product = Orderproduct.find_by(:id params[:id])
+    @orderproduct = Orderproduct.find_by(id: params[:id])
   end
 end
