@@ -1,46 +1,53 @@
 <h2>Product Details</h2>
 
+<section class = "row product-show container">
+  <article class = "column small-12 medium-6 image-show">
+    <%= image_tag ('https://placeimg.com/350/200/nature') %>
+  </article>
 
-<div>
-  <strong><%= "Product : #{@product.name}" %></strong>
-  <%= image_tag "https://picsum.photos" %>
-  <p><%= "Price:#{ @product.price}" %>
+    <article class = "column small-12 medium-6">
+      <h3><%= "Product : #{@product.name}" %></h3>
+      <small><%= "Stock: #{@product.quantity}" %></small>
 
-    <p><%= "Stock: #{@product.quantity}" %></p>
-  </div>
-  <%= form_for @product do |f| %>
-  <%= f.label :quantity %>
-  <%= f.select :quantity, options_for_select(1..10)%>
-  <%= f.submit "Add to Cart", class: "button" %>
-  <% end %>
-  <div>
-    <p><%="Description:#{@product.description}" %>
-    </div>
-    <div>
+      <h4><%= "Price:#{ @product.price}" %></h4>
 
-      <h4>Ratings Summary</h4>
-    <p>
-      <%="Average rating: #{@product.average_rating}" %>
-    </p>
-  <% if @product.reviews.empty? %>
-  <p>
-    Be the first to review!
-  </p>
-  <%else %>
-  <ul>
-    <% @product.reviews.each do |review| %>
-    <article>
-    <li>
-      <% review.rating%>
-  
-    </li>
-    <p>
-      <%= review.comment %>
 
-    </article>
-    <%end %>
-  </ul>
-  <% end %>
-  <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
-</section>
-    </div>
+      <%= form_for @product do |f| %>
+      <%= f.label :quantity %>
+      <%= f.select :quantity, options_for_select(1..10)%>
+      <%= f.submit "Add to Cart", class: "button" %>
+      <% end %>
+
+        <p class = "description">
+        <small>Description: </small><%=@product.description %>
+      </p>
+
+
+          <section class = "row rating-average container">
+
+          <h4>Ratings Summary</h4>
+          <p>
+            <%="Average rating: #{@product.average_rating}" %>
+          </p>
+        </section>
+        <section class = "row rating container">
+          <h4>Rating</h4>
+          <% if @product.reviews.empty? %>
+          <p>
+            Be the first to review!
+          </p>
+          <%else %>
+          <ul>
+            <% @product.reviews.each do |review| %>
+            <article>
+              <li>
+                <% review.rating%>
+              </li>
+              <p>
+                <%= review.comment %>
+              </article>
+              <%end %>
+            </ul>
+            <% end %>
+            <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
+          </section>
