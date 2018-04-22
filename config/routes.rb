@@ -16,7 +16,7 @@ root 'products#root', as: 'homepage'
 resources :products
   resources :products do
     # add orderproducts (cart#index)
-    resources :reviews,only: [:new,:create]
+      resources :reviews,only: [:new,:create]
     #resources :merchants, only: [:index]
     #resources :categories, only: [:index]
   end
