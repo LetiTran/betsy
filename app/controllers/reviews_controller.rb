@@ -47,10 +47,6 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find_by(id: params[:id])
-<<<<<<< HEAD
-
-=======
     render_404 unless @review
->>>>>>> 797193163aa3d9fb5c9c26c1c89bc4c5771198f2
   end
 end

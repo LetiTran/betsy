@@ -24,12 +24,6 @@ describe Review do
       review.errors.must_include :rating
     end
 
-    it "must have a comment between 1 and 250 characters" do
-      review.comment = ""
-
-      review.valid?.must_equal false
-      review.errors.must_include :comment
-    end
   end
 
   describe "relations" do
