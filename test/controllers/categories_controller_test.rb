@@ -1,39 +1,123 @@
 require "test_helper"
 
 describe CategoriesController do
-  it "should get index" do
-    get categories_index_url
-    value(response).must_be :success?
+
+  describe "index" do
+    it "should get index" do
+      get categories_path
+      value(response).must_be :success?
+    end
+    it "succeeds when there are categories" do
+      get categories_path
+
+      must_respond_with :success
+    end
+
+    it "succeeds when there are no categories" do
+      Category.destroy_all
+      assert Category.all.empty?
+      get categories_path
+      must_respond_with :success
+    end
   end
 
   it "should get show" do
-    get categories_show_url
+    get categories_path(categories(:candy).id)
     value(response).must_be :success?
   end
 
-  it "should get new" do
-    get categories_new_url
-    value(response).must_be :success?
+  describe "new" do
+    it "should get new" do
+      get new_category_path
+      value(response).must_be :success?
+    end
   end
 
-  it "should get create" do
-    get categories_create_url
-    value(response).must_be :success?
+  describe "create" do
+    it "creates a category with valid data" do
+
+      proc {
+        post categories_path, params: {
+          category: {
+            name: "New Category"
+          }
+        }
+      }.must_change 'Category.count', 1
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to categories_path(Category.last.id)
+    end
+
+    it "should get create" do
+      get categories_path
+      value(response).must_be :success?
+    end
   end
 
-  it "should get update" do
-    get categories_update_url
-    value(response).must_be :success?
+  describe 'update' do
+    it "should get update" do
+      get categories_path(categories(:candy).id)
+      value(response).must_be :success?
+    end
+    it "succeeds for valid data and an extant category ID" do
+
+      patch category_path(categories(:candy).id), params: {
+        category: {
+          name: "Update name"
+        }
+      }
+
+      must_respond_with :redirect
+      must_redirect_to categories_path(categories(:candy).id)
+    end
+
+    it "renders bad_request for bogus data" do
+
+      patch category_path(categories(:candy).id), params: {
+        category: {
+          doesnt_exists: "Update name"
+        }
+      }
+
+      must_respond_with :redirect
+    end
+
+    it "renders 404 not_found for a bogus category ID" do
+      patch category_path("wrong id")
+
+      must_respond_with :missing # 404
+    end
   end
 
-  it "should get edit" do
-    get categories_edit_url
-    value(response).must_be :success?
+  describe 'edit' do
+    it "should get edit" do
+      get categories_path(categories(:candy).id)
+      value(response).must_be :success?
+    end
   end
 
-  it "should get destroy" do
-    get categories_destroy_url
-    value(response).must_be :success?
+  describe 'destroy' do
+    it "should get destroy" do
+      get categories_path(categories(:candy).id)
+      value(response).must_be :success?
+    end
+    it "succeeds for an extant category ID" do
+        proc {
+          delete category_path(categories(:candy).id)
+        }.must_change 'Category.count', -1
+
+        must_respond_with :redirect
+      end
+
+      it "renders 404 not_found and does not update the DB for a bogus category ID" do
+        proc {
+          delete category_path("wrond id")
+        }.must_change 'Category.count', 0
+
+        must_respond_with :missing
+      end
   end
+
 
 end

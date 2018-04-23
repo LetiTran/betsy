@@ -23,7 +23,7 @@ p "**Created #{Category.count} categories**"
 # Mercahnts
 puts "\n"
 10.times do |t|
-    merchant = Merchant.create(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
+    merchant = Merchant.create(username: "#{Faker::Name.first_name}#{t}", email: Faker::Internet.email )
   until merchant.username do
     merchant = Merchant.create!(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
   end
