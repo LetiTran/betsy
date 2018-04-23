@@ -1,2 +1,15 @@
-<h1>Orderproducts#edit</h1>
-<p>Find me in app/views/orderproducts/edit.html.erb</p>
+
+
+
+
+<h1> Edit Order Item Quantity </h1>
+
+<section>
+  <%= form_for @product do |f| %>
+
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, min: 1, max: @product.quantity %>
+
+  <%= f.submit class: "button" %>
+  <% end %>
+</section>
