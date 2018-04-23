@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Review do
-  let(:review) { Review.new rating:1, comment:"hdjdjhjj" }
+  let(:review) { Review.new rating:1, comment:"A coment here" }
 
   describe "validations" do
     it "must be valid" do

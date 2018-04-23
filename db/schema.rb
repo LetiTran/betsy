@@ -70,10 +70,8 @@ ActiveRecord::Schema.define(version: 20180423172432) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.bigint "order_id"
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_products_on_merchant_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -89,6 +87,5 @@ ActiveRecord::Schema.define(version: 20180423172432) do
   add_foreign_key "orderproducts", "orders"
   add_foreign_key "orderproducts", "products"
   add_foreign_key "products", "merchants"
-  add_foreign_key "products", "orders"
   add_foreign_key "reviews", "products"
 end
