@@ -7,13 +7,13 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @reviews = Review
+
   end
 
   def new
     @review = Review.new
     @product = Product.find_by(id: params[:product_id])
-
+  
   end
 
   def create
@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
    else
      flash[:alert] = "Could not create #{@review.rating}"
      redirect_to product_path(@product.id)
+
 
    end
  #end

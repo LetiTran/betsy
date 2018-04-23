@@ -1,1 +1,14 @@
 
+
+<h1> Edit Order Item Quantity </h1>
+
+<section>
+  <%= form_for @orderproduct do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, min: 1, max: @product.quantity %>
+
+  <%= f.submit class: "button" %>
+  <% end %>
+</section>

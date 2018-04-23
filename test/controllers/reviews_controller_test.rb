@@ -1,39 +1,55 @@
 require "test_helper"
 
 describe ReviewsController do
-  it "should get index" do
-    get reviews_index_url
-    value(response).must_be :success?
+  describe "index" do
+    it "should get index" do
+      get reviews_path
+      must_respond_with :success
+    end
+
+  end
+  describe "show" do
+    it "should get show" do
+      get reviews_path(reviews(:candy).id)
+      value(response).must_be :success?
+    end
   end
 
-  it "should get show" do
-    get reviews_show_url
-    value(response).must_be :success?
+  describe "new" do
+    it "should get new" do
+
+      get new_product_review_path(products(:candy).id)
+      must_respond_with :success
+    end
   end
 
-  it "should get new" do
-    get reviews_new_url
-    value(response).must_be :success?
-  end
+  describe "create" do
+    it "creates a review with valid data" do
 
-  it "should get create" do
-    get reviews_create_url
-    value(response).must_be :success?
-  end
+      proc {
+        post reviews_path, params: {
+          review: {
+            product_id: products(:candy).id,
+            rating: 2,
+            comment:"reviewtext"
+          }
+        }
+      }.must_change 'Review.count', 1
 
-  it "should get update" do
-    get reviews_update_url
-    value(response).must_be :success?
-  end
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to product_path(Product.last.id)
+    end
 
-  it "should get edit" do
-    get reviews_edit_url
-    value(response).must_be :success?
+    it " does not update the DB for bogus data" do
+      review_data = {
+        review: {
+          product_id: products(:candy).id,
+          rating: nil
+        }
+      }
+      start_count = Review.count
+      Review.count.must_equal start_count
+    end
   end
-
-  it "should get destroy" do
-    get reviews_destroy_url
-    value(response).must_be :success?
-  end
-
 end
