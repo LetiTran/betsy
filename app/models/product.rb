@@ -24,7 +24,7 @@ class Product < ApplicationRecord
     #     end
     return "No reviews yet" if reviews.count == 0
     sum = 0.0
-    products.reviews.each do |review|
+    self.reviews.each do |review|
       sum += review.rating
     end
     return (sum/reviews.count)

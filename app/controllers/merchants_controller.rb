@@ -13,15 +13,36 @@ class MerchantsController < ApplicationController
   end
 
   def create
+    @merchant = Merchant.new(merchant_params)
+    if @merchant.save
+      flash[:success] = "Merchant added!"
+      redirect_to merchants_path
+    else
+      flash.now[:alert] = @merchant.errors
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
+    if @merchant.update(merchant_params)
+      flash[:success] = "#{@merchant.username} updated!"
+      redirect_to merchant_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy
+    if @merchant != nil
+      @merchant.destroy
+      flash[:success] = "#{@merchant} removed!"
+    else
+      flash.now[:alert] = "#{@merchant} does not exit!"
+    end
+    redirect_to merchants_path
   end
 
   private
