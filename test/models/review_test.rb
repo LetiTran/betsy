@@ -23,7 +23,6 @@ describe Review do
       review.valid?.must_equal false
       review.errors.must_include :rating
     end
-
   end
 
   describe "relations" do
