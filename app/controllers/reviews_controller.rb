@@ -28,10 +28,10 @@ class ReviewsController < ApplicationController
 
    if @review.save
      flash[:success] = "#{@review.rating} saved"
-     redirect_to products_path
+     redirect_to product_path(@product.id)
    else
      flash[:alert] = "Could not create #{@review.rating}"
-     redirect_to products_path
+     redirect_to product_path(@product.id)
 
    end
  #end

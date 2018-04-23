@@ -9,21 +9,13 @@ class OrderproductsController < ApplicationController
     @orderproduct = Orderproduct.new(orderproduct_params)
     @product = Product.find_by(id: params[:product_id])
   end
-<<<<<<< HEAD
 
   def create
 
-=======
-  def create
->>>>>>> f0dcbc4480df5a45308b8470c830758917ea7076
     @product = Product.find_by(id: params[:product_id])
     @orderproduct = OrderProduct.new(orderproduct_params)
     @orderproduct.product_id = @product.id
     #@orderproduct.order_id = @order.id
-<<<<<<< HEAD
-
-=======
->>>>>>> f0dcbc4480df5a45308b8470c830758917ea7076
     if @orderproduct.save
       status = :success
       flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
@@ -32,17 +24,8 @@ class OrderproductsController < ApplicationController
       status = :bad_request
       flash[:result_text] = "Error - products not added to your order"
       render :new, status: status
-<<<<<<< HEAD
-
     end
   end
-
-
-
-=======
-    end
-  end
->>>>>>> f0dcbc4480df5a45308b8470c830758917ea7076
   def edit
   end
   def update
