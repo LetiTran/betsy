@@ -32,5 +32,6 @@ class OrdersController < ApplicationController
 
   def find_order
     @order = Order.find_by(id: params[:id])
+    render_404 unless @order
   end
 end

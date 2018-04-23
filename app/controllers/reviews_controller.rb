@@ -32,5 +32,6 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find_by(id: params[:id])
+    render_404 unless @review
   end
 end
