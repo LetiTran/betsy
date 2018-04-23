@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :find_user
-  
+
   def root
     @products = Product.all
   end
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    #@product.merchant_id = session[:merchant_id]
+    @product.merchant_id = @merchant.id
     if @product.save
       flash[:status] = :success
       redirect_to products_path
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    return params.require(:product).permit(:name, :price, :quantity, :description)
+    return params.require(:product).permit(:name, :price, :quantity, :description, :category_ids => [])
   end
 
   def find_product
