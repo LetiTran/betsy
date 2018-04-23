@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
   def show
   end
 
+  def new
+    @merchant = Merchant.new
+  end
+  
   def create
     auth_hash = request.env['omniauth.auth']
 
@@ -33,10 +37,6 @@ class SessionsController < ApplicationController
      flash[:error] = "Logging in via github not successful"
      redirect_to homepage_path
    end
-  end
-
-  def new
-    @merchant = Merchant.new
   end
 
   def destroy
