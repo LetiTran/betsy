@@ -60,7 +60,7 @@ describe ProductsController do
             price: 1,
             quantity: 2,
             categories: [Category.first, Category.last],
-            merchant_id: @merchant.id
+            merchant_id: existing_merchant
           }
         }
       }.must_change 'Product.count', 1
