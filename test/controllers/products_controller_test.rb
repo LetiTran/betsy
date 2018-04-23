@@ -51,7 +51,8 @@ describe ProductsController do
   end
 
   describe 'create' do
-    it 'creates a work with valid id' do
+    it 'creates a product with valid id' do
+      existing_merchant = merchants(:one)
       perform_login(existing_merchant)
       proc {
         post products_path, params: {
@@ -59,27 +60,105 @@ describe ProductsController do
             name: "A product",
             price: 1,
             quantity: 2,
-            categories: [Category.first, Category.last],
-            merchant_id: existing_merchant
+            :category_ids => [categories(:candy).id],
+            merchant_id: existing_merchant.id
           }
         }
       }.must_change 'Product.count', 1
 
       # Assert
       must_respond_with :redirect
-      must_redirect_to work_path(Product.last.id)
-
+      must_redirect_to product_path(Product.last.id)
     end
 
   end
 
   describe 'edit' do
-
+    it 'should get edit for a valid id' do
+      get edit_product_path(products(:candy).id)
+      must_respond_with :success
+    end
+    it 'should not work for a bogus id' do
+      get edit_product_path("wrong id")
+      must_respond_with :missing
+    end
   end
+
   describe 'update' do
+    it 'updates a product with valid id' do
+      existing_merchant = merchants(:one)
+      perform_login(existing_merchant)
 
+      proc {
+        patch product_path(products(:candy).id), params: {
+          product: {
+            name: "A product",
+            price: 1,
+            quantity: 2,
+            :category_ids => [categories(:candy).id],
+            merchant_id: existing_merchant.id
+          }
+        }
+      }.must_change 'Product.count', 0
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to product_path(products(:candy).id)
+    end
+
+    it 'renders 404 for a bogus id' do
+      existing_merchant = merchants(:one)
+      perform_login(existing_merchant)
+
+      proc {
+        patch product_path("wrong id"), params: {
+          product: {
+            name: "A product",
+            price: 1,
+            quantity: 2,
+            :category_ids => [categories(:candy).id],
+            merchant_id: existing_merchant.id
+          }
+        }
+      }.must_change 'Product.count', 0
+
+      # Assert
+      must_respond_with 404
+    end
+
+    it "renders bad_request for bogus data" do
+      existing_merchant = merchants(:one)
+      perform_login(existing_merchant)
+
+      patch product_path(products(:two).id), params: {
+        product: {
+          doesnt_exists: "Update title",
+          price: 1,
+          quantity: 2,
+          :category_ids => [categories(:candy).id],
+          merchant_id: existing_merchant.id
+        }
+      }
+
+      must_respond_with :redirect
+    end
   end
-  describe 'destroy' do
 
+  describe 'destroy' do
+    it "succeeds for an extant product ID" do
+      proc {
+        delete product_path(products(:two).id)
+      }.must_change 'Product.count', -1
+
+      must_respond_with :redirect
+    end
+
+    it "renders 404 not_found and does not update the DB for a bogus product ID" do
+      proc {
+        delete product_path('bad id')
+      }.must_change 'Product.count', 0
+
+      must_respond_with 404
+    end
   end
 end
