@@ -11,23 +11,23 @@ class Product < ApplicationRecord
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
   def average_rating
-    if (self.reviews).count > 0
-          product_reviews = self.reviews
-          sum_ratings = 0.0
-          product_reviews.each do |review|
-            sum_ratings += review.rating
-          end
-          avg = sum_ratings/(product_reviews.count)
-          return avg
-        else
-          return 0
-        end
-    # return "No reviews yet" if reviews.count == 0
-    # sum = 0.0
-    # products.reviews.each do |review|
-    #   sum += review.rating
-    # end
-    # return (sum/reviews.count)
+    # if (self.reviews).count > 0
+    #       product_reviews = self.reviews
+    #       sum_ratings = 0.0
+    #       product_reviews.each do |review|
+    #         sum_ratings += review.rating
+    #       end
+    #       avg = sum_ratings/(product_reviews.count)
+    #       return avg
+    #     else
+    #       return 0
+    #     end
+    return "No reviews yet" if reviews.count == 0
+    sum = 0.0
+    self.reviews.each do |review|
+      sum += review.rating
+    end
+    return (sum/reviews.count)
   end
 
   private

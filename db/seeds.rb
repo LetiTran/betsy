@@ -46,8 +46,14 @@ puts "\n"
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 p "Created #{Merchant.count} merchants"
 =======
+=======
+p "**Created #{Product.count} desserts**"
+=======
+p "Created #{Product.count} desserts"
+>>>>>>> testing
 REVIEW_FILE = Rails.root.join('db','seeds', 'reviews.csv')
 puts "Loading raw review data from #{REVIEW_FILE}"
 
@@ -69,6 +75,9 @@ puts "#{review_failures.length} reviews failed to save"
 p review_failures
 puts
 >>>>>>> product_controller
+<<<<<<< HEAD
 =======
 p "**Created #{Product.count} desserts**"
 >>>>>>> a8bb6e39a663bebb847271ee5e0eefa1e3aded9e
+=======
+>>>>>>> testing

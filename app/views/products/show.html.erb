@@ -18,7 +18,7 @@
       <%= form_for @product do |f| %>
       <%= f.label :quantity %>
       <%= f.select :quantity, options_for_select(1..10)%>
-      <%= f.submit "Add to Cart", class: "button" %>
+      <%= link_to "Add to Cart",edit_product_orderproduct_path(@product.id) ,class: "button" %>
       <% end %>
 
         <p class = "description">
@@ -44,7 +44,10 @@
             <% @product.reviews.each do |review| %>
             <article>
               <li>
-                <% review.rating%>
+                <%review.rating.times do %>
+                <%= "🍦" %>
+                <% end %>
+
               </li>
               <p>
                 <%= review.comment %>
@@ -52,6 +55,7 @@
               <%end %>
             </ul>
             <% end %>
+
             <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
           </section>
 >>>>>>> product_controller

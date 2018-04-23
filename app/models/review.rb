@@ -3,5 +3,5 @@ class Review < ApplicationRecord
 
   validates :rating, presence: true
   validates :rating, :inclusion => 1..5
-  validates :comment, length: { in: 1..250 }
+  # validates :comment, length: { in: 1..250 }
 end

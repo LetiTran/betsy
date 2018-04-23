@@ -4,9 +4,11 @@ class Order < ApplicationRecord
   has_many :orderproducts
   has_many :products, through: :orderproducts
 =======
-  has_many :products, through: :orderproducts
+
   has_many :orderproducts
->>>>>>> product_controller
+  has_many :products, through: :orderproducts
+
+>>>>>>> testing
 
   validates :address, presence: true, length: { in: 1..35  }
   validates :card_name, presence: true, length: { minimum: 1  }

@@ -1,2 +1,9 @@
-<h1>Orderproducts#new</h1>
-<p>Find me in app/views/orderproducts/new.html.erb</p>
+<section>
+  <%= form_for @product do |f| %>
+
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, min: 1, max: @product.quantity %>
+
+  <%= f.submit class: "button" %>
+  <% end %>
+</section>
