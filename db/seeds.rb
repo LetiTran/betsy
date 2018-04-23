@@ -29,13 +29,7 @@ puts "\n"
   end
   puts "#{merchant.username} created!"
 end
-
-<<<<<<< HEAD
-p "Created #{Product.count} desserts"
-<<<<<<< HEAD
-=======
 p "**Created #{Merchant.count} merchants**"
->>>>>>> a8bb6e39a663bebb847271ee5e0eefa1e3aded9e
 
 
 # Products
@@ -44,40 +38,12 @@ puts "\n"
   product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, merchant_id: Merchant.order("RANDOM()").first.id )
   puts "#{product.name} created in the category: #{product.categories.first.name}"
 end
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-p "Created #{Merchant.count} merchants"
-=======
-=======
 p "**Created #{Product.count} desserts**"
-=======
-p "Created #{Product.count} desserts"
->>>>>>> testing
+
+
+# Reviews
 REVIEW_FILE = Rails.root.join('db','seeds', 'reviews.csv')
-puts "Loading raw review data from #{REVIEW_FILE}"
-
-review_failures = []
 CSV.foreach(REVIEW_FILE, :headers => true) do |row|
-  review = Review.new
-  review.rating = row['rating']
-  review.product_id = row['product_id']
-  puts "Created review: #{review.inspect}"
-  successful = review.save
-  if !successful
-    puts review.errors
-    review_failures << review
-  end
+ review = Review.create(rating: row['rating'],  product_id: row['product_id'] )
+ puts "Review #{review.id} created with rating #{review.rating}"
 end
-
-puts "Added #{Review.count} review records"
-puts "#{review_failures.length} reviews failed to save"
-p review_failures
-puts
->>>>>>> product_controller
-<<<<<<< HEAD
-=======
-p "**Created #{Product.count} desserts**"
->>>>>>> a8bb6e39a663bebb847271ee5e0eefa1e3aded9e
-=======
->>>>>>> testing
