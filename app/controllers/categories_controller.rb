@@ -31,6 +31,7 @@ class CategoriesController < ApplicationController
       redirect_to categories_path(@category)
     else
       flash.now[:status] = :failure
+      render :edit, status: :not_found
     end
   end
 
@@ -51,5 +52,6 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find_by(id: params[:id])
+      render_404 unless @category
   end
 end
