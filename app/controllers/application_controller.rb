@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   private
   def find_user
-    @merchant = Merchant.find_by(id: session[:merchant_id])
+    @user = Merchant.find_by(id: session[:merchant_id])
   end
 
   def current_user

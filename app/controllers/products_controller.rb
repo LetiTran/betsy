@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :find_user
-  
+
   def root
     @products = Product.all
   end
@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -40,7 +39,6 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product.id)
     else
       flash[:alert] = "A problem occured:Could not update"
-
       render :edit
     end
   end
