@@ -4,26 +4,51 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/github', as: 'github_login'
 
+root 'products#root', as: 'homepage'
+
   #sessions
   # get '/login', to: 'sessions#new', as: 'login_form'
   # post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
+
   get '/cart', to:'orderproducts#index', as: 'cart'
 
-  # Products:
-  root 'products#root', as: 'homepage'
-  resources :products do
-    resources :categories, only: [:index]
-  end
+  # Reviews:
+  
 
+  # Products:
+resources :products
+  resources :products do
+    # add orderproducts (cart#index)
+
+    # resources :reviews, only: [:new]
+    # resources :merchants, only: [:index]
+    resources :categories, only: [:index]
+
+    resources :reviews,only: [:new,:create]
+    #resources :merchants, only: [:index]
+    #resources :categories, only: [:index]
+
+
+     resources :reviews, only: [:new]
+    # resources :merchants, only: [:index]
+    resources :categories, only: [:index]
+
+
+    resources :orderproducts
+
+      resources :reviews,only: [:new,:create]
+    #resources :merchants, only: [:index]
+    #resources :categories, only: [:index]
+
+
+  end
+resources :reviews
   # Merchants:
   resources :merchants do
     resources :products, only: [:index]
   end
-
-  # Reviews:
-  resources :reviews
 
   # Categories:
   resources :categories
