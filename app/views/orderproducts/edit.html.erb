@@ -1,15 +1,1 @@
 
-
-
-
-<h1> Edit Order Item Quantity </h1>
-
-<section>
-  <%= form_for @product do |f| %>
-
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity, min: 1, max: @product.quantity %>
-
-  <%= f.submit class: "button" %>
-  <% end %>
-</section>
