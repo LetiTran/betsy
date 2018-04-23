@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
-
-  resources :orderproducts
+  # OmniAuth
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/github', as: 'github_login'
 
 root 'products#root', as: 'homepage'
 
   #sessions
-  get '/login', to: 'sessions#new', as: 'login_form'
-  post '/login', to: 'sessions#create'
+  # get '/login', to: 'sessions#new', as: 'login_form'
+  # post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
 
@@ -55,4 +56,6 @@ resources :reviews
   # Orders:
   resources :orders
 
+  # orderproducts:
+  resources :orderproducts
 end

@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
+
 ActiveRecord::Schema.define(version: 20180420210248) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180420233543) do
-=======
-ActiveRecord::Schema.define(version: 20180422041859) do
->>>>>>> product_controller
->>>>>>> testing
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,24 +37,16 @@ ActiveRecord::Schema.define(version: 20180422041859) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "uid"
+    t.string "provider"
   end
 
   create_table "orderproducts", force: :cascade do |t|
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.bigint "order_id"
     t.bigint "product_id"
-=======
-<<<<<<< HEAD
-    t.bigint "product_id"
-    t.bigint "order_id"
-=======
-    t.bigint "order_id"
-    t.bigint "product_id"
->>>>>>> product_controller
->>>>>>> testing
     t.index ["order_id"], name: "index_orderproducts_on_order_id"
     t.index ["product_id"], name: "index_orderproducts_on_product_id"
   end
@@ -104,11 +90,8 @@ ActiveRecord::Schema.define(version: 20180422041859) do
   add_foreign_key "categories", "products"
   add_foreign_key "orderproducts", "orders"
   add_foreign_key "orderproducts", "products"
-<<<<<<< HEAD
   add_foreign_key "orders", "products"
   add_foreign_key "products", "merchants"
   add_foreign_key "products", "orders"
-=======
->>>>>>> product_controller
   add_foreign_key "reviews", "products"
 end

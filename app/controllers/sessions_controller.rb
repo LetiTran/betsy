@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def index
   end
 
@@ -6,23 +7,32 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @merchant = Merchant.find_by(username: params[:merchant][:username])
+    auth_hash = request.env['omniauth.auth']
 
-    if @merchant
-      session[:merchant_id] = @merchant.id
+   if auth_hash[:uid]
+     @merchant = Merchant.find_by(uid: auth_hash[:uid], provider: 'github')
+     if @merchant.nil?
+       # it's a new merchant, we need to make a merchant
+       @merchant = Merchant.build_from_github(auth_hash)
+       successful_save = @merchant.save
+       if successful_save
+         flash[:success] = "Logged in successfully"
+         session[:merchant_id] = @merchant.id
+         redirect_to homepage_path
+       else
+         flash[:error] = "Some error happened in Merchant creation"
+         redirect_to homepage_path
+       end
+     else
+       flash[:success] = "Logged in successfully"
+       session[:merchant_id] = @merchant.id
+       redirect_to homepage_path
+     end
 
-      flash[:success] = "Welcome back #{@merchant.username}"
-      redirect_to root_path
-    else
-      @merchant = Merchant.create(username: params[:merchant][:username])
-      if session[:merchant_id] = @merchant.id
-        flash[:success] = "Successfully logged in as #{@merchant.username}"
-        redirect_to root_path
-      else
-        flash.now[:error] = "You are not logged in. Please login"
-        render :new
-      end
-    end
+   else
+     flash[:error] = "Logging in via github not successful"
+     redirect_to homepage_path
+   end
   end
 
   def new
@@ -32,6 +42,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:merchant_id] = nil
     flash[:success] = "You logged out!"
-    redirect_to root_path
+    redirect_to homepage_path
   end
 end

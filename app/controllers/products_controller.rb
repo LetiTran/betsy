@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_user
+  
   def root
     @products = Product.all
   end
@@ -59,5 +60,6 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find_by(id: params[:id])
+    render_404 unless @product
   end
 end

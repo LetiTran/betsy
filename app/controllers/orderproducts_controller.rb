@@ -1,10 +1,14 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
+  before_action :find_user
+  
   def index
     @orderproducts = Orderproduct.all
   end
+
   def show
   end
+
   def new
     @orderproduct = Orderproduct.new(orderproduct_params)
     @product = Product.find_by(id: params[:product_id])
@@ -26,8 +30,10 @@ class OrderproductsController < ApplicationController
       render :new, status: status
     end
   end
+
   def edit
   end
+
   def update
     if @orderproduct.update(orderproduct_params)
       flash[:status] = :success
@@ -40,6 +46,7 @@ class OrderproductsController < ApplicationController
       render :edit
     end
   end
+
   def destroy
     order = @orderproduct.order
     @orderproduct.destroy
@@ -50,11 +57,15 @@ class OrderproductsController < ApplicationController
     flash[:result_text] = "Successfully removed from your cart!"
     redirect_to orders_path
   end
+
   private
+
   def orderproduct_params
     params.require(:order_product).permit(:quantity,:product_id)
   end
+
   def find_orderproduct
     @orderproduct = Orderproduct.find_by(id: params[:id])
+    render_404 unless @orderproduct
   end
 end

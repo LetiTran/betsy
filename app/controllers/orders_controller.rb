@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_user
+  
   def index
     @orders = Order.all
   end
@@ -32,5 +33,6 @@ class OrdersController < ApplicationController
 
   def find_order
     @order = Order.find_by(id: params[:id])
+    render_404 unless @order
   end
 end
