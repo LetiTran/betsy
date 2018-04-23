@@ -14,9 +14,6 @@ Rails.application.routes.draw do
   # Products:
   root 'products#root', as: 'homepage'
   resources :products do
-    # add orderproducts (cart#index)
-    # resources :reviews, only: [:new]
-    # resources :merchants, only: [:index]
     resources :categories, only: [:index]
   end
 
