@@ -6,7 +6,12 @@ class ApplicationController < ActionController::Base
     render text: 'Not Found', status: '404'
   end
 
+  private
   def find_user
     @merchant = Merchant.find_by(id: session[:merchant_id])
+  end
+
+  def current_user
+    @current_user ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
   end
 end
