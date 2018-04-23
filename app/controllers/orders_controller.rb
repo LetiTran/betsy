@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: [:show, :edit, :update, :destroy]
   before_action :find_user
-  
+
   def index
     @orders = Order.all
   end
@@ -10,10 +10,22 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    @order = Order.new()
+
   end
 
   def create
+    @order = Order.new(order_params)
+
+    binding.pry
+    if @order.save
+      flash[:status] = :success
+      redirect_to order_path(@order.id)
+    else
+      flash[:failure] = :failure
+      flash.now[:result_text]= "Error: Order was not created"
+      render :new
+    end
   end
 
   def update
@@ -28,7 +40,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    return params.require(:order).permit(:status, :email, :address, :card_name, :cc_number, :cc_expiration, :cvv, :zip_code)
+    return params.require(:order).permit( :email, :address, :card_name, :cc_number, :cc_expiration, :cvv, :zip_code)
   end
 
   def find_order
