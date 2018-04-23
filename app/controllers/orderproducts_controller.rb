@@ -1,6 +1,7 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
-
+  before_action :find_user
+  
   def index
     @orderproducts = Orderproduct.all
   end

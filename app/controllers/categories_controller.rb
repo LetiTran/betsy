@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_user
+  
   def index
     @categories = Category.all
   end
@@ -40,8 +41,8 @@ class CategoriesController < ApplicationController
 
   def destroy
     # shouls a user be able to delete a category? Maybe not...
-  @category.destroy if @category
-  redirect_to categories_path
+    @category.destroy if @category
+    redirect_to categories_path
   end
 
   private
@@ -52,6 +53,6 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find_by(id: params[:id])
-      render_404 unless @category
+    render_404 unless @category
   end
 end

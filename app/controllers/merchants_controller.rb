@@ -1,5 +1,6 @@
 class MerchantsController < ApplicationController
   before_action :find_merchant, only: [:show, :edit, :update, :destroy]
+  before_action :find_user
 
   def index
     @merchants = Merchant.all

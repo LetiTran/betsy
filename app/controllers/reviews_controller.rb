@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_user
+  
   def index
     @reviews = Review.all
   end
