@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # OmniAuth
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'auth_callback'
   get '/auth/github', as: 'github_login'
 
 root 'products#root', as: 'homepage'
@@ -15,7 +15,7 @@ root 'products#root', as: 'homepage'
   get '/cart', to:'orderproducts#index', as: 'cart'
 
   # Reviews:
-  
+
 
   # Products:
 resources :products

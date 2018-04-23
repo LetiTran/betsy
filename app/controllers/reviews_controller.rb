@@ -13,7 +13,6 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
     @product = Product.find_by(id: params[:product_id])
-  
   end
 
   def create

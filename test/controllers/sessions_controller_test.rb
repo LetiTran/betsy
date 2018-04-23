@@ -1,29 +1,45 @@
 require "test_helper"
 
 describe SessionsController do
-  it "should get index" do
-    get sessions_index_url
-    value(response).must_be :success?
-  end
+  describe "create" do
+    it "should log in an existing user and redirect to homepage" do
+      before_count = Merchant.count
+      existing_merchant = merchants(:one)
 
-  it "should get show" do
-    get sessions_show_url
-    value(response).must_be :success?
-  end
+      perform_login(existing_merchant)
 
-  it "should get new" do
-    get sessions_new_url
-    value(response).must_be :success?
-  end
+      must_redirect_to homepage_path
+      Merchant.count.must_equal before_count
+    end
 
-  it "should get create" do
-    get sessions_create_url
-    value(response).must_be :success?
-  end
 
-  it "should get destroy" do
-    get sessions_destroy_url
-    value(response).must_be :success?
+    it "should create a new user and redirect to homepage" do
+      new_user = Merchant.new(
+        provider: "github",
+        uid: 239802,
+        username: "test user",
+        email: "test@test.com"
+      )
+
+      proc {
+        perform_login(new_user)
+      }.must_change "Merchant.count", 1
+
+      must_respond_with :redirect
+      must_redirect_to homepage_path
+    end
+
+    describe "destroy" do
+      it "should logout a user" do
+        existing_merchant = merchants(:two)
+
+        perform_logout(existing_merchant)
+
+        must_respond_with :redirect
+        must_redirect_to homepage_path
+      end
+    end
+
   end
 
 end

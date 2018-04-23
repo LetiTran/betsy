@@ -8,53 +8,53 @@
     <%= image_tag ('https://placeimg.com/350/200/nature') %>
   </article>
 
-    <article class = "column small-12 medium-6">
-      <h3><%= "Product : #{@product.name}" %></h3>
-      <small><%= "Stock: #{@product.quantity}" %></small>
+  <article class = "column small-12 medium-6">
+    <h3><%= "Product : #{@product.name}" %></h3>
+    <small><%= "Stock: #{@product.quantity}" %></small>
 
-      <h4><%= "Price:#{ @product.price}" %></h4>
+    <h4><%= "Price:#{ @product.price}" %></h4>
 
 
-      <%= form_for @product do |f| %>
-      <%= f.label :quantity %>
-      <%= f.select :quantity, options_for_select(1..10)%>
-      <%= link_to "Add to Cart",edit_product_orderproduct_path(@product.id) ,class: "button" %>
-      <% end %>
+    <%= form_for @product do |f| %>
+    <%= f.label :quantity %>
+    <%= f.select :quantity, options_for_select(1..10)%>
+    <%= link_to "Add to Cart",edit_product_orderproduct_path(@product.id) ,class: "button" %>
+    <% end %>
 
-        <p class = "description">
-        <small>Description: </small><%=@product.description %>
+    <p class = "description">
+      <small>Description: </small><%=@product.description %>
+    </p>
+
+
+    <section class = "row rating-average container">
+
+      <h4>Ratings Summary</h4>
+      <p>
+        <%="Average rating: #{@product.average_rating}" %>
       </p>
-
-
-          <section class = "row rating-average container">
-
-          <h4>Ratings Summary</h4>
-          <p>
-            <%="Average rating: #{@product.average_rating}" %>
-          </p>
-        </section>
-        <section class = "row rating container">
-          <h4>Rating</h4>
-          <% if @product.reviews.empty? %>
-          <p>
-            Be the first to review!
-          </p>
-          <%else %>
-          <ul>
-            <% @product.reviews.each do |review| %>
-            <article>
-              <li>
-                <%review.rating.times do %>
-                <%= "🍦" %>
-                <% end %>
-
-              </li>
-              <p>
-                <%= review.comment %>
-              </article>
-              <%end %>
-            </ul>
+    </section>
+    <section class = "row rating container">
+      <h4>Rating</h4>
+      <% if @product.reviews.empty? %>
+      <p>
+        Be the first to review!
+      </p>
+      <%else %>
+      <ul>
+        <% @product.reviews.each do |review| %>
+        <article>
+          <li>
+            <%review.rating.times do %>
+            <%= "🍦" %>
             <% end %>
 
-            <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
-          </section>
+          </li>
+          <p>
+            <%= review.comment %>
+          </article>
+          <%end %>
+        </ul>
+        <% end %>
+
+        <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
+      </section>

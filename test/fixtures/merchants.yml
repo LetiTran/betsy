@@ -3,7 +3,11 @@
 one:
   username: merchant-one
   email: hello@hello.com
+  provider: github
+  uid: 1222
 
 two:
   username: merchant-two
   email: goodbye@goodbye.com
+  provider: github
+  uid: 22222
