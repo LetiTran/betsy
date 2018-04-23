@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new name: "thing", price: 1, quantity: 2, categories: [Category.first, Category.last] }
+  let(:product) { Product.new(name: "A product", price: 1, quantity: 2, categories: [Category.first, Category.last], merchant_id: Merchant.first.id) }
 
   describe 'Validations' do
     it "must be valid" do
