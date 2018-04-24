@@ -1,1 +1,41 @@
 <h1><%= @user.username %> Cart</h1>
+
+<section class="op-list">
+
+  <table>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Options
+      </th>
+    </tr>
+    <% @orderproducts.each do |product| %>
+    <% product = Product.find(product.product_id) %>
+    <tr>
+      <td>
+        <%= product.name %><br />
+      </td>
+      <td>
+        <%= product.quantity %>
+      </td>
+      <td>
+        <%= product.price %>
+      </td>
+      <td>
+         Edit
+         Delete
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+
+</section>

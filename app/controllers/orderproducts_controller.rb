@@ -23,8 +23,7 @@ class OrderproductsController < ApplicationController
       # creates orderproduct
       orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
       product = Product.find(orderproduct.product_id)
-
-      @order.products << product
+      # @order.products << product
     end
 
     if orderproduct.save
