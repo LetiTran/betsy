@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
   end
 
-  def current_order
-   if !session[:order_id].nil?
-     Order.find(session[:order_id])
-   else
-     Order.new
-   end
- end
+ #  def current_order
+ #   if !session[:order_id].nil?
+ #     Order.find(session[:order_id])
+ #   else
+ #     Order.new
+ #   end
+ # end
 
 end

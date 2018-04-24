@@ -25,6 +25,7 @@ class OrderproductsController < ApplicationController
       status = :success
       flash[:result_text] = "#{orderproduct.quantity} #{product.name} has been added to your order!"
       redirect_to orderproduct_path(orderproduct.id)
+      raise
     else
       status = :bad_request
       flash[:result_text] = "Error - products not added to your order"

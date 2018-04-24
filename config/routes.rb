@@ -26,11 +26,6 @@ resources :products
     # resources :merchants, only: [:index]
     resources :categories, only: [:index]
 
-    resources :reviews,only: [:new,:create]
-    #resources :merchants, only: [:index]
-    #resources :categories, only: [:index]
-
-
      resources :reviews, only: [:new]
     # resources :merchants, only: [:index]
     resources :categories, only: [:index]
@@ -38,11 +33,9 @@ resources :products
 
     resources :orderproducts
 
-      resources :reviews,only: [:new,:create]
+    resources :reviews,only: [:new,:create]
     #resources :merchants, only: [:index]
     #resources :categories, only: [:index]
-
-
   end
 resources :reviews
   # Merchants:
