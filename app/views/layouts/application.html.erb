@@ -57,8 +57,8 @@
       </ul>
     </div>
 
-    <% if @merchant %>
-    <%= link_to "Logged in as #{@merchant.username}", merchant_path(@merchant), class: "button" %>
+    <% if @user %>
+    <%= link_to "Logged in as #{@user.username}", merchant_path(@user), class: "button" %>
     <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
     <% else %>
     <%= link_to "Log In", github_login_path, class: "button" %>
@@ -83,7 +83,7 @@
     <% end %>
   </section>
   <% end %>
-  
+
   <%= yield %>
 
 </body>

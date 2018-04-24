@@ -1,7 +1,7 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
   before_action :find_user
-  
+
   def index
     @orderproducts = Orderproduct.all
   end
@@ -10,16 +10,13 @@ class OrderproductsController < ApplicationController
   end
 
   def new
-    @orderproduct = Orderproduct.new(orderproduct_params)
-    @product = Product.find_by(id: params[:product_id])
+    @orderproduct = Orderproduct.new
   end
 
   def create
-
     @product = Product.find_by(id: params[:product_id])
     @orderproduct = OrderProduct.new(orderproduct_params)
     @orderproduct.product_id = @product.id
-    #@orderproduct.order_id = @order.id
     if @orderproduct.save
       status = :success
       flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
