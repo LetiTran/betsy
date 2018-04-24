@@ -46,4 +46,4 @@ REVIEW_FILE = Rails.root.join('db','seeds', 'reviews.csv')
 CSV.foreach(REVIEW_FILE, :headers => true) do |row|
  review = Review.create(rating: row['rating'],  product_id: row['product_id'] )
  puts "Review #{review.id} created with rating #{review.rating}"
-end
+end 
