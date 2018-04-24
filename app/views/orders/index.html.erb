@@ -2,6 +2,6 @@
 
 <ul>
   <% @orders.each do |order| %>
-  <li><%=  link_to  "Order ##{order.id}", order_path(order.id)  %></li>
+  <h1><%=  link_to  "Order ##{order.id}", order_path(order.id)  %></h1>
 </ul>
 <% end %>
