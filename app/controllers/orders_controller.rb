@@ -17,8 +17,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
-    # binding.pry
+    @order.update(status: "open")
     if @order.save
       redirect_to order_path(@order.id)
     else
@@ -29,6 +28,14 @@ class OrdersController < ApplicationController
   end
 
   def update
+    # Checkout form comes here
+    if @order.update(order_params)
+      @order.update(status: "paid")
+      redirect_to orders_path
+      flash[:message] = "Checkout successful"
+    else
+      render :edit
+    end
   end
 
   def edit
