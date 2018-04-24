@@ -48,6 +48,7 @@ resources :reviews
   # Merchants:
   resources :merchants do
     resources :products, only: [:index]
+    resources :orders, only: [:index]
   end
 
   # Categories:

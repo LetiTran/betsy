@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   before_action :find_user
 
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = Order.where(merchant_id: @user.id)
   end
 
   def show

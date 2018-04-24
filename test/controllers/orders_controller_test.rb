@@ -4,7 +4,7 @@ require "test_helper"
 describe OrdersController do
  describe 'index' do
    describe 'index' do
-     it 'should get all products' do
+     it 'should get all orders' do
        get orders_path
        must_respond_with :success
      end

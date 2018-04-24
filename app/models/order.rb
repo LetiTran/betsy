@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   has_many :orderproducts
   has_many :products, through: :orderproducts
 
+
   # validates :address, presence: true, length: { in: 1..35  }
   # validates :card_name, presence: true, length: { minimum: 1  }
   # validates :cc_number, presence: true, length: { is: 16 }
