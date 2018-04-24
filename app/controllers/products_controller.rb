@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
-  before_action :find_user
+  before_action :find_user,:current_order
 
   def root
     @products = Product.all
@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @orderproduct = current_order.orderproduct.new
+
   end
 
   def show

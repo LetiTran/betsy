@@ -12,8 +12,8 @@ root 'products#root', as: 'homepage'
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
 
-  get '/cart', to:'orderproducts#index', as: 'cart'
-
+  #x  get '/cart', to:'orderproducts#index', as: 'cart'
+  resources :orderproducts, only: [:show]
   # Reviews:
 
 

@@ -9,10 +9,10 @@ class Product < ApplicationRecord
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
   def average_rating
-    
+
     return "No reviews yet" if reviews.count == 0
     sum = 0.0
-    products.reviews.each do |review|
+    self.reviews.each do |review|
       sum += review.rating
     end
     return (sum/reviews.count)

@@ -17,10 +17,7 @@ class OrderproductsController < ApplicationController
 
   def create
     @order = current_order
-    @orderproduct = @order.orderproducts.new(orderproduct_params)
-    @order.save
-    session[:order_id] = @order.id
-
+    @orderproduct = Orderproduct.new(orderproduct_params)
 
     if @orderproduct.save
       status = :success

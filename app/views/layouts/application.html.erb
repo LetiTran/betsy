@@ -63,7 +63,7 @@
     <% else %>
     <%= link_to "Log In", github_login_path, class: "button" %>
     <% end %>
-    <%= link_to "Cart", cart_path, class: "button" %>
+    <%= link_to "Cart", order_path(@order.id), class: "button" %>
 
   </section>
 </header>
@@ -83,7 +83,7 @@
     <% end %>
   </section>
   <% end %>
-  
+
   <%= yield %>
 
 </body>
