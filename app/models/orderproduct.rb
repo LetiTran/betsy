@@ -1,6 +1,6 @@
 class Orderproduct < ApplicationRecord
   belongs_to :order
-  belongs_to :product
+  has_many :products
 
   validates :quantity ,presence: true
 end

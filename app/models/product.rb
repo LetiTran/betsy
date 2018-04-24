@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :orderproducts
+  belongs_to :product
   has_many :orders, through: :orderproducts
   has_and_belongs_to_many :categories, join_table: "category_product"
   has_many :reviews

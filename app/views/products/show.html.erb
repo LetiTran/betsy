@@ -11,20 +11,20 @@
   <article class = "column small-12 medium-6">
     <h3><%= "Product : #{@product.name}" %></h3>
     <small><%= "Stock: #{@product.quantity}" %></small>
-
     <h4><%= "Price:#{@product.price}" %></h4>
 
-    <%= form_for @product, :url => new_product_orderproduct_path(@product, @product.id) do |f| %>
+    <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
     <%= f.label :quantity %>
     <%= f.select :quantity, options_for_select(1..10)%>
     <%= f.hidden_field :product_id, value: @product.id %>
-    <%= f.submit "Add to Cart" %>
+    <%= f.submit "Add to Cart"  %>
     <% end %>
+
+
 
     <p class = "description">
       <small>Description: </small><%=@product.description %>
     </p>
-
 
     <section class = "row rating-average container">
 
@@ -57,4 +57,7 @@
         <% end %>
 
         <p><%=link_to "review now!", new_product_review_path(@product.id), class: 'button' %></p>
-      </section>
+      </ul>
+    </section>
+  </article>
+</section>
