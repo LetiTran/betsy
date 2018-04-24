@@ -1,3 +1,4 @@
+<h2>Cart <%= page_title %></h2>
 
 <%= form_for @order do |f| %>
 
@@ -22,6 +23,6 @@
 <%= f.label :email %>
 <%= f.text_field :email %>
 
-<%= f.submit %>
+<%= f.submit "Checkout" %>
 
 <% end %>
