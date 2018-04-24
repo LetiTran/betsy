@@ -1,8 +1,8 @@
-<% if @user  %>
+
+<% if @merchant.id == @user.id  %>
 <h1><%= link_to "See Your Orders" , orders_path %></h1>
-<% end %>
-
-
+<h1><%= link_to "See Your Products" ,  merchant_products_path(@merchant.id) %></h1>
+<% else %>
 
 
 
@@ -28,3 +28,4 @@
   </div>
   <% end %>
 </section>
+<% end %>
