@@ -1,11 +1,11 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
-<<<<<<< HEAD
+
   before_action :find_user,:current_order
-=======
+
   before_action :find_user
   before_action :find_order
->>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
+
 
   def index
     @orderproducts = Orderproduct.all
@@ -20,12 +20,12 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
+
     @order = current_order
     @orderproduct = Orderproduct.new(orderproduct_params)
 
     if @orderproduct.save
-=======
+
       if @order
       # creates orderproduct
       orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
@@ -38,7 +38,7 @@ class OrderproductsController < ApplicationController
     end
 
     if orderproduct.save
->>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
+
       status = :success
       flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} have been added to your order!"
       redirect_to products_path
@@ -48,6 +48,7 @@ class OrderproductsController < ApplicationController
       render :new, status: status
     end
   end
+end
 
   def edit
   end
