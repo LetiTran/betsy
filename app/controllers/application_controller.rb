@@ -12,9 +12,8 @@ class ApplicationController < ActionController::Base
     @user = Merchant.find_by(id: session[:merchant_id])
   end
 
-  # def current_user
-  #   @current_user ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
-  # end
-
+  def find_order
+    @order = Order.find_by(merchant_id: session[:merchant_id])
+  end
 
 end

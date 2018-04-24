@@ -14,8 +14,13 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-    @product = Product.find_by(id: params[:product_id])
-    @orderproduct = OrderProduct.new(orderproduct_params)
+    orderproduct = Orderproduct.new
+    orderproduct.quantity = params['orderproduct']['quantity']
+    orderproduct.product_id = params['orderproduct']['product_id']
+
+
+    raise
+
     @orderproduct.product_id = @product.id
     if @orderproduct.save
       status = :success
