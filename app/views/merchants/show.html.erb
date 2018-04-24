@@ -1,3 +1,11 @@
+
+<% if @merchant.id == @user.id  %>
+<h1><%= link_to "See Your Orders" , orders_path %></h1>
+<h1><%= link_to "See Your Products" ,  merchant_products_path(@merchant.id) %></h1>
+<% else %>
+
+
+
 <h1>Products by <%= @merchant.username %></h1>
 
 <section class="item-box">
@@ -20,3 +28,4 @@
   </div>
   <% end %>
 </section>
+<% end %>

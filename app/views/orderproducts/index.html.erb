@@ -1,0 +1,47 @@
+<h1><%= @user.username %> Cart</h1>
+
+<section class="cart-table">
+  <table>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Options
+      </th>
+    </tr>
+    <% @orderproducts.each do |op| %>
+    <% product = Product.find(op.product_id) %>
+    <tr>
+      <td>
+        <%= product.name %><br />
+      </td>
+      <td>
+        <%= product.quantity %>
+      </td>
+      <td>
+        <%= product.price %>
+      </td>
+      <td>
+         <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
+         <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
+       </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <section class="cart-summary">
+    <p>
+      <strong>Subtotal: </strong>
+    </p>
+
+  </section>
+
+
+</section>

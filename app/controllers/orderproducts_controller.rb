@@ -1,6 +1,11 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
+<<<<<<< HEAD
   before_action :find_user,:current_order
+=======
+  before_action :find_user
+  before_action :find_order
+>>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
 
   def index
     @orderproducts = Orderproduct.all
@@ -11,17 +16,31 @@ class OrderproductsController < ApplicationController
   end
 
   def new
-    @orderproduct = Orderproduct.new(orderproduct_params)
-    @product = Product.find_by(id: params[:product_id])
+    @orderproduct = Orderproduct.new
   end
 
   def create
+<<<<<<< HEAD
     @order = current_order
     @orderproduct = Orderproduct.new(orderproduct_params)
 
     if @orderproduct.save
+=======
+      if @order
+      # creates orderproduct
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
+    else
+      @order = Order.create(merchant_id: @user.id)
+      # creates orderproduct
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
+      product = Product.find(orderproduct.product_id)
+      # @order.products << product
+    end
+
+    if orderproduct.save
+>>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
       status = :success
-      flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
+      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} have been added to your order!"
       redirect_to products_path
     else
       status = :bad_request

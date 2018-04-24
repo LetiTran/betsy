@@ -7,14 +7,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def find_user
     @user = Merchant.find_by(id: session[:merchant_id])
   end
 
-  def current_user
-    @current_user ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
+  def find_order
+    @order = Order.find_by({merchant_id: @user.id, status: "open"})
   end
 
+<<<<<<< HEAD
   def current_order
     if !session[:order_id].nil?
       @order = Order.find(session[:order_id])
@@ -23,4 +25,6 @@ class ApplicationController < ActionController::Base
       @order.save
     end
   end
+=======
+>>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
 end

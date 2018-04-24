@@ -1,2 +1,7 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<h1>Your orders</h1>
+
+<ul>
+  <% @orders.each do |order| %>
+  <h1><%=  link_to  "Order ##{order.id}", order_path(order.id)  %></h1>
+</ul>
+<% end %>
