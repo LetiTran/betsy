@@ -16,20 +16,14 @@ class OrderproductsController < ApplicationController
 
   def create
     if @order
-      orderproduct = Orderproduct.new
-      orderproduct.quantity = params['orderproduct']['quantity']
-      orderproduct.product_id = params['orderproduct']['product_id']
-      orderproduct.order_id = @order.id
+      # creates orderproduct
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
     else
       @order = Order.create(merchant_id: @user.id)
-      orderproduct = Orderproduct.new
-      orderproduct.quantity = params['orderproduct']['quantity']
-      orderproduct.product_id = params['orderproduct']['product_id']
-      orderproduct.order_id = @order.id
-
+      # creates orderproduct
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
       product = Product.find(orderproduct.product_id)
-      # call method to reduce product stock by quantity amount selected by user
-      # before adding product
+
       @order.products << product
     end
 
