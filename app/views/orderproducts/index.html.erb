@@ -16,8 +16,8 @@
         Options
       </th>
     </tr>
-    <% @orderproducts.each do |product| %>
-    <% product = Product.find(product.product_id) %>
+    <% @orderproducts.each do |op| %>
+    <% product = Product.find(op.product_id) %>
     <tr>
       <td>
         <%= product.name %><br />
@@ -29,9 +29,9 @@
         <%= product.price %>
       </td>
       <td>
-         Edit
-         Delete
-      </td>
+         <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
+         <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
+       </td>
     </tr>
     <% end %>
   </table>
@@ -39,7 +39,6 @@
   <section class="cart-summary">
     <p>
       <strong>Subtotal: </strong>
-
     </p>
 
   </section>

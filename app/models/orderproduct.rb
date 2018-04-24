@@ -28,7 +28,7 @@ class Orderproduct < ApplicationRecord
     end
     return sum
   end
-  
+
   def self.subtotal(orderproduct)
     result = orderproduct.quantity * orderproduct.product.price
     return result

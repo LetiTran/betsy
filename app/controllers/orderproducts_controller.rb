@@ -15,7 +15,7 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-    if @order
+      if @order
       # creates orderproduct
       orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
     else
