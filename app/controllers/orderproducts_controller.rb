@@ -1,12 +1,13 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
-  before_action :find_user
-  
+  before_action :find_user,:current_order
+
   def index
     @orderproducts = Orderproduct.all
   end
 
   def show
+    @orderproducts = current_order.orderproducts
   end
 
   def new
@@ -15,11 +16,12 @@ class OrderproductsController < ApplicationController
   end
 
   def create
+    @order = current_order
+    @orderproduct = @order.orderproducts.new(orderproduct_params)
+    @order.save
+    session[:order_id] = @order.id
 
-    @product = Product.find_by(id: params[:product_id])
-    @orderproduct = OrderProduct.new(orderproduct_params)
-    @orderproduct.product_id = @product.id
-    #@orderproduct.order_id = @order.id
+
     if @orderproduct.save
       status = :success
       flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
@@ -61,7 +63,7 @@ class OrderproductsController < ApplicationController
   private
 
   def orderproduct_params
-    params.require(:order_product).permit(:quantity,:product_id)
+    params.require(:orderproduct).permit(:quantity,:product_id)
   end
 
   def find_orderproduct

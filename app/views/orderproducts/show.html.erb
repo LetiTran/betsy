@@ -1,2 +1,5 @@
-<h1>Orderproducts#show</h1>
-<p>Find me in app/views/orderproducts/show.html.erb</p>
+<h1><%= @user.username %> Cart</h1>
+
+<% @orderproduct.products.each do |product| %>
+<strong>Item: </strong> <%= product.name %>
+<% end %>
