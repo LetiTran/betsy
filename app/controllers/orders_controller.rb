@@ -35,6 +35,15 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    if @order
+      @order.destroy
+      flash[:message] = "Deleted #{@order}"
+      redirect_to orders_path
+    else
+      flash[:failure] = :failure
+      flash.now[:result_text]= "Error: Order was not created"
+      redirect_to order_path(@order.id)
+    end
   end
 
   private
