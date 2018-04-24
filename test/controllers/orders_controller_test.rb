@@ -1,10 +1,22 @@
+
 require "test_helper"
 
 describe OrdersController do
-  it "should get index" do
-    get orders_index_url
-    value(response).must_be :success?
-  end
+ describe 'index' do
+   describe 'index' do
+     it 'should get all products' do
+       get orders_path
+       must_respond_with :success
+     end
+
+     it 'should work with no products' do
+       Order.destroy_all
+       assert Order.all.empty?
+       get orders_path
+       must_respond_with :success
+     end
+   end
+ end
 
   it "should get show" do
     get orders_show_url
