@@ -1,5 +1,5 @@
 class OrderproductsController < ApplicationController
-  before_action :find_orderproduct, only: [:edit, :update, :destroy]
+  before_action :find_orderproduct, only: [:edit, :update, :destroy, :show, :index]
   before_action :find_user
 
   def index
@@ -10,7 +10,6 @@ class OrderproductsController < ApplicationController
   end
 
   def new
-    # @orderproduct = Orderproduct.new
   end
 
   def create
@@ -21,11 +20,11 @@ class OrderproductsController < ApplicationController
     product = Product.find(orderproduct.product_id)
 
     orderproduct.products << product
-    raise
 
     if orderproduct.save
       status = :success
-      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} have been added to your order!"
+      flash[:result_text] = "#{orderproduct.quantity} #{product.name} has been added to your order!"
+      redirect_to orderproduct_path(orderproduct.id)
     else
       status = :bad_request
       flash[:result_text] = "Error - products not added to your order"
