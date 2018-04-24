@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
 
     # binding.pry
     if @order.save
-      flash[:status] =
       redirect_to order_path(@order.id)
     else
       flash[:failure] = :failure

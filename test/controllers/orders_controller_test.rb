@@ -32,6 +32,24 @@ describe OrdersController do
             cc_expiration: "03-02-2019",
             cvv: "123",
             zip_code: "98000",
+            status: :paid
+            # merchant_id: existing_merchant.id
+          }
+        }
+      }.must_change 'Order.count', 1
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to order_path(Order.last.id)
+    end
+
+    it 'creates a product with valid id' do
+      existing_merchant = merchants(:one)
+      perform_login(existing_merchant)
+      proc {
+        post orders_path, params: {
+          order: {
+            status: :open
             # merchant_id: existing_merchant.id
           }
         }
