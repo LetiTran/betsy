@@ -31,9 +31,8 @@
         <%= product.price %>
       </td>
       <td>
-        <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
-        <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
-
+        <%= link_to "Edit", edit_orderproduct_path(op.id) %><span>  |  </span>
+        <%= link_to "Remove", orderproduct_path(op.id), method: :delete %>
       </td>
     </tr>
     <% end %>
@@ -45,14 +44,12 @@
     </p>
 
   </section>
+  <section>
+    <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
+  </section>
 
-
-  <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id)%>
 
   <% else %>
   <h3>Empty cart!</h3>
-
   <% end %>
-
-
 </section>
