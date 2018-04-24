@@ -1,5 +1,7 @@
 <h1><%= @user.username %> Cart</h1>
 
+<% if @orderproducts.first %>
+
 <section class="cart-table">
   <table>
     <tr>
@@ -29,9 +31,10 @@
         <%= product.price %>
       </td>
       <td>
-         <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
-         <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
-       </td>
+        <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
+        <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
+
+      </td>
     </tr>
     <% end %>
   </table>
@@ -42,6 +45,14 @@
     </p>
 
   </section>
+
+
+  <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id)%>
+
+  <% else %>
+  <h3>Empty cart!</h3>
+
+  <% end %>
 
 
 </section>
