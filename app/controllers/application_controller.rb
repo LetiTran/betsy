@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_order
-    @order = Order.find_by(merchant_id: session[:merchant_id])
+    @order = Order.find_by({merchant_id: @user.id, status: "open"})
   end
 
 end

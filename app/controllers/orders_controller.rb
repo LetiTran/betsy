@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   before_action :find_user
 
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = Order.where(merchant_id: @user.id)
   end
 
   def show
@@ -19,7 +20,6 @@ class OrdersController < ApplicationController
 
     # binding.pry
     if @order.save
-      flash[:status] =
       redirect_to order_path(@order.id)
     else
       flash[:failure] = :failure

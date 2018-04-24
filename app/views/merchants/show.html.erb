@@ -1,3 +1,11 @@
+<% if @user  %>
+<h1><%= link_to "See Your Orders" , orders_path %></h1>
+<% end %>
+
+
+
+
+
 <h1>Products by <%= @merchant.username %></h1>
 
 <section class="item-box">

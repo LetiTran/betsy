@@ -1,6 +1,7 @@
 class OrderproductsController < ApplicationController
   before_action :find_orderproduct, only: [:edit, :update, :destroy]
   before_action :find_user
+  before_action :find_order
 
   def index
     @orderproducts = Orderproduct.all
@@ -14,17 +15,27 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-    orderproduct = Orderproduct.new
-    orderproduct.quantity = params['orderproduct']['quantity']
-    orderproduct.product_id = params['orderproduct']['product_id']
+    if @order
+      orderproduct = Orderproduct.new
+      orderproduct.quantity = params['orderproduct']['quantity']
+      orderproduct.product_id = params['orderproduct']['product_id']
+      orderproduct.order_id = @order.id
+    else
+      @order = Order.create(merchant_id: @user.id)
+      orderproduct = Orderproduct.new
+      orderproduct.quantity = params['orderproduct']['quantity']
+      orderproduct.product_id = params['orderproduct']['product_id']
+      orderproduct.order_id = @order.id
 
+      product = Product.find(orderproduct.product_id)
+      # call method to reduce product stock by quantity amount selected by user
+      # before adding product
+      @order.products << product
+    end
 
-    raise
-
-    @orderproduct.product_id = @product.id
-    if @orderproduct.save
+    if orderproduct.save
       status = :success
-      flash[:result_text] = "#{@orderproduct.quantity} #{@orderproduct.product.name} have been added to your order!"
+      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} have been added to your order!"
       redirect_to products_path
     else
       status = :bad_request

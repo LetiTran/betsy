@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   # Merchants:
   resources :merchants do
     resources :products, only: [:index]
+    resources :orders, only: [:index]
   end
 
   # Categories:
