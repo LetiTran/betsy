@@ -46,10 +46,8 @@
     <% end %>
   </table>
 
-  <p><strong>
-
-    <%= "Total: #{format_price(@order.first.total)}" %></strong>
-
+  <p>
+    <strong>Total:</strong> <%=format_price(@order.first.total) %>
   </p>
   <p>
     <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
