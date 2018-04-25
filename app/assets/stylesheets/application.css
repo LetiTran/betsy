@@ -18,8 +18,8 @@
 
  */
  body {
-   background-color:  #ffe6cc;
-   font-family: 'Pontano Sans', sans-serif;
+  background-color:  #ffe6cc;
+  font-family: 'Pontano Sans', sans-serif;
  }
 
 .nav-drop p a {
@@ -42,6 +42,7 @@
   margin: 0;
 }
 .top-bar {
+  /* background-color: #3366cc; */
    background-color:  #009999;
    border-bottom: dotted;
    border-bottom-color: skyblue;
@@ -51,7 +52,9 @@
 
 .button {
   background-color: white;
+  /* background-color: #f2f2f2; */
   color: black;
+  border: black solid thin;
 }
  h1 {
    font-family: 'Pacifico', cursive;
@@ -113,4 +116,26 @@
 .product-info p {
   margin: 0;
   padding-left: .5em;
+}
+
+td {
+  text-align: center;
+  background-color: white;
+  border: solid grey thin;
+}
+
+th {
+  background-color: #ffaa80;
+  /* color: white; */
+  border: solid grey thin;
+}
+
+.cart-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+table {
+  width: 80%;
 }

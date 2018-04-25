@@ -38,18 +38,15 @@
     <% end %>
   </table>
 
-  <section class="cart-summary">
-    <p>
-      <strong>Subtotal: </strong>
-    </p>
-
-  </section>
-  <section>
+  <p>
+    <strong>Subtotal: </strong>
+  </p>
+  <p>
     <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
-    <%= link_to "Clear cart", clearcart_path %>
-  </section>
+    <%= link_to "Clear cart", clearcart_path, class: "button" %>
+  </p>
 
   <% else %>
-  <h3>Cart empty!</h3>
+  <h3>Empty cart!</h3>
   <% end %>
 </section>
