@@ -7,6 +7,7 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @merchant_orders = @user.products.orders
   end
 
   # def new
