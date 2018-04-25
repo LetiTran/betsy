@@ -7,21 +7,26 @@
 <h3><%= link_to("See Your Products", merchant_products_path(@merchant.id), :class => "button")%></h3>
 <% end %>
 
-<h3>Total revenue: <%= @total_revenue %></h3>
+
 
 <table>
   <tr>
-    <th>Total Revenue by Status</th>
+    <th colspan="3">Total Revenue by Status</th>
   </tr>
   <tr>
     <th>Order Status</th>
     <th>Order Quantity</th>
     <th>Revenue</th>
   </tr>
+  <% @sold_products.each do |p| %>
   <tr>
-    <% @merchant.products.orders.each do |order| %>
-    <th>@merchant.products.orders.quantity</th>
+    <td><%= p.name %> </td>
+    <td><%= p %> </td>
+    <td><%= p %> </td>
     <% end %>
+  </tr>
+  <tr>
+    <th colspan="3"><h3>Total revenue: $<%= @total_revenue %></h3></th>
   </tr>
 </table>
 

@@ -8,6 +8,17 @@ class SessionsController < ApplicationController
       @total_revenue =+ order.total
     end
 
+    @sold_products =[]
+    # @user_orders = Order.where()@user.products.orders
+    paid_ordes= Order.where(status: "paid")
+    paid_ordes.each do |po|
+      po.orderproducts.each do |op|
+        product = Product.find_by(id: op.product_id)
+        if product.merchant_id == @user.id
+          @sold_products << product
+        end
+      end
+    end
   end
 
   def show
