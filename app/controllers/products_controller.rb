@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+
+    # If using this path for displaying the logged in user's products:
+    if @user.id == params[:merchant_id].to_i
+      @user_products = Product.where(merchant_id: @user.id).order(id: :desc)
+    end
   end
 
   def show
@@ -65,6 +70,6 @@ class ProductsController < ApplicationController
   end
 
   def assign_merchant_id
-    @product.merchant_id = @merchant.id
+    @product.merchant_id = @user.id
   end
 end
