@@ -1,57 +1,22 @@
-<% unless @user_products.nil?  %>
-<!-- if @user_products is nil, it means this is not the loggedin user's products page (see Producs#index) -->
-<section class="user-merchant-products-view">
-  <h1><%= @user.username%> products</h1>
-  <% unless @user_products.first.nil?  %>
-  <!-- Show products that user has for sale: -->
-  <table>
-    <tr>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th colspan="2">Options</th>
-    </tr>
-    <%  @user_products.each do |product|  %>
-    <tr>
-      <td><%= product.name %><br /></td>
-      <td><%= product.quantity %></td>
-      <td><%= product.price %></td>
-      <td><%= link_to "Edit Item", edit_product_path(product.id) %></td>
-      <td><%= link_to "Delete", product_path(product.id), method: :delete %></td>
-    </tr>
-    <% end %>
-  </table>
-  <% else %>   <!-- If user has no products for sale -->
-  <h1>You have no products for sale.</h1>
-  <% end %>
-  <p><%= link_to("Add a Product", new_product_path, :class => "button") %>
-  </section>
-
-
-  <% else %>   <!-- If showing products by merchants (that are not the logged in user itself) -->
-
-
-  <section class="other-merchats-products-view">
-    <section class="item-box">
-      <% @products.each do |product| %>
-      <div class="product-container">
-        <h4><%= product.name %></h4>
-        <a id="pic" href="https://loremflickr.com"><img src="
-          https://loremflickr.com/350/250/dessert" alt="product pic"></a>
-          <div class="product-info">
+<section class="other-merchats-products-view">
+  <section class="item-box">
+    <% @products.each do |product| %>
+    <div class="product-container">
+      <h4><%= product.name %></h4>
+      <a id="pic" href="https://loremflickr.com"><img src="
+        https://loremflickr.com/350/250/dessert" alt="product pic"></a>
+        <div class="product-info">
+          <p>
+            <strong>Price: </strong> <%= format_price(product.price) %>
             <p>
-              <strong>Price: </strong> <%= format_price(product.price) %>
-              <p>
-                <strong>Stock: </strong> <%= product.quantity %>
-              </p>
+              <strong>Stock: </strong> <%= product.quantity %>
             </p>
-            <p class="button">
-              <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => product.quantity), method: :post %>
-            </p>
-          </div>
+          </p>
+          <p class="button">
+            <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => product.quantity), method: :post %>
+          </p>
         </div>
-        <% end %>
-      </section>
+      </div>
       <% end %>
     </section>
   </section>

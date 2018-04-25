@@ -72,6 +72,7 @@
     </div>
 
     <div class="nav-drop" id="login">
+<<<<<<< HEAD
       <ul class="dropdown menu" data-dropdown-menu>
         <li>
           <% if @user %>
@@ -90,6 +91,10 @@
         </li>
       </ul>
       <p>
+=======
+      <% if @user %>
+        <%= link_to "Logged in as #{@user.username}", user_profile_path(@user), class: "button" %>
+>>>>>>> 8e25fea70823f424592129433d4c6c876bacd1d5
         <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
         <% else %>
       </p>

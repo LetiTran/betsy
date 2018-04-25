@@ -35,7 +35,7 @@ p "**Created #{Merchant.count} merchants**"
 # Products
 puts "\n"
 10.times do |t|
-  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, merchant_id: Merchant.order("RANDOM()").first.id )
+  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, status: "active",merchant_id: Merchant.order("RANDOM()").first.id )
   puts "#{product.name} created in the category: #{product.categories.first.name}"
 end
 p "**Created #{Product.count} desserts**"
