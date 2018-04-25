@@ -1,11 +1,9 @@
-
-
 <% unless @user_products.nil?  %>
 <!-- if @user_products is nil, it means this is not the loggedin user's products page (see Producs#index) -->
 <section class="user-merchant-products-view">
   <h1><%= @user.username%> products</h1>
   <% unless @user_products.first.nil?  %>
-<!-- Show products that user has for sale: -->
+  <!-- Show products that user has for sale: -->
   <table>
     <tr>
       <th>Item</th>
@@ -56,3 +54,5 @@
       </section>
       <% end %>
     </section>
+  </section>
+</section>

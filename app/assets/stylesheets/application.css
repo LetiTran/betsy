@@ -36,6 +36,8 @@
 
 #login {
   padding:.25em .25em;
+  display: flex;
+  flex-direction: row;
 }
 
 #login a {
