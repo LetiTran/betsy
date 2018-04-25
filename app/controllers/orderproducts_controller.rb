@@ -5,7 +5,6 @@ class OrderproductsController < ApplicationController
 
   def index
     @orderproducts = Orderproduct.all
-    raise
   end
 
   def show
@@ -62,6 +61,11 @@ class OrderproductsController < ApplicationController
     end
     flash[:status] = :success
     flash[:result_text] = "Successfully removed from your cart!"
+    redirect_to orderproducts_path
+  end
+
+  def clear_cart
+    Orderproduct.where(order_id: @order.first.id).delete_all
     redirect_to orderproducts_path
   end
 

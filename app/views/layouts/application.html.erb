@@ -14,8 +14,10 @@
 <header class="nav-bar">
   <section class="top-bar" data-topbar role="navigation">
 
-    <div>
-      <%= link_to image_tag("/assets/images/candy-icon.jpg", alt: "Home"), homepage_path, class: "button" %>
+    <div class="nav-drop">
+      <p>
+        <%= link_to "Home", homepage_path, class: "button" %>
+      </p>
     </div>
 
     <div>
@@ -23,8 +25,13 @@
         <li>
           <%= link_to "Products", products_path, class: "button" %>
           <ul class="menu">
+            <li>
+              <%= link_to "View all", products_path, class: "button" %>
+            </li>
             <% Product.all.each do |product|%>
-            <li>  <%= link_to product.name, product_path(product.id), class: "button" %></li>
+            <li>
+              <%= link_to product.name, product_path(product.id), class: "button" %>
+            </li>
             <% end %>
           </ul>
         </li>
@@ -37,10 +44,12 @@
           <%= link_to "Merchants", merchants_path, class: "button" %>
           <ul class="menu">
             <li>
-              <%= link_to "View all", merchants_path %>
+              <%= link_to "View all", merchants_path, class: "button" %>
             </li>
             <% Merchant.all.each do |merchant|%>
-            <li>  <%= link_to merchant.username, merchant_path(merchant.id), class: "button" %></li>
+            <li>
+              <%= link_to merchant.username, merchant_path(merchant.id), class: "button" %>
+            </li>
             <% end %>
           </ul>
         </li>
@@ -50,8 +59,11 @@
     <div>
       <ul class="dropdown menu" data-dropdown-menu>
         <li>
-          <%= link_to "Shop by Category", categories_path, class: "button" %>
+          <%= link_to "Categories", categories_path, class: "button" %>
           <ul class="menu">
+            <li>
+              <%= link_to "View all", categories_path, class: "button" %>
+            </li>
             <% Category.all.each do |cat|%>
             <li><%= link_to cat.name, category_path(cat.id), class: "button" %></li>
             <% end %>
@@ -60,14 +72,14 @@
       </ul>
     </div>
 
-    <div>
+    <div class="nav-drop" id="login">
       <% if @user %>
-      <%= link_to "Logged in as #{@user.username}", merchant_path(@user), class: "button" %>
-      <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
+        <%= link_to "Logged in as #{@user.username}", merchant_path(@user), class: "button" %>
+        <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
       <% else %>
-      <%= link_to "Log In", github_login_path, class: "button" %>
+          <%= link_to "Log In", github_login_path, class: "button" %>
       <% end %>
-      <%= link_to "Cart", cart_path, class: "button" %>
+        <%= link_to "View cart", cart_path, class: "button" %>
     </div>
 
   </section>

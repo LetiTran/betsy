@@ -22,11 +22,30 @@
    font-family: 'Pontano Sans', sans-serif;
  }
 
+.nav-drop p a {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border: 0;
+}
+
+.nav-drop p {
+  margin: 0;
+  padding-left: .25em;
+}
+
+#login {
+  padding:.25em .25em;
+}
+
+#login a {
+  margin: 0;
+}
 .top-bar {
    background-color:  #009999;
    border-bottom: dotted;
    border-bottom-color: skyblue;
-   padding: 0;
+   padding: .25em;
    margin: 0;
  }
 
