@@ -15,14 +15,11 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-
-
-      if @order
+    if @order.length > 0
       # creates orderproduct
-      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
-        
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
     else
-      @order = Order.create(merchant_id: @user.id)
+      @order = Order.create(merchant_id: @user.id, status: "open")
       # creates orderproduct
       orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
       product = Product.find(orderproduct.product_id)
@@ -31,11 +28,11 @@ class OrderproductsController < ApplicationController
 
     if orderproduct.save
       status = :success
-      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} have been added to your order!"
-      redirect_to products_path
+      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"
+      redirect_to orderproducts_path
     else
       status = :bad_request
-      flash[:result_text] = "Error - products not added to your order"
+      flash[:result_text] = "Error - products not added to your cart"
       render :new, status: status
     end
   end
@@ -47,7 +44,7 @@ class OrderproductsController < ApplicationController
     if @orderproduct.update(orderproduct_params)
       flash[:status] = :success
       flash[:result_text] = "Cart updated"
-      redirect_to orders_path
+      redirect_to orderproducts_path
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Cart could not be updated"
@@ -64,7 +61,12 @@ class OrderproductsController < ApplicationController
     end
     flash[:status] = :success
     flash[:result_text] = "Successfully removed from your cart!"
-    redirect_to orders_path
+    redirect_to orderproducts_path
+  end
+
+  def clear_cart
+    Orderproduct.where(order_id: @order.first.id).delete_all
+    redirect_to orderproducts_path
   end
 
   private

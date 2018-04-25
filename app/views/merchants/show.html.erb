@@ -1,10 +1,44 @@
 
-<% if @merchant.id == @user.id  %>
-<h1><%= link_to "See Your Orders" , orders_path %></h1>
-<h1><%= link_to "See Your Products" ,  merchant_products_path(@merchant.id) %></h1>
+<% if @merchant.id == @user.id  %> <!-- If accesing itself: -->
+<h1>Welcome <%= @merchant.username %> !</h1>
+<h3><%= link_to "See Your Purchases Orders" , orders_path %></h3>
+<h3><%= link_to "See Your Products" ,  merchant_products_path(@merchant.id) %></h3>
+
+<!-- Only show a table of revenue if merchant's products has orders -->
+<% if @merchant_orders.first %>
+<table>
+  <tr>
+    <th colspan="2">Order</th>
+    <th>Satus</th>
+    <th>Total</th>
+  </tr>
+  <tbody>
+    <% @merchant.products.orders.each do |order| %>
+    <td><%= order.id %></td> <!-- TODO: Link to each individual order -->
+    <% end%>
+  </tbody>
+</table>
+<h3>Total Revenue: <%= %><!-- TODO: put the total of all user's sales orders here once  --></h3>
+
 <% else %>
+<h3>You have no sales orders yet.</h3>
+<% end%>
 
 
+<!-- TODO: Total Revenue by status -->
+<!-- TODO: Total number of orders by status -->
+<!-- TODO: Filter orders displayed by status -->
+
+<!-- A list of orders including at least one of my products: -->
+<!-- TODO: - Each order item sold by me with a quantity and line-item subtotal -->
+<!-- TODO: - A link to the item description page -->
+<!-- TODO: - DateTime the order was placed -->
+<!-- TODO:- Link to transition the order item to marked as shipped -->
+<!-- TODO: - The current status of the order ("pending", "paid", "complete", "cancelled") -->
+
+
+
+<% else %> <!-- If accesing other merchants page: -->
 
 <h1>Products by <%= @merchant.username %></h1>
 
@@ -14,18 +48,18 @@
     <h4><%= product.name %></h4>
     <a id="pic" href="https://loremflickr.com"><img src="
       https://loremflickr.com/350/250/dessert" alt="product pic"></a>
-    <div class="product-info">
-      <p>
-        <strong>Price: </strong> <%= product.price %>
-      <p>
-          <strong>Stock: </strong> <%= product.quantity %>
-      </p>
-      </p>
-      <p class="button">
-        Add to cart
-      </p>
+      <div class="product-info">
+        <p>
+          <strong>Price: </strong> <%= product.price %>
+          <p>
+            <strong>Stock: </strong> <%= product.quantity %>
+          </p>
+        </p>
+        <p class="button">
+          Add to cart
+        </p>
+      </div>
     </div>
-  </div>
+    <% end %>
+  </section>
   <% end %>
-</section>
-<% end %>

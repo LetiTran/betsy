@@ -15,6 +15,9 @@
         Price
       </th>
       <th>
+        Subtotal
+      </th>
+      <th colspan="2">
         Options
       </th>
     </tr>
@@ -31,28 +34,27 @@
         <%= product.price %>
       </td>
       <td>
-        <%= link_to "Edit quantity", edit_orderproduct_path(op.id) %>
-        <%= link_to "Delete", orderproduct_path(op.id), method: :delete %>
-
+        product.subtotal
+      </td>
+      <td>
+        <%= link_to "Edit", edit_orderproduct_path(op.id) %>
+      </td>
+      <td>
+        <%= link_to "Remove", orderproduct_path(op.id), method: :delete %>
       </td>
     </tr>
     <% end %>
   </table>
 
-  <section class="cart-summary">
-    <p>
-      <strong>Subtotal: </strong>
-    </p>
-
-  </section>
-
-
-  <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id)%>
+  <p>
+    <strong>Total: </strong>
+  </p>
+  <p>
+    <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
+    <%= link_to "Clear cart", clearcart_path, class: "button" %>
+  </p>
 
   <% else %>
   <h3>Empty cart!</h3>
-
   <% end %>
-
-
 </section>

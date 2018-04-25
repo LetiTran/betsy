@@ -1,18 +1,25 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:show, :edit, :update, :destroy]
+  before_action :find_order, only: [:show, :edit, :update]
   before_action :find_user
 
   def index
     # @orders = Order.all
-    @orders = Order.where(merchant_id: @user.id)
+    # TODO: maybe put a function that would change the status of the order for shipped if more than 3 days since created
+    # @canceled_orders = Order.where(status:"canceled")
+    # @processing_orders = Order.where(status:"processing")
+    # @shipped_orders = Order.where(status:"paid")
+
+    @orders = Order.where(merchant_id: @user.id).order(id: :desc)
+
   end
 
   def show
+
+
   end
 
   def new
     @order = Order.new()
-
   end
 
   def create
@@ -28,38 +35,30 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # Checkout form comes here
-    if @order.update(order_params)
-      @order.update(status: "paid")
-      #reduce_inventory(order)
-      redirect_to orders_path
-      flash[:message] = "Checkout successful"
-    else
-      render :edit
+    # TODO: check conditions of when will update it to to cancel or when will be updating it to checkout
+    # If canceling an order:
+    unless @order.status == "open"
+      flash[:message] = "Order #{@order} was canceled." if @order.update(status: "canceled")
+      redirect_to order_path(@order.id)
+    else   # _checkout_form comes here
+      if @order.update(order_params)
+        # @order.update(status: "paid")
+        flash[:message] = "Checkout successful"
+        redirect_to orders_path
+      else
+        flash[:message] = "Something went wrong."
+        render :edit
+      end
     end
   end
 
   def edit
   end
 
-  def destroy
-    if @order
-      @order.destroy
-        #@order.update(status: "cancelled")
-        #add_inventory(order)
-      flash[:message] = "Deleted #{@order}"
-      redirect_to orders_path
-    else
-      flash[:failure] = :failure
-      flash.now[:result_text]= "Error: Order was not created"
-      redirect_to order_path(@order.id)
-    end
-  end
-
   private
 
   def order_params
-    return params.require(:order).permit( :email, :address, :card_name, :cc_number, :cc_expiration, :cvv, :zip_code)
+    return params.require(:order).permit(:status, :email, :address, :card_name, :cc_number, :cc_expiration, :cvv, :zip_code)
   end
 
   def find_order
