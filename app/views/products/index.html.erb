@@ -48,7 +48,7 @@
               </p>
             </p>
             <p class="button">
-              Add to cart
+              <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => product.quantity), method: :post %>
             </p>
           </div>
         </div>

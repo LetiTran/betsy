@@ -19,13 +19,19 @@ class OrderproductsController < ApplicationController
   def create
     if @order.length > 0
       # creates orderproduct
-      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+      if params['orderproduct']
+        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+      else
+        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.first.id)
+      end
     else
       @order = Order.create(merchant_id: @user.id, status: "open")
       # creates orderproduct
-      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
-      product = Product.find(orderproduct.product_id)
-      # @order.products << product
+      if params['orderproduct']
+        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+      else
+        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.first.id)
+      end
     end
 
     if orderproduct.save
@@ -56,14 +62,11 @@ class OrderproductsController < ApplicationController
   end
 
   def destroy
-    order = @orderproduct.order
-    @orderproduct.destroy
-    if order.orderproducts.empty?
-      order.destroy
+    if @orderproduct.destroy
+      flash[:status] = :success
+      flash[:result_text] = "Item successfully removed from your cart!"
+      redirect_to orderproducts_path
     end
-    flash[:status] = :success
-    flash[:result_text] = "Successfully removed from your cart!"
-    redirect_to orderproducts_path
   end
 
   def clear_cart
