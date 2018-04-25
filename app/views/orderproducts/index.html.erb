@@ -14,7 +14,7 @@
       <th>
         Price
       </th>
-      <th>
+      <th colspan="2">
         Options
       </th>
     </tr>
@@ -31,7 +31,9 @@
         <%= product.price %>
       </td>
       <td>
-        <%= link_to "Edit", edit_orderproduct_path(op.id) %><span>  |  </span>
+        <%= link_to "Edit", edit_orderproduct_path(op.id) %>
+      </td>
+      <td>
         <%= link_to "Remove", orderproduct_path(op.id), method: :delete %>
       </td>
     </tr>

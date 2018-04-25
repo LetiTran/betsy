@@ -21,7 +21,7 @@ class OrderproductsController < ApplicationController
     else
       @order = Order.create(merchant_id: @user.id, status: "open")
       # creates orderproduct
-      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+      orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
       product = Product.find(orderproduct.product_id)
       # @order.products << product
     end
