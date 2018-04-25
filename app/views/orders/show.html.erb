@@ -1,23 +1,29 @@
 <h1><%= "Order # #{@order.id}" %></h1>
 
-<h3>Status:</h3>
-<p><%= "#{@order.status.capitalize}" %></p>
+<section class="order-status">
+  <h3>Order status: <%= "#{@order.status.capitalize}" %></h3>
 
-<h3>Shipped to:</h3>
-<p><%= "User #{@order.merchant_id}" %></p>
-<p><%= "Address: #{@order.address}" %></p>
-<p><%= "Zip: #{@order.zip_code}" %></p>
+</section>
 
-<h3>Charged to:</h3>
-<p><%= "Card ************#{@order.cc_number[13]}#{@order.cc_number[14]}#{@order.cc_number[15]}" %></p>
+<section class="order-info">
+  <h3>Order Details:</h3>
+  <p><strong>User: </strong><%= @order.merchant_id %></p>
+  <!-- find the merchant name instead of the merchant id -->
+  <p><strong>Contact: </strong><%= @order.email %></p>
+  <p><strong>Shipped to: </strong><%= @order.address %> - <%= @order.zip_code %></p>
 
-<h3>Order Items:</h3>
+
+</section>
+
+<p> <strong>Charged to card: </strong><%= " ************#{@order.cc_number[13]}#{@order.cc_number[14]}#{@order.cc_number[15]}" %> | Expiration date: <%= @order.cc_expiration %></p>
+
+<h4>Order Items:</h4>
 <ul>
   <%  @order.products do |product| %>
-  <li><%=  product.id %></li>
+  <li><%=  product.name %></li>
 </ul>
 <%  end %>
 
 <div >
-  <%= link_to "Cancel this order", order_path(@order.id), method: :delete, :class => "button"%>
+  <%= link_to "Cancel this order", order_path(@order.id), method: :patch, :class => "button"%>
 </div>

@@ -22,6 +22,8 @@
 <%= f.label :email %>
 <%= f.text_field :email %>
 
-<%= f.submit "Submit payment" %>
+<%= f.hidden_field :status, value: "paid" %>
+
+<%= f.submit "Submit payment and complete order" %>
 
 <% end %>
