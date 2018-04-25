@@ -8,6 +8,8 @@ class Product < ApplicationRecord
   validate :has_atleast_one_category
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
+
+
   def average_rating
 
     return "No reviews yet" if reviews.count == 0
@@ -16,6 +18,12 @@ class Product < ApplicationRecord
       sum += review.rating
     end
     return (sum/reviews.count)
+  end
+
+
+  def change_status
+    self.status == "active" ? self.status = "retired" : self.status = "active"
+    self.save
   end
 
   private
