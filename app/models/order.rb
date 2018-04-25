@@ -18,6 +18,14 @@ class Order < ApplicationRecord
     :status == "paid"
   end
 
+  def sub_total
+    sum = 0
+    self.orderproducts.each do |order|
+      sum+= orderproduct.total_price
+    end
+    return sum
+  end
+
 end
 
 

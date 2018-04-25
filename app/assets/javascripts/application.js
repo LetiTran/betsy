@@ -14,10 +14,8 @@
 //
 //= require rails-ujs
 //= require foundation
-<<<<<<< HEAD
 
-=======
->>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
+0
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

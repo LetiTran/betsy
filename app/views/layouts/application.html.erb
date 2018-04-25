@@ -57,13 +57,13 @@
       </ul>
     </div>
 
-    <% if @user %>
-    <%= link_to "Logged in as #{@user.username}", merchant_path(@user), class: "button" %>
+    <% if @merchant %>
+    <%= link_to "Logged in as #{@merchant.username}", merchant_path(@merchant), class: "button" %>
     <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
     <% else %>
     <%= link_to "Log In", github_login_path, class: "button" %>
     <% end %>
-    <%= link_to "Cart", order_path(@order.id), class: "button" %>
+    <%= link_to "Cart", cart_path, class: "button" %>
 
   </section>
 </header>

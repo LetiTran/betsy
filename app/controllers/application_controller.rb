@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     @order = Order.find_by({merchant_id: @user.id, status: "open"})
   end
 
-<<<<<<< HEAD
+
   def current_order
     if !session[:order_id].nil?
       @order = Order.find(session[:order_id])
@@ -25,6 +25,5 @@ class ApplicationController < ActionController::Base
       @order.save
     end
   end
-=======
->>>>>>> a7b691930388c7c6fd09ebc302f1b20a2f102360
+
 end
