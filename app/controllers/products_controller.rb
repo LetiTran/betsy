@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product.id)
     else
       binding.pry
-      flash[:alert] = "A problem occured:Could not update"
+      flash[:alert] = "A problem occured : Could not update"
       render :edit
     end
   end
@@ -65,6 +65,6 @@ class ProductsController < ApplicationController
   end
 
   def assign_merchant_id
-    @product.merchant_id = @merchant.id
+    @product.merchant_id = @user.id
   end
 end
