@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product.id)
     else
       binding.pry
-      flash[:alert] = "A problem occured:Could not update"
+      flash[:alert] = "A problem occured : Could not update"
       render :edit
     end
   end
