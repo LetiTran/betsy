@@ -1,6 +1,6 @@
 <%= render partial: "review_form" %>
 
-<h2>Product Details</h2>
+<h1>Item details</h1>
 
 <section class = "row product-show container">
   <article class = "column small-12 medium-6 image-show">
@@ -8,30 +8,35 @@
   </article>
 
   <article class = "column small-12 medium-6">
-    <h3><%= "Product : #{@product.name}" %></h3>
-    <small><%= "Stock: #{@product.quantity}" %></small>
-    <h4><%= "Price:#{ @product.price}" %></h4>
-
-
-    <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
-    <%= f.label :quantity %>
-    <%= f.select :quantity, options_for_select(1..@product.quantity)%>
-    <%= f.hidden_field :product_id, value: @product.id %>
-    <%= f.submit "Add to cart" %>
-    <% end %>
-
-    <p class = "description">
-      <small>Description: </small><%=@product.description %>
+    <p><strong>Product:</strong> <%= @product.name %></p>
+    <p><strong>Stock:</strong> <%= @product.quantity %></p>
+    <p><strong>Price:</strong> <%= format_price(@product.price) %>
+    <p>
+      <strong>Description:</strong>
+      <% if @product.description %>
+      <%= @product.description %>
+      <% else %>
+      <%= "None" %>
+      <% end %>
     </p>
 
-    <section class = "row rating-average container">
+    <section class='product-form'>
+      <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
+      <%= f.label :quantity %>
+      <%= f.select :quantity, options_for_select(1..@product.quantity)%>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.submit "Add to cart", class: "button" %>
+      <% end %>
+    </section>
+
+    <section class = "rating-average-container">
       <h4>Ratings Summary</h4>
       <p>
         <%="Average rating: #{@product.average_rating}" %>
       </p>
     </section>
 
-    <section class = "row rating container">
+    <section class = "rating-container">
       <h4>Rating</h4>
       <% if @product.reviews.empty? %>
       <p>

@@ -31,10 +31,10 @@
         <%= product.quantity %>
       </td>
       <td>
-        <%= product.price %>
+        <%= format_price(product.price) %>
       </td>
       <td>
-        <%= product.quantity * product.price %>
+        <%= format_price(product.quantity * product.price) %>
       </td>
       <td>
         <%= link_to "Edit", edit_orderproduct_path(op.id) %>
@@ -48,7 +48,7 @@
 
   <p><strong>
 
-    <%= "Total: #{@order.first.total}" %></strong>
+    <%= "Total: #{format_price(@order.first.total)}" %></strong>
 
   </p>
   <p>

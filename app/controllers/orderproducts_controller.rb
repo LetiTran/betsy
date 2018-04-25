@@ -4,9 +4,7 @@ class OrderproductsController < ApplicationController
   before_action :find_order
 
   def index
-
     @orderproducts = Orderproduct.all
-
   end
 
   def show
