@@ -4,8 +4,7 @@ class OrderproductsController < ApplicationController
   before_action :find_order
 
   def index
-
-    @orderproducts = Orderproduct.all
+     @orderproducts = Orderproduct.where(order_id: @order.first.id) if @order.first 
 
   end
 
@@ -28,9 +27,9 @@ class OrderproductsController < ApplicationController
       @order = Order.create(merchant_id: @user.id, status: "open")
       # creates orderproduct
       if params['orderproduct']
-        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
       else
-        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.first.id)
+        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
       end
     end
 

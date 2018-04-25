@@ -1,2 +1,24 @@
 <h1>Sessions#show</h1>
 <p>Find me in app/views/sessions/show.html.erb</p>
+
+
+<!-- Only show a table of revenue if merchant's products has orders -->
+<% if @merchant_orders.first %>
+<table>
+  <tr>
+    <th colspan="2">Order</th>
+    <th>Satus</th>
+    <th>Total</th>
+  </tr>
+  <tbody>
+    <% @merchant.products.orders.each do |order| %>
+    <td><%= order.id %></td> <!-- TODO: Link to each individual order -->
+    <% end%>
+  </tbody>
+</table>
+<h3>Total Revenue: <%= %><!-- TODO: put the total of all user's sales orders here once  --></h3>
+
+<% else %>
+<h3>You have not sold any products yet.</h3>
+
+<% end%>

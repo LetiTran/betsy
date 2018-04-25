@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create', as: 'auth_callback'
   get '/auth/github', as: 'github_login'
 
-  #sessions
+  # Sessions
   delete '/login', to: 'sessions#destroy', as: 'logout'
+  # get '/merchants/:id/products', to: 'sessions#show', as: 'user_products'
+  # get '/merchants/:id', to: 'sessions#index', as: 'user_profile'
+
+  # Cart
   get '/cart', to: 'orderproducts#index', as: 'cart'
   get 'orderproducts/clearcart', to: 'orderproducts#clear_cart', as: 'clearcart'
 

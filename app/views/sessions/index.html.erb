@@ -1,2 +1,43 @@
 <h1>Sessions#index</h1>
-<p>Find me in app/views/sessions/index.html.erb</p>
+
+<% if @merchant.id == @user.id  %> <!-- If accesing itself: -->
+<h1>Welcome <%= @merchant.username %> !</h1>
+
+<h3><%= link_to("See Your Purchases Orders", orders_path, :class => "button")%></h3>
+<h3><%= link_to("See Your Products", merchant_products_path(@merchant.id), :class => "button")%></h3>
+<% end %>
+
+
+
+<table>
+  <tr>
+    <th colspan="3">Total Revenue by Status</th>
+  </tr>
+  <tr>
+    <th>Order Status</th>
+    <th>Order Quantity</th>
+    <th>Revenue</th>
+  </tr>
+  <% @sold_products.each do |p| %>
+  <tr>
+    <td><%= p.name %> </td>
+    <td><%= p %> </td>
+    <td><%= p %> </td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan="3"><h3>Total revenue: $<%= @total_revenue %></h3></th>
+  </tr>
+</table>
+
+
+<!-- TODO: Total Revenue by status -->
+<!-- TODO: Total number of orders by status -->
+<!-- TODO: Filter orders displayed by status -->
+
+<!-- A list of orders including at least one of my products: -->
+<!-- TODO: - Each order item sold by me with a quantity and line-item subtotal -->
+<!-- TODO: - A link to the item description page -->
+<!-- TODO: - DateTime the order was placed -->
+<!-- TODO:- Link to transition the order item to marked as shipped -->
+<!-- TODO: - The current status of the order ("pending", "paid", "complete", "cancelled") -->

@@ -27,10 +27,7 @@ class Order < ApplicationRecord
     return total
   end
 
-
-
 end
-
 
 # lass User < ApplicationRecord
 #   with_options if: :is_admin? do |admin|
