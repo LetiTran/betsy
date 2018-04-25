@@ -7,8 +7,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
 
+    @products = find_active_products
     # If using this path for displaying the logged in user's products:
     if @user.id == params[:merchant_id].to_i
       @user_products = Product.where(merchant_id: @user.id).order(id: :desc)
@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     assign_merchant_id
+
     if @product.save
       flash[:status] = :success
       redirect_to product_path(@product.id)
@@ -39,29 +40,29 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.merchant_id = @merchant.id
+    
     assign_merchant_id
+
     if @product.update(product_params)
+
+
       flash[:success] = "#{@product.name} updated"
       redirect_to product_path(@product.id)
     else
-      binding.pry
+
       flash[:alert] = "A problem occured : Could not update"
       render :edit
-    end
-  end
-
-  def destroy
-    if @product.destroy
-      flash[:message] = "Deleted #{@product.name}"
-      redirect_to products_path
     end
   end
 
   private
 
   def product_params
-    return params.require(:product).permit(:name, :price, :quantity, :description, :category_ids => [])
+    return params.require(:product).permit(:name, :price, :quantity,:status, :description, :category_ids => [])
+  end
+
+  def find_active_products
+    return Product.where(status:"active")
   end
 
   def find_product
