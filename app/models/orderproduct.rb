@@ -17,9 +17,11 @@ class Orderproduct < ApplicationRecord
     return orderproduct
   end
 
-  def total_price
-    self.quantity * self.product.price
+  def sub_total
+    quantity * self.product.price
   end
+
+
 
 
 end
