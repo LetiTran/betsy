@@ -52,10 +52,10 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.destroy
-      flash[:message] = "Deleted #{@product.name}"
-      redirect_to products_path
-    end
+    # if @product.destroy
+    #   flash[:message] = "Deleted #{@product.name}"
+    #   redirect_to products_path
+    # end
   end
 
   private

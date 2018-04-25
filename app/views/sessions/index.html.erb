@@ -1,32 +1,36 @@
 <h1>Sessions#index</h1>
 
-<% if @merchant.id == @user.id  %> <!-- If accesing itself: -->
+<% if @merchant.id == @user.id  %>
 <h1>Welcome <%= @merchant.username %> !</h1>
 
-<h3><%= link_to("See Your Purchases Orders", orders_path, :class => "button")%></h3>
-<h3><%= link_to("See Your Products", merchant_products_path(@merchant.id), :class => "button")%></h3>
+<h3><%= link_to("See Your Purchases Orders", orders_path, :class => "button")%></h3><h3><%= link_to("See Your Products", user_products_path(@user.id), :class => "button")%></h3>
 <% end %>
-
 
 
 <table>
   <tr>
-    <th colspan="3">Total Revenue by Status</th>
+    <th colspan="4">Total Revenue by Status</th>
   </tr>
   <tr>
-    <th>Order Status</th>
-    <th>Order Quantity</th>
-    <th>Revenue</th>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity Sold</th>
+    <th>Product Revenue</th>
   </tr>
   <% @sold_products.each do |p| %>
   <tr>
     <td><%= p.name %> </td>
-    <td><%= p %> </td>
-    <td><%= p %> </td>
+    <td><%= format_price(p.price) %> </td>
+    <% sum = 0 %>
+    <% @sold_products.each do |product| %>
+    <% sum =+ 1 if product.id == p.id %>
+    <td><%= sum %></td>
+    <% end %>
+    <td><%= format_price(sum * p.price)%> </td>
     <% end %>
   </tr>
   <tr>
-    <th colspan="3"><h3>Total revenue: $<%= @total_revenue %></h3></th>
+    <th colspan="4"><h3>Total revenue: <%= format_price(@total_revenue) %></h3></th>
   </tr>
 </table>
 

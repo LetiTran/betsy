@@ -7,7 +7,11 @@ class MerchantsController < ApplicationController
   end
 
   def show
-    @merchant_orders = @user.products.orders
+    # If accesing itself:
+
+    # if @merchant.id == @user.id
+    # end
+
   end
 
   def new

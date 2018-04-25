@@ -1,12 +1,8 @@
 class SessionsController < ApplicationController
   before_action :find_merchant, only: [:show, :index]
-  before_action :find_user, only: [:show, :index]
+  before_action :find_user
 
   def index
-    @total_revenue = 0
-    @user.products.orders.each do |order|
-      @total_revenue =+ order.total
-    end
 
     @sold_products =[]
     # @user_orders = Order.where()@user.products.orders
@@ -19,10 +15,16 @@ class SessionsController < ApplicationController
         end
       end
     end
+
+    @total_revenue = 0
+    @sold_products.each do |p|
+      @total_revenue =+ p.price
+    end
+
   end
 
   def show
-    @merchant_orders = @user.products.orders
+    @user_products = @user.products
 
   end
 
