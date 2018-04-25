@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     # Checkout form comes here
     if @order.update(order_params)
       @order.update(status: "paid")
-      reduce_inventory(order)
+      #reduce_inventory(order)
       redirect_to orders_path
       flash[:message] = "Checkout successful"
     else
@@ -45,8 +45,8 @@ class OrdersController < ApplicationController
   def destroy
     if @order
       @order.destroy
-        @order.update(status: "cancelled")
-        add_inventory(order)
+        #@order.update(status: "cancelled")
+        #add_inventory(order)
       flash[:message] = "Deleted #{@order}"
       redirect_to orders_path
     else

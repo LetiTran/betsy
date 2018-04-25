@@ -11,12 +11,10 @@ class Orderproduct < ApplicationRecord
     orderproduct.order_id = order_id
     return orderproduct
   end
-  
+
   def total_price
     self.quantity * self.product.price
   end
-
-
 
 
 end
