@@ -14,6 +14,8 @@
 //
 //= require rails-ujs
 //= require foundation
+
+0
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

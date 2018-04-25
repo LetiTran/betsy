@@ -18,28 +18,10 @@ class Orderproduct < ApplicationRecord
   end
 
   def sub_total
-    self.quantity * self.product.price
+    quantity * self.product.price
   end
-  # def orderproducts_quantity
-  #   sum = 0
-  #   self.each do | order |
-  #     sum += order.quantity
-  #     @product.quantity -= order.quantity
-  #   end
-  #   return sum
-  # end
-  #
-  # def orderproducts_total
-  #   sum = 0
-  #   orderproducts.each do | order |
-  #     sum += order.total
-  #   end
-  #   return sum
-  # end
-  #
-  # def self.subtotal(orderproduct)
-  #   result = orderproduct.quantity * orderproduct.product.price
-  #   return result
-  # end
+
+
+
 
 end

@@ -16,4 +16,14 @@ class ApplicationController < ActionController::Base
     @order = Order.where(merchant_id: session[:merchant_id]).where(status: "open")
   end
 
+
+  def current_order
+    if !session[:order_id].nil?
+      @order = Order.find(session[:order_id])
+    else
+      @order = Order.new
+      @order.save
+    end
+  end
+
 end

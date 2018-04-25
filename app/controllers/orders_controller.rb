@@ -65,4 +65,20 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     render_404 unless @order
   end
+
+  def reduce_inventory(order)
+    order.orderproducts.each do |orderproduct|
+      product = Product.find_by(id: orderproduct.product_id)
+      product.quantity -= orderproduct.quantity
+      product.save
+    end
+  end
+
+  def add_inventory(order)
+    order.orderproducts.each do |orderproduct|
+      product = Product.find_by(id: orderproduct.product_id)
+      product.quantity += orderproduct.quantity
+      product.save
+    end
+  end
 end
