@@ -18,8 +18,16 @@ class Order < ApplicationRecord
     :status == "paid"
   end
 
-end
+  def total
+    total = 0
+    self.orderproducts.each do |op|
+      total += op.sub_total
+    end
 
+    return total
+  end
+
+end
 
 # lass User < ApplicationRecord
 #   with_options if: :is_admin? do |admin|
