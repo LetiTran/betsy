@@ -31,10 +31,10 @@
         <%= product.quantity %>
       </td>
       <td>
-        <%= product.price %>
+        <%= format_price(product.price) %>
       </td>
       <td>
-        <%= product.quantity * product.price %>
+        <%= format_price(product.quantity * product.price) %>
       </td>
       <td>
         <%= link_to "Edit", edit_orderproduct_path(op.id) %>
@@ -46,10 +46,8 @@
     <% end %>
   </table>
 
-  <p><strong>
-
-    <%= "Total: #{@order.first.total}" %></strong>
-
+  <p>
+    <strong>Total:</strong> <%=format_price(@order.first.total) %>
   </p>
   <p>
     <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>

@@ -4,8 +4,7 @@ class OrderproductsController < ApplicationController
   before_action :find_order
 
   def index
-     @orderproducts = Orderproduct.where(order_id: @order.first.id) if @order.first 
-
+    @orderproducts = Orderproduct.where(order_id: @order.first.id) if @order.first
   end
 
   def show
@@ -50,7 +49,7 @@ class OrderproductsController < ApplicationController
   def update
     if @orderproduct.update(orderproduct_params)
       flash[:status] = :success
-      flash[:result_text] = "Cart updated"
+      flash[:result_text] = "Cart updated!"
       redirect_to orderproducts_path
     else
       flash.now[:status] = :failure
@@ -76,7 +75,7 @@ class OrderproductsController < ApplicationController
   private
 
   def orderproduct_params
-    params.require(:order_product).permit(:quantity,:product_id)
+    params.require(:orderproduct).permit(:quantity, :product_id)
   end
 
   def find_orderproduct
