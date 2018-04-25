@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   # Sessions
   delete '/login', to: 'sessions#destroy', as: 'logout'
-  get '/merchants/:id/products', to: 'sessions#show', as: 'user_products'
-  get '/merchants/:id', to: 'sessions#index', as: 'user_profile'
+  # get '/merchants/:id/products', to: 'sessions#show', as: 'user_products'
+  # get '/merchants/:id', to: 'sessions#index', as: 'user_profile'
 
   # Cart
   get '/cart', to: 'orderproducts#index', as: 'cart'
