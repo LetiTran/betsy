@@ -2,60 +2,57 @@
 
 <h1><%= @product.name %> details</h1>
 
-<section class="product-container">
-  <article class="column small-12 medium-6 image-show">
-    <a id="pic" href="https://loremflickr.com"><img src="
+<section class-="product-show-container">
+  <div id="pic">
+    <a href="https://loremflickr.com"><img src="
       https://loremflickr.com/280/200/dessert" alt="product pic"></a>
-    </article>
+    </div>
 
-    <article class="column small-12 medium-6">
+    <div class="product-show-info">
       <p><strong>Stock:</strong> <%= @product.quantity %></p>
-      <p><strong>Price:</strong> <%= format_price(@product.price) %>
-        <p>
-          <strong>Description:</strong>
-          <% if @product.description %>
-          <%= @product.description %>
-          <% else %>
-          <%= "None" %>
-          <% end %>
-        </p>
+      <p><strong>Price:</strong> <%= format_price(@product.price) %></p>
+      <p>
+        <strong>Description:</strong>
+        <% if @product.description %>
+        <%= @product.description %>
+        <% else %>
+        <%= "None" %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="product-show-form">
+    <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
+    <%= f.label :quantity %>
+    <%= f.select :quantity, options_for_select(1..@product.quantity)%>
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <%= f.submit "Add to cart", class: "button" %>
+    <% end %>
+  </div>
+</section>
 
-        <section class='product-form'>
-          <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
-          <%= f.label :quantity %>
-          <%= f.select :quantity, options_for_select(1..@product.quantity)%>
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.submit "Add to cart", class: "button" %>
-          <% end %>
-        </section>
-
-        <section class="rating-container">
-          <h4>Ratings Summary</h4>
-          <p>
-            <%="Average rating: #{@product.average_rating}" %>
-          </p>
-          <p>
-            <%=link_to "Add review", new_product_review_path(@product.id), class: 'button' %>
-          </p>
-          <% if @product.reviews.empty? %>
-          <p>
-            Be the first to review!
-          </p>
-          <%else %>
-          <ul>
-            <% @product.reviews.each do |review| %>
-            <li>
-              <%review.rating.times do %>
-              <%= "🍦" %>
-              <% end %>
-            </li><br />
-            <%= review.comment %>
-            <%end %>
-          </ul>
-          <% end %>
-        </section>
-
-      </article>
-    </section>
-  </article>
+<section class="rating-container">
+  <h4>Ratings Summary</h4>
+  <p>
+    <%="Average rating: #{@product.average_rating}" %>
+  </p>
+  <% if @product.reviews.empty? %>
+  <p>
+    Be the first to review!
+  </p>
+  <p>
+    <%=link_to "Add review", new_product_review_path(@product.id), class: 'button' %>
+  </p>
+  <%else %>
+  <ul>
+    <% @product.reviews.each do |review| %>
+    <li>
+      <%review.rating.times do %>
+      <%= "🍦" %>
+      <% end %>
+    </li><br />
+    <%= review.comment %>
+    <%end %>
+  </ul>
+  <% end %>
 </section>

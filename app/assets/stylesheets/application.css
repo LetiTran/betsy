@@ -108,7 +108,7 @@
    margin: 0;
  }
 
- .rating-container p {
+ .rating-container p, h4 {
    display: flex;
    justify-content: center;
  }
@@ -175,4 +175,23 @@ table {
 .home-title {
   padding-top: 2em;
   padding-bottom: 2em;
+}
+
+.product-show-container {
+  display: grid;
+  grid-template:
+                "text1" "image"
+                "text2" "image";
+}
+
+#pic {
+  grid-area: image;
+}
+
+.product-show-info {
+  grid-area: text1;
+}
+
+.product-show-form {
+  grid-area: text2;
 }
