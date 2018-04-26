@@ -4,6 +4,7 @@
 
 <section class-="product-show-container">
   <div id="pic">
+    image_tag("images/apple_pie.jpg")
     <a href="https://loremflickr.com"><img src="
       https://loremflickr.com/280/200/dessert" alt="product pic"></a>
     </div>
@@ -24,7 +25,7 @@
   <div class="product-show-form">
     <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
     <%= f.label :quantity %>
-    <%= f.select :quantity, options_for_select(1..@product.quantity)%>
+    <%= f.select :quantity, options_for_select(1..@product.quantity),:style => "width:250px"%>
     <%= f.hidden_field :product_id, value: @product.id %>
     <%= f.submit "Add to cart", class: "button" %>
     <% end %>
