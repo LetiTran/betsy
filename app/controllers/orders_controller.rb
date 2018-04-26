@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.update(status: "open")
     if @order.save
-
       redirect_to order_path(@order.id)
     else
       flash[:failure] = :failure
@@ -39,16 +38,19 @@ class OrdersController < ApplicationController
     # TODO: check conditions of when will update it to to cancel or when will be updating it to checkout
     # If canceling an order:
     unless @order.status == "open"
-      flash[:message] = "Order #{@order} was canceled." if @order.update(status: "canceled")
+      status = :success
+      flash[:result_text] = "Order #{@order} was canceled." if @order.update(status: "canceled")
       redirect_to order_path(@order.id)
     else   # _checkout_form comes here
       if @order.update(order_params)
         # @order.update(status: "paid")
-        flash[:message] = "Checkout successful"
+        status = :success
+        flash[:result_text] = "Checkout for order ##{@order.id} was successful."
         redirect_to orders_path
       else
-        flash[:message] = "Something went wrong."
-        render :edit
+        status = :bad_request
+        flash[:result_text] = "Error - Cart could not be checked out."
+        render :edit, status: status
       end
     end
   end
@@ -68,6 +70,6 @@ class OrdersController < ApplicationController
   end
 
 
-  
+
 
 end

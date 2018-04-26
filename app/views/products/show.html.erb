@@ -9,7 +9,11 @@
     </article>
 
     <article class="column small-12 medium-6">
+      <% if @product.quantity == 0 %>
+      <h4>Product out of Stock</h4>
+      <% else %>
       <p><strong>Stock:</strong> <%= @product.quantity %></p>
+      <% end %>
       <p><strong>Price:</strong> <%= format_price(@product.price) %>
         <p>
           <strong>Description:</strong>
@@ -20,6 +24,7 @@
           <% end %>
         </p>
 
+        <% if @product.quantity > 0%>
         <section class='product-form'>
           <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
           <%= f.label :quantity %>
@@ -28,7 +33,7 @@
           <%= f.submit "Add to cart", class: "button" %>
           <% end %>
         </section>
-
+        <% end %>
         <section class="rating-container">
           <h4>Ratings Summary</h4>
           <p>
@@ -37,23 +42,33 @@
           <p>
             <%=link_to "Add review", new_product_review_path(@product.id), class: 'button' %>
           </p>
+
+          <!-- If no reviews: -->
           <% if @product.reviews.empty? %>
           <p>
             Be the first to review!
           </p>
+
           <%else %>
+        </section>
+
+        <div id="review">
+          <!-- Reviews: -->
           <ul>
-            <% @product.reviews.each do |review| %>
-            <li>
-              <%review.rating.times do %>
-              <%= "🍦" %>
-              <% end %>
-            </li><br />
-            <%= review.comment %>
+            <% @product.reviews.length.times do |i| %>
+            <li> <strong>Review <%= "#{i+1}:  " %></strong><%="🍦" * @product.reviews[i].rating %></li>
+
+            <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
+            <li>Comment: "<%= @product.reviews[i].comment %>"</li>
+              <%else %>
+              <li>No comments</li>
+            <%end %>
             <%end %>
           </ul>
           <% end %>
-        </section>
+        </div>
+
+
 
       </article>
     </section>
