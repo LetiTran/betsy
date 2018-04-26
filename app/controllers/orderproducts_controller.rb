@@ -15,35 +15,41 @@ class OrderproductsController < ApplicationController
   end
 
   def create
-    if @order.length > 0
-      # creates orderproduct
-      if params['orderproduct']
-        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+    # if user is logged in enter here
+    if @user != nil
+      if @order.length > 0
+        # creates orderproduct
+        if params['orderproduct']
+          orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.first.id)
+        else
+          orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.first.id)
+        end
       else
-        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.first.id)
+        @order = Order.create(merchant_id: @user.id, status: "open")
+        # creates orderproduct
+        if params['orderproduct']
+          orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
+        else
+          orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
+        end
       end
-    else
-      @order = Order.create(merchant_id: @user.id, status: "open")
-      # creates orderproduct
-      if params['orderproduct']
-        orderproduct = Orderproduct.create_orderproduct(params['orderproduct']['quantity'], params['orderproduct']['product_id'], @order.id)
+
+      if orderproduct.save
+        status = :success
+        flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"
+        reduce_inventory(orderproduct)
+        redirect_to orderproducts_path
+
       else
-        orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
+        status = :bad_request
+        flash[:result_text] = "Error - products not added to your cart"
+        render :new, status: status
       end
 
-    end
-
-    if orderproduct.save
-
-      status = :success
-      flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"
-      reduce_inventory(orderproduct)
-      redirect_to orderproducts_path
-
+      # else user must log in
     else
-      status = :bad_request
-      flash[:result_text] = "Error - products not added to your cart"
-      render :new, status: status
+      flash[:result_text] = "Must log in to create an order!"
+      redirect_to homepage_path
     end
   end
 
@@ -67,6 +73,7 @@ class OrderproductsController < ApplicationController
 
   def destroy
     if @orderproduct.destroy
+      add_inventory(@orderproduct)
       flash[:status] = :success
       flash[:result_text] = "Item successfully removed from your cart!"
       redirect_to orderproducts_path
@@ -74,8 +81,9 @@ class OrderproductsController < ApplicationController
   end
 
   def clear_cart
+    add_inventory(@orderproduct)
     Orderproduct.where(order_id: @order.first.id).delete_all
-    add_inventory(@order)
+
     redirect_to orderproducts_path
   end
 
@@ -91,18 +99,18 @@ class OrderproductsController < ApplicationController
   end
 
   def reduce_inventory(orderproduct)
-      @product = Product.find_by(id: orderproduct.product_id)
-      @product.quantity -= orderproduct.quantity
+    @product = Product.find_by(id: orderproduct.product_id)
+    @product.quantity -= orderproduct.quantity
 
-      @product.save
+    @product.save
 
   end
-  def add_inventory(order)
-  #  @orders.each do |orderproduct|
-      @product = Product.find_by(id: order.orderproduct.product_id)
+  def add_inventory(orderproduct)
+   @orders.orderproducts.each do |orderproduct|
+      @product = Product.find_by(id: orderproduct.product_id)
       @product.quantity += orderproduct.quantity
       @product.save
-
+    end
 
   end
 

@@ -2,11 +2,11 @@
 
 <h1><%= @product.name %> details</h1>
 
-<section class="product-container">
-  <article class="column small-12 medium-6 image-show">
-    <a id="pic" href="https://loremflickr.com"><img src="
+<section class-="product-show-container">
+  <div id="pic">
+    <a href="https://loremflickr.com"><img src="
       https://loremflickr.com/280/200/dessert" alt="product pic"></a>
-    </article>
+    </div>
 
     <article class="column small-12 medium-6">
       <% if @product.quantity == 0 %>
@@ -67,10 +67,3 @@
           </ul>
           <% end %>
         </div>
-
-
-
-      </article>
-    </section>
-  </article>
-</section>

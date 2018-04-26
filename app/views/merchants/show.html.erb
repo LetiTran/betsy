@@ -13,8 +13,8 @@
             <strong>Stock: </strong> <%= product.quantity %>
           </p>
         </p>
-        <p class="button">
-          Add to cart
+        <p>
+          <%=link_to "Add a cart",orderproducts_path, class: 'button' %>
         </p>
       </div>
     </div>
