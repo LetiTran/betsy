@@ -10,35 +10,44 @@ require'csv'
 require 'faker'
 
 # Categories:
-puts "\n"
-10.times do |t|
-    category = Category.create(name: Faker::Dessert.topping)
-  until category.name do
-      category = Category.create!(name: Faker::Dessert.topping)
-  end
-  puts "#{category.name} created!"
-end
-p "**Created #{Category.count} categories**"
+CATEGORIES_FILE = Rails.root.join('db', 'seeds', 'categories.csv')
 
+
+CSV.foreach(CATEGORIES_FILE, :headers => true) do |row|
+categories = Category.create(name: row['name'])
+puts "Category #{categories.id} created "
+end
 # Mercahnts
-puts "\n"
-10.times do |t|
-    merchant = Merchant.create(username: "#{Faker::Name.first_name}#{t}", email: Faker::Internet.email )
-  until merchant.username do
-    merchant = Merchant.create!(username: "#{Faker::Name.name}#{t}", email: Faker::Internet.email )
-  end
-  puts "#{merchant.username} created!"
-end
-p "**Created #{Merchant.count} merchants**"
+MERCHANT_FILE = Rails.root.join('db', 'seeds', 'merchants.csv')
+puts "Loading raw Merchant data from #{MERCHANT_FILE}"
 
 
-# Products
-puts "\n"
-10.times do |t|
-  product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, status: "active",merchant_id: Merchant.order("RANDOM()").first.id )
-  puts "#{product.name} created in the category: #{product.categories.first.name}"
+CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
+  merchant = Merchant.create(username:row['username'],email:row['email'])
+puts "Merchant #{merchant.id} created "
+puts "#{merchant.username} created in the category"
 end
-p "**Created #{Product.count} desserts**"
+
+
+
+# Merchants
+PRODUCT_FILE = Rails.root.join('db', 'seeds', 'products.csv')
+puts "Loading raw Product data from #{PRODUCT_FILE}"
+
+
+CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
+  product = Product.create(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],photo:row['photo'],status:row['status'])
+puts "Product #{product.id} created "
+puts "#{product.name} created in the category: #{product.categories.first.name}"
+end
+
+
+# puts "\n"
+# 10.times do |t|
+#   product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, status: "active",merchant_id: Merchant.order("RANDOM()").first.id )
+#   puts "#{product.name} created in the category: #{product.categories.first.name}"
+#
+# p "**Created #{Product.count} desserts**"
 
 
 # Reviews

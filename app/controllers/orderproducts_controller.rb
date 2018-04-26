@@ -67,6 +67,7 @@ class OrderproductsController < ApplicationController
 
   def destroy
     if @orderproduct.destroy
+      add_inventory(@orderproduct)
       flash[:status] = :success
       flash[:result_text] = "Item successfully removed from your cart!"
       redirect_to orderproducts_path
@@ -74,8 +75,9 @@ class OrderproductsController < ApplicationController
   end
 
   def clear_cart
+    add_inventory(@orderproduct)
     Orderproduct.where(order_id: @order.first.id).delete_all
-    #add_inventory(@order)
+
     redirect_to orderproducts_path
   end
 
@@ -97,14 +99,14 @@ class OrderproductsController < ApplicationController
       @product.save
 
   end
-  # def add_inventory(order)
-  # #  @orders.each do |orderproduct|
-  #     @product = Product.find_by(id: orderproduct.product_id)
-  #     @product.quantity += orderproduct.quantity
-  #     @product.save
-  #   end
-  #
-  # end
+  def add_inventory(orderproduct)
+   @orders.orderproducts.each do |orderproduct|
+      @product = Product.find_by(id: orderproduct.product_id)
+      @product.quantity += orderproduct.quantity
+      @product.save
+    end
+
+  end
 
 
 end
