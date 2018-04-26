@@ -8,7 +8,7 @@ class Orderproduct < ApplicationRecord
     orderproduct = Orderproduct.new
     # change quantity to reflect user selection
     product = Product.find(product_id)
-    product.quantity = quantity
+    #product.quantity = quantity
     product.save
     # assign form vars to new orderproduct
     orderproduct.quantity = quantity
