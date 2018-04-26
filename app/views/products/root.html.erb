@@ -1,9 +1,18 @@
 <h1 class="home-title">Sweetsy!</h1>
 
-<section>
-  <ul>
-    <% @products.each do |product|%>
-    <li><%= link_to product.name, product_path(product.id) %></li>
-    <% end %>
-  </ul>
-</section>
+
+<section class="other-merchats-products-view">
+  <section class="item-box">
+    <% @products.each do |product| %>
+    <div class="product-container">
+      <a id="pic" href="https://loremflickr.com"><img src="
+        https://loremflickr.com/200/150/dessert" alt="product pic"></a>
+        <div class="root-info">
+            <%= link_to product.name, product_path(product.id) %>
+            <span><strong>Price: </strong> <%= format_price(product.price) %></span>
+            <span><strong>Stock: </strong> <%= product.quantity %></span>
+        </div>
+      </div>
+      <% end %>
+    </section>
+  </section>

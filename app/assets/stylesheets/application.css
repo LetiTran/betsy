@@ -96,6 +96,11 @@
    justify-content: center;
  }
 
+ .root-info {
+   display: flex;
+   flex-direction: column;
+ }
+
  .merch-container p {
    grid-area: text;
    display: flex;
@@ -162,4 +167,9 @@ th {
 
 table {
   width: 80%;
+}
+
+.home-title {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
