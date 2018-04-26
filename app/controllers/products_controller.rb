@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   end
 
   def index
-
     @products = find_active_products
     # If using this path for displaying the logged in user's products:
     if @user.id == params[:merchant_id].to_i
@@ -16,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    raise
   end
 
   def new
