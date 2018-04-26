@@ -59,10 +59,12 @@
 
             <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
             <li>Comment: "<%= @product.reviews[i].comment %>"</li>
-              <%else %>
-              <li>No comments</li>
+            <%else %>
+            <li>No comments</li>
             <%end %>
             <%end %>
           </ul>
           <% end %>
         </div>
+      </article>
+    </section>
