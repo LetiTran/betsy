@@ -1,11 +1,8 @@
-<h1>Sessions#show</h1>
-<p>Find me in app/views/sessions/show.html.erb</p>
-
 <section class="user-products-view">
   <h1><%= @user.username%> products</h1>
   <% unless @user_products.first.nil?  %>
   <!-- Show products that user has for sale: -->
-  <table>
+  <table >
     <tr>
       <th>Item</th>
       <th>Quantity</th>
@@ -18,12 +15,12 @@
       <td><%= product.quantity %></td>
       <td><%= format_price(product.price) %></td>
       <td><%= link_to "Edit Item", edit_product_path(product.id) %></td>
-      <td><%= link_to "Delete", product_path(product.id), method: :delete %></td>
+      <td><%= link_to "Retire Item", product_path(product.id), method: :delete %></td>
     </tr>
     <% end %>
   </table>
   <% else %>   <!-- If user has no products for sale -->
-  <h1>You have no products for sale.</h1>
+  <h4>You have no products for sale.</h4>
   <% end %>
   <p><%= link_to("Add a Product", new_product_path, :class => "button") %>
   </section>
