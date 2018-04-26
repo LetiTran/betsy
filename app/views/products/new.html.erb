@@ -1,21 +1,28 @@
+<h1>Add a product</h1>
+
 <%= form_for @product do |f| %>
 <%= f.hidden_field :product_id, value: @product.id %>
-      <%= f.label :name %>
+      <%= f.label :name, "Name: "%>
       <%= f.text_field :name %>
 
-      <%= f.label "price" %>
+      <%= f.label :price, "Price: " %>
       <%= f.text_field :price %>
 
-      <%= f.label :quantity %>
+      <%= f.label :quantity, "Quantity: " %>
       <%= f.text_field :quantity %>
 
-      <%= f.label :description %>
+      <%= f.label :description, "Description: " %>
       <%= f.text_area :description %>
 
+      Assign categories:<br />
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
         <%= b.check_box %>
         <%= b.label %>
       <% end %>
-        <%= f.submit %>
+      <br />
+      <%= link_to "Add category", new_category_path, class: "button" %>
+      <br />
+      <%= f.submit class: "submit" %>
+
   <% end %>
 </section>

@@ -1,10 +1,12 @@
+<h1>All products</h1>
+
 <section class="other-merchats-products-view">
   <section class="item-box">
     <% @products.each do |product| %>
     <div class="product-container">
       <h4><%= product.name %></h4>
       <a id="pic" href="https://loremflickr.com"><img src="
-        https://loremflickr.com/350/250/dessert" alt="product pic"></a>
+        https://loremflickr.com/280/200/dessert" alt="product pic"></a>
         <div class="product-info">
           <p>
             <strong>Price: </strong> <%= format_price(product.price) %>

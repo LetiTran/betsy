@@ -17,7 +17,7 @@
     <tr>
       <td><%= product.name %><br /></td>
       <td><%= product.quantity %></td>
-      <td><%= product.price %></td>
+      <td><%= format_price(product.price) %></td>
       <td><%= link_to "Edit Item", edit_product_path(product.id) %></td>
       <td><%= link_to "Delete", product_path(product.id), method: :delete %></td>
     </tr>
