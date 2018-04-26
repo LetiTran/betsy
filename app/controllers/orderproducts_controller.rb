@@ -81,7 +81,7 @@ class OrderproductsController < ApplicationController
 
   def clear_cart
     Orderproduct.where(order_id: @order.first.id).delete_all
-    add_inventory(@order)
+    #add_inventory(@order)
     redirect_to orderproducts_path
   end
 
