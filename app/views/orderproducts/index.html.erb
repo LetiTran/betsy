@@ -28,13 +28,13 @@
         <%= product.name %><br />
       </td>
       <td>
-        <%= product.quantity %>
+        <%= op.quantity %>
       </td>
       <td>
         <%= format_price(product.price) %>
       </td>
       <td>
-        <%= format_price(product.quantity * product.price) %>
+        <%= format_price(op.quantity * product.price) %>
       </td>
       <td>
         <%= link_to "Edit", edit_orderproduct_path(op.id) %>

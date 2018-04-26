@@ -30,12 +30,16 @@ class OrderproductsController < ApplicationController
       else
         orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
       end
+
     end
 
     if orderproduct.save
+
       status = :success
       flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"
+      reduce_inventory(orderproduct)
       redirect_to orderproducts_path
+
     else
       status = :bad_request
       flash[:result_text] = "Error - products not added to your cart"
@@ -48,8 +52,10 @@ class OrderproductsController < ApplicationController
 
   def update
     if @orderproduct.update(orderproduct_params)
+      #reduce_inventory(orderproduct)
       flash[:status] = :success
       flash[:result_text] = "Cart updated!"
+      reduce_inventory(orderproduct)
       redirect_to orderproducts_path
     else
       flash.now[:status] = :failure
@@ -69,6 +75,7 @@ class OrderproductsController < ApplicationController
 
   def clear_cart
     Orderproduct.where(order_id: @order.first.id).delete_all
+    add_inventory(@order)
     redirect_to orderproducts_path
   end
 
@@ -82,4 +89,22 @@ class OrderproductsController < ApplicationController
     @orderproduct = Orderproduct.find_by(id: params[:id])
     render_404 unless @orderproduct
   end
+
+  def reduce_inventory(orderproduct)
+      @product = Product.find_by(id: orderproduct.product_id)
+      @product.quantity -= orderproduct.quantity
+
+      @product.save
+
+  end
+  def add_inventory(order)
+  #  @orders.each do |orderproduct|
+      @product = Product.find_by(id: order.orderproduct.product_id)
+      @product.quantity += orderproduct.quantity
+      @product.save
+
+
+  end
+
+
 end
