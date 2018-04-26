@@ -103,6 +103,17 @@
    margin: 0;
  }
 
+ .rating-container p {
+   display: flex;
+   justify-content: center;
+ }
+
+ .rating-container ul {
+   display: flex;
+   justify-content: center;
+   list-style: none;
+ }
+
  strong {
    margin-right: .3em;
  }
