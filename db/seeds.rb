@@ -12,15 +12,15 @@ require 'faker'
 # Categories:
 CATEGORIES_FILE = Rails.root.join('db', 'seeds', 'categories.csv')
 
-
 CSV.foreach(CATEGORIES_FILE, :headers => true) do |row|
 categories = Category.create(name: row['name'])
 puts "Category #{categories.id} created "
 end
+
+
 # Mercahnts
 MERCHANT_FILE = Rails.root.join('db', 'seeds', 'merchants.csv')
 puts "Loading raw Merchant data from #{MERCHANT_FILE}"
-
 
 CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
   merchant = Merchant.create(username:row['username'],email:row['email'])
@@ -29,25 +29,15 @@ puts "#{merchant.username} created in the category"
 end
 
 
-
-# Merchants
+# Products
 PRODUCT_FILE = Rails.root.join('db', 'seeds', 'products.csv')
 puts "Loading raw Product data from #{PRODUCT_FILE}"
 
-
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  product = Product.create(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],photo:row['photo'],status:row['status'])
+  product = Product.create!(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],photo:row['photo'],status:row['status'], categories: [Category.all.sample])
 puts "Product #{product.id} created "
-puts "#{product.name} created in the category: #{product.categories.first.name}"
+# puts "#{product.name} created in the category: #{product.categories.first.name}"
 end
-
-
-# puts "\n"
-# 10.times do |t|
-#   product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, status: "active",merchant_id: Merchant.order("RANDOM()").first.id )
-#   puts "#{product.name} created in the category: #{product.categories.first.name}"
-#
-# p "**Created #{Product.count} desserts**"
 
 
 # Reviews
