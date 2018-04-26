@@ -106,7 +106,7 @@ class OrderproductsController < ApplicationController
 
   end
   def add_inventory(orderproduct)
-   @orders.orderproducts.each do |orderproduct|
+    @order.first.orderproducts.each do |orderproduct|
       @product = Product.find_by(id: orderproduct.product_id)
       @product.quantity += orderproduct.quantity
       @product.save
