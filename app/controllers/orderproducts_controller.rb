@@ -58,7 +58,7 @@ class OrderproductsController < ApplicationController
 
   def update
     if @orderproduct.update(orderproduct_params)
-      #reduce_inventory(orderproduct)
+      reduce_inventory(orderproduct)
       flash[:status] = :success
       flash[:result_text] = "Cart updated!"
       reduce_inventory(orderproduct)
