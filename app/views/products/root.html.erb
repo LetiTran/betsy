@@ -8,7 +8,7 @@
       <a id="pic" href="https://loremflickr.com"><img src="
         https://loremflickr.com/200/150/dessert" alt="product pic"></a>
         <div class="root-info">
-            <%= link_to product.name, product_path(product.id) %>
+            <h5><%= link_to product.name, product_path(product.id) %></h5>
             <span><strong>Price: </strong> <%= format_price(product.price) %></span>
             <span><strong>Stock: </strong> <%= product.quantity %></span>
         </div>
