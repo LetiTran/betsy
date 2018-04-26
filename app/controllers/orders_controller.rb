@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.update(status: "open")
     if @order.save
+
       redirect_to order_path(@order.id)
     else
       flash[:failure] = :failure
@@ -66,19 +67,7 @@ class OrdersController < ApplicationController
     render_404 unless @order
   end
 
-  def reduce_inventory(order)
-    order.orderproducts.each do |orderproduct|
-      product = Product.find_by(id: orderproduct.product_id)
-      product.quantity -= orderproduct.quantity
-      product.save
-    end
-  end
 
-  def add_inventory(order)
-    order.orderproducts.each do |orderproduct|
-      product = Product.find_by(id: orderproduct.product_id)
-      product.quantity += orderproduct.quantity
-      product.save
-    end
-  end
+  
+
 end
