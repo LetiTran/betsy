@@ -81,10 +81,10 @@
               <%= link_to "Add product", new_product_path, class: "button" %>
             </li>
             <li>
-              View profile
+              <%= link_to "View profile", user_profile_path(@user.id), class: "button" %>
             </li>
             <li>
-              <%= link_to "View orders", merchant_products_path(@user.id) %>
+              <%= link_to "View orders", user_products_path(@user.id) %>
             </li>
           </ul>
         </li>
