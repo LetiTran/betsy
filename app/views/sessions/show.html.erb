@@ -7,7 +7,7 @@
       <th>Item</th>
       <th>Quantity</th>
       <th>Price</th>
-      <th colspan="2">Options</th>
+      <th>Options</th>
     </tr>
     <%  @user_products.each do |product|  %>
     <tr>
@@ -15,7 +15,6 @@
       <td><%= product.quantity %></td>
       <td><%= format_price(product.price) %></td>
       <td><%= link_to "Edit Item", edit_product_path(product.id) %></td>
-      <td><%= link_to "Retire Item", product_path(product.id), method: :delete %></td>
     </tr>
     <% end %>
   </table>
