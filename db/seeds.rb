@@ -32,7 +32,7 @@ PRODUCT_FILE = Rails.root.join('db', 'seeds', 'products.csv')
 puts "Loading raw Product data from #{PRODUCT_FILE}"
 
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  product = Product.create(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],status:row['status'],photo:row['photo'])
+  product = Product.create!(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],status:row['status'],photo:row['photo'])
 puts "Product #{product.id} created "
 puts "#{product.name} created in the category: #{product.categories.first.name}"
 end
@@ -43,10 +43,3 @@ CSV.foreach(REVIEW_FILE, :headers => true) do |row|
  review = Review.create(rating: row['rating'],  product_id: row['product_id'])
  puts "Review #{review.id} created with rating #{review.rating}"
 end
-
-# puts "\n"
-# 10.times do |t|
-#   product = Product.create!(name: Faker::Dessert.variety, price: 1, categories: [Category.order("RANDOM()").first] , quantity: 2, status: "active",merchant_id: Merchant.order("RANDOM()").first.id )
-#   puts "#{product.name} created in the category: #{product.categories.first.name}"
-#
-# p "**Created #{Product.count} desserts**"
