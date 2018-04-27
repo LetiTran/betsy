@@ -96,6 +96,9 @@
         <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
         <% else %>
       </p>
+      <div class="">
+
+
       <p>
         <%= link_to "Log In", github_login_path, class: "button" %>
         <% end %>
@@ -103,6 +106,7 @@
       <p>
         <%= link_to "View cart", cart_path, class: "button" %>
       </p>
+      </div>
     </div>
   </section>
 </header>
