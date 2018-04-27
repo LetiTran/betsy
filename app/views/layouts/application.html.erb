@@ -108,6 +108,8 @@
 </header>
 
 <body>
+<section calss="falsh">
+
 
   <% if flash[:result_text] or flash[:messages] %>
   <section class="status <%= flash[:status] %>">
@@ -123,6 +125,7 @@
     <% end %>
   </section>
   <% end %>
+</section>
 
   <%= yield %>
 

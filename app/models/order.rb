@@ -9,6 +9,7 @@ class Order < ApplicationRecord
     validates :card_name, presence: true, length: { minimum: 1  }
     validates :cc_number, presence: true, length: { is: 16 }
     validates :cc_expiration, presence: true
+    # TODO: the date should be grater than today
     validates :cvv, presence: true, length: { is: 3 }
     validates :zip_code, presence: true, length: { is: 5 }
     validates :email, presence: true,
