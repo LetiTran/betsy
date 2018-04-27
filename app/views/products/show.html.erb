@@ -3,17 +3,23 @@
 <h1><%= @product.name %> details</h1>
 
 <section class-="product-show-container">
-  <div id="show-pic">
-    <%= image_tag(@product.photo) %>
-  </div>
 
-  <article>
-    <% if @product.quantity == 0 %>
-    <h4>Product out of Stock</h4>
-    <% else %>
-    <p><strong>Stock:</strong> <%= @product.quantity %></p>
-    <% end %>
-    <p><strong>Price:</strong> <%= format_price(@product.price) %>
+  <article class="product-show-details">
+    <div id="show-pic">
+      <%= image_tag(@product.photo) %>
+    </div>
+    <div>
+      <p>
+      <span><strong>Price:</strong> <%= format_price(@product.price) %>
+      </span>
+      <% if @product.quantity == 0 %>
+      <span><h4>Product out of Stock</h4></span>
+      <% else %>
+      </p>
+      <p>
+        <span><strong>Stock:</strong> <%= @product.quantity %></span>
+      </p>
+      <% end %>
       <p>
         <strong>Description:</strong>
         <% if @product.description %>
@@ -22,50 +28,50 @@
         <%= "None" %>
         <% end %>
       </p>
+    </div>
+  </article>
+  <% if @product.quantity > 0 %>
+  <p class='product-form'>
+    <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
+    <%= f.label :quantity %>
+    <%= f.select :quantity, options_for_select(1..@product.quantity), class: "select-width" %>
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <%= f.submit "Add to cart", class: "button" %>
+    <% end %>
+  </p>
+  <% end %>
+</section>
 
-      <% if @product.quantity > 0%>
-      <section class='product-form'>
-        <%= form_for (Orderproduct.new), :url => orderproducts_path do |f| %>
-        <%= f.label :quantity %>
-        <%= f.select :quantity, options_for_select(1..@product.quantity)%>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.submit "Add to cart", class: "button" %>
-        <% end %>
-      </section>
-      <% end %>
-      <section class="rating-container">
-        <h4>Ratings Summary</h4>
-        <p>
-          <%="Average rating: #{@product.average_rating}" %>
-        </p>
-        <p>
-          <%=link_to "Add review", new_product_review_path(@product.id), class: 'button' %>
-        </p>
+<section class="rating-container">
+  <h4>Ratings Summary</h4>
+  <p>
+    <%="Average rating: #{@product.average_rating}" %>
+  </p>
+  <p>
+    <%=link_to "Add review", new_product_review_path(@product.id), class: 'button' %>
+  </p>
+  <!-- If no reviews: -->
+  <% if @product.reviews.empty? %>
+  <p>
+    Be the first to review!
+  </p>
+  <%else %>
+</section>
 
-        <!-- If no reviews: -->
-        <% if @product.reviews.empty? %>
-        <p>
-          Be the first to review!
-        </p>
+<div id="review">
+  <!-- Reviews: -->
+  <ul>
+    <% @product.reviews.length.times do |i| %>
+    <li> <strong>Review <%= "#{i+1}:  " %></strong><%="🍦" * @product.reviews[i].rating %></li>
 
-        <%else %>
-      </section>
+    <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
+    <li>Comment: "<%= @product.reviews[i].comment %>"</li>
+    <%else %>
+    <li>No comments</li>
+    <%end %>
+    <%end %>
+  </ul>
+  <% end %>
+</div>
 
-      <div id="review">
-        <!-- Reviews: -->
-        <ul>
-          <% @product.reviews.length.times do |i| %>
-          <li> <strong>Review <%= "#{i+1}:  " %></strong><%="🍦" * @product.reviews[i].rating %></li>
-
-          <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
-          <li>Comment: "<%= @product.reviews[i].comment %>"</li>
-          <%else %>
-          <li>No comments</li>
-          <%end %>
-          <%end %>
-        </ul>
-        <% end %>
-      </div>
-    </article>
-  </section>
 </section>
