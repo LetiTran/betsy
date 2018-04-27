@@ -64,4 +64,14 @@ describe Merchant do
       end
     end
   end
+
+  describe "build_from_github" do
+    it "create new session for merchant" do
+      person = Merchant.new(username: 'person', email: 'person@person.com', provider: 'github', uid: 123 )
+
+      person = Merchant.build_from_github(mock_auth_hash(person))
+
+      person.must_be :valid?
+    end
+  end
 end

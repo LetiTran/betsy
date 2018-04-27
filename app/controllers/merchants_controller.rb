@@ -7,11 +7,6 @@ class MerchantsController < ApplicationController
   end
 
   def show
-    # If accesing itself:
-
-    # if @merchant.id == @user.id
-    # end
-
   end
 
   def new

@@ -1,16 +1,11 @@
 {
   "Unit Tests": {
     "coverage": {
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/helpers/application_helper.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/application_helper.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         1,
         null,
         1,
         0,
-<<<<<<< HEAD
         null,
         null,
         null
@@ -32,34 +27,10 @@
         null
       ],
       "/Users/alex/Ada/rails/betsy/app/helpers/products_helper.rb": [
-=======
-        null,
-        null,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/categories_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/merchants_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/orderproducts_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/orders_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/products_helper.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         1,
         null,
         null
       ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/helpers/reviews_helper.rb": [
         1,
         null
@@ -68,52 +39,26 @@
         1,
         null
       ],
-      "/Users/alex/Ada/rails/betsy/app/models/orderproduct.rb": [
-        1,
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/reviews_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/helpers/sessions_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/order.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        1,
-        1,
-        null,
-        1,
-<<<<<<< HEAD
-        null,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-=======
-        1,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        1,
-        1,
+      "/Users/alex/Ada/rails/betsy/app/models/merchant.rb": [
         1,
         1,
         1,
         null,
         1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
         1,
         1,
         null,
         null,
-<<<<<<< HEAD
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/alex/Ada/rails/betsy/app/models/application_record.rb": [
@@ -124,8 +69,6 @@
       "/Users/alex/Ada/rails/betsy/app/models/review.rb": [
         1,
         1,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         1,
         1,
@@ -137,7 +80,6 @@
         1,
         1,
         1,
-<<<<<<< HEAD
         null,
         1,
         1,
@@ -150,25 +92,9 @@
         0,
         0,
         0,
-=======
-        308,
         null,
+        0,
         null,
-        1,
-        4,
-        4,
-        4,
-        null,
-        4,
-        null,
-        null,
-        1,
-        2,
-        2,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        null,
-<<<<<<< HEAD
         null,
         1,
         0,
@@ -176,54 +102,52 @@
         null,
         null,
         1,
-=======
+        null,
         1,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
+        0,
+        null,
+        null,
         null,
         null
       ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/application_record.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/review.rb": [
-        1,
-        1,
-<<<<<<< HEAD
-        1,
-        null,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        1,
-        1,
-        null,
-        null
-      ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/models/category.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/product.rb": [
-        1,
-        1,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         1,
         1,
         null,
         1,
-<<<<<<< HEAD
+        null
+      ],
+      "/Users/alex/Ada/rails/betsy/app/models/orderproduct.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/alex/Ada/rails/betsy/app/models/order.rb": [
         1,
         1,
         null,
-=======
-        1,
-        1,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         1,
         1,
         null,
@@ -234,110 +158,9 @@
         1,
         null,
         1,
-<<<<<<< HEAD
         1,
         1,
         null,
-=======
-        0,
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-=======
-        null,
-        1,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-<<<<<<< HEAD
-=======
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/category.rb": [
-        1,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        1,
-        0,
-        null,
-        null
-      ],
-      "/Users/alex/Ada/rails/betsy/app/models/merchant.rb": [
-        1,
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/orderproduct.rb": [
-        1,
-        1,
-        1,
-<<<<<<< HEAD
-        1,
-=======
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        1,
-        4,
-        null,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        null,
-        1,
-        null,
-        null,
-<<<<<<< HEAD
-=======
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/models/merchant.rb": [
-        1,
-        1,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        1,
         null,
         null,
         null,
@@ -345,6 +168,21 @@
         0,
         null,
         null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
         null,
         null
       ],
@@ -369,7 +207,6 @@
         null,
         0,
         null,
-<<<<<<< HEAD
         0,
         0,
         0,
@@ -377,31 +214,9 @@
         0,
         0,
         0,
-=======
-        null
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/mailers/application_mailer.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/jobs/application_job.rb": [
-        0,
-        0
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/application_controller.rb": [
-        0,
-        0,
+        null,
         null,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
         0,
         0,
         0,
@@ -413,9 +228,6 @@
         0
       ],
       "/Users/alex/Ada/rails/betsy/app/controllers/categories_controller.rb": [
-=======
-        null,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
@@ -430,51 +242,16 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-        null,
-        0,
-        0,
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/categories_controller.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        0,
-        0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
         0,
         0,
         0,
-<<<<<<< HEAD
+        null,
+        0,
+        null,
+        null,
         0,
         0,
         0,
@@ -484,17 +261,24 @@
         null,
         0,
         0,
-=======
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
         0,
         null,
         0,
+        null,
         0,
         0,
-<<<<<<< HEAD
+        0,
         null,
         0,
         null,
@@ -513,19 +297,7 @@
         0,
         0,
         0,
-=======
-        0,
-        0,
-        0,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -534,81 +306,13 @@
         0,
         null,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
         0,
         0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
-        0,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
-        null,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-=======
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/orderproducts_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-=======
         null,
         0,
         null,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
@@ -627,36 +331,6 @@
         null,
         0,
         0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -666,45 +340,41 @@
         0,
         0,
         0,
-<<<<<<< HEAD
         null,
-        0,
-=======
-        0,
-        null,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
         0,
         0,
-<<<<<<< HEAD
-=======
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
         0,
         0,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         0,
         0,
@@ -713,20 +383,7 @@
         0,
         null,
         0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         null,
-        0
-      ],
-      "/Users/alex/Ada/rails/betsy/app/controllers/merchants_controller.rb": [
-=======
-        null,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
@@ -734,10 +391,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-        null,
-        0,
-=======
         0,
         null,
         0,
@@ -745,7 +398,6 @@
         0,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
@@ -757,7 +409,7 @@
         null,
         0
       ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/merchants_controller.rb": [
+      "/Users/alex/Ada/rails/betsy/app/controllers/merchants_controller.rb": [
         0,
         0,
         0,
@@ -767,60 +419,11 @@
         0,
         null,
         0,
-        null,
         0,
         null,
         0,
         0,
         0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-=======
         null,
         0,
         0,
@@ -836,27 +439,18 @@
         null,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
         0,
         0,
-<<<<<<< HEAD
-        0
-      ],
-      "/Users/alex/Ada/rails/betsy/app/controllers/orders_controller.rb": [
-=======
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
         null,
         0,
-<<<<<<< HEAD
-=======
         0,
         0,
         0,
@@ -867,7 +461,6 @@
         0,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         null,
@@ -881,7 +474,7 @@
         0,
         0
       ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/orders_controller.rb": [
+      "/Users/alex/Ada/rails/betsy/app/controllers/orders_controller.rb": [
         0,
         0,
         0,
@@ -891,7 +484,7 @@
         null,
         null,
         null,
-        0,
+        null,
         null,
         0,
         null,
@@ -899,59 +492,36 @@
         null,
         0,
         null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-=======
-        null,
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         null,
         0,
         0,
-<<<<<<< HEAD
-=======
+        0,
+        null,
         0,
         0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
         null,
         0,
         0,
@@ -969,7 +539,6 @@
         0,
         null,
         0,
-<<<<<<< HEAD
         null,
         0,
         0,
@@ -979,32 +548,8 @@
         0,
         0,
         0,
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         null,
-        0,
-        0,
         null,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
         null,
         null,
         0
@@ -1018,23 +563,13 @@
         0,
         0,
         null,
-<<<<<<< HEAD
-=======
-        0
-      ],
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/products_controller.rb": [
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         null,
         0,
         0,
         0,
-<<<<<<< HEAD
         0,
-=======
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
@@ -1042,10 +577,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-=======
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         null,
         0,
         0,
@@ -1057,16 +588,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-=======
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
@@ -1113,17 +634,12 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/controllers/sessions_controller.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/sessions_controller.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
         null,
         0,
-        null,
         0,
         null,
         0,
@@ -1135,17 +651,14 @@
         0,
         0,
         0,
-        null,
         0,
         0,
         0,
         0,
-        null,
         0,
         null,
         0,
         0,
-        null,
         0,
         null,
         0,
@@ -1199,11 +712,7 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/controllers/reviews_controller.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/controllers/reviews_controller.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
@@ -1257,31 +766,19 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/channels/application_cable/connection.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/channels/application_cable/connection.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
         0
       ],
-<<<<<<< HEAD
       "/Users/alex/Ada/rails/betsy/app/channels/application_cable/channel.rb": [
-=======
-      "/Users/leticiaogawa/Desktop/ada/c9_Ampers/projects/rails/betsy/app/channels/application_cable/channel.rb": [
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
         0,
         0,
         0,
         0
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1524856380
-=======
-    "timestamp": 1524852571
->>>>>>> 2a2b222dc2b13bf252525beb64892422edfa024f
+    "timestamp": 1524858743
   }
 }

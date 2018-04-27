@@ -35,16 +35,7 @@ describe Orderproduct do
   end
 
   describe "sub_total" do
-    # it "must return cost of product by quanity" do
-    #   candy = orderproducts(:one)
-    #   thing = Product.first
-    #
-    #   expectation = thing.price * candy.quantity
-    #   expectation = 20
-    #   result = candy.sub_total
-    #
-    #   result.must_equal expectation
-    # end
+    # subtotal is called in product model but uses an orderproduct
   end
 
 end

@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   before_action :find_user
 
   def index
-
     @sold_products =[]
     # @user_orders = Order.where()@user.products.orders
     paid_ordes= Order.where(status: "paid")
@@ -15,17 +14,14 @@ class SessionsController < ApplicationController
         end
       end
     end
-
     @total_revenue = 0
     @sold_products.each do |p|
       @total_revenue =+ p.price
     end
-
   end
 
   def show
     @user_products = @user.products
-
   end
 
   def new
