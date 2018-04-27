@@ -6,7 +6,11 @@
     <div class="product-container">
       <h4><%= link_to product.name, product_path(product.id) %></h4>
       <a id="show-pic">
-        <%= image_tag(product.photo) %>
+        <% if product.photo %>
+        <%= image_tag(product.photo, alt: "Product picture.") %>
+        <% else %>
+        <%= image_tag("No-image-available.jpg", alt: "Product does not have a picture.") %>
+        <% end %>
       </a>
       <div class="product-info">
         <p>

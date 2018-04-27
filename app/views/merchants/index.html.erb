@@ -3,7 +3,7 @@
 <section class="item-box">
   <% @merchants.each do |merchant| %>
   <div class="merch-container">
-    <a id="pic" href="https://loremflickr.com"><img src="http://loremflickr.com/200/150/face" alt="merchant pic"></a>
+    <%= link_to image_tag("profile-pic.jpg", alt: "Product does not have a picture."), merchant_path(merchant.id) %>
     <div>
       <p>
         <strong>Username:</strong><%= link_to merchant.username, merchant_path(merchant.id) %>

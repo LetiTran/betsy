@@ -6,7 +6,11 @@
   <% @products.each do |product| %>
   <div class="product-container">
     <div id="pic">
-      <%= image_tag(product.photo) %>
+      <% if product.photo %>
+      <%= image_tag(product.photo, alt: "Product picture.") %>
+      <% else %>
+      <%= image_tag("No-image-available.jpg", alt: "Product does not have a picture.") %>
+      <% end %>
     </div>
     <div class="root-info">
       <h5><%= link_to product.name, product_path(product.id) %></h5>
