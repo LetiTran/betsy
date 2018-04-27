@@ -13,22 +13,47 @@ describe MerchantsController do
     must_respond_with :success
   end
 
-  # it "should get create" do
-  #   initial = Merchant.count
-  #   post merchants_path
-  #
-  #   Merchant.count.must_equal initial + 1
-  #   must_respond_with :redirect
-  #   must_redirect_to merchants_path
-  # end
+  describe "new" do
+    it "succeeds" do
+      get new_merchant_path
 
-  # it "should get edit" do
-  # end
-  #
-  # it "should get update" do
-  # end
-  #
-  # it "should get destroy" do
-  # end
+      must_respond_with :success
+    end
+  end
+
+  describe "create" do
+    it "creates a valid merchant" do
+
+      proc {
+        post merchants_path, params: {
+          merchant: {
+            username: "hello",
+            email: "h@h.com"
+          }
+        }
+      }.must_change "Merchant.count", 1
+
+      must_respond_with :redirect
+      must_redirect_to merchants_path
+    end
+  end
 
 end
+
+# it "should get create" do
+#   initial = Merchant.count
+#   post merchants_path
+#
+#   Merchant.count.must_equal initial + 1
+#   must_respond_with :redirect
+#   must_redirect_to merchants_path
+# end
+
+# it "should get edit" do
+# end
+#
+# it "should get update" do
+# end
+#
+# it "should get destroy" do
+# end
