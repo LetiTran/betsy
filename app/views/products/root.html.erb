@@ -1,18 +1,18 @@
-<h1 id="home-title">Sweetsy!</h1>
+<div class="title-box">
+  <h1 id="home-title">Sweetsy!</h1>
+</div>
 
-<section>
-  <section class="item-box">
-    <% @products.each do |product| %>
-    <div class="product-container">
-      <div id="pic">
-        <%= image_tag(product.photo) %>
-      </div>
-        <div class="root-info">
-            <h5><%= link_to product.name, product_path(product.id) %></h5>
-            <span><strong>Price: </strong> <%= format_price(product.price) %></span>
-            <span><strong>Stock: </strong> <%= product.quantity %></span>
-        </div>
-      </div>
-      <% end %>
-    </section>
-  </section>
+<section class="item-box">
+  <% @products.each do |product| %>
+  <div class="product-container">
+    <div id="pic">
+      <%= image_tag(product.photo) %>
+    </div>
+    <div class="root-info">
+      <h5><%= link_to product.name, product_path(product.id) %></h5>
+      <span><strong>Price: </strong> <%= format_price(product.price) %></span>
+      <span><strong>Stock: </strong> <%= product.quantity %></span>
+    </div>
+  </div>
+  <% end %>
+</section>
