@@ -35,7 +35,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # TODO: check conditions of when will update it to to cancel or when will be updating it to checkout
     # If canceling an order:
     unless @order.status == "open"
       status = :success
@@ -49,7 +48,7 @@ class OrdersController < ApplicationController
         redirect_to orders_path
       else
         status = :bad_request
-        flash[:result_text] = "Error - Cart could not be checked out."
+        flash[:result_text] = "Error: Cart could not be checked out. Please complete all fields."
         render :edit, status: status
       end
     end

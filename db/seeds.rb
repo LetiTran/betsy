@@ -34,7 +34,7 @@ PRODUCT_FILE = Rails.root.join('db', 'seeds', 'products.csv')
 puts "Loading raw Product data from #{PRODUCT_FILE}"
 
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  product = Product.create!(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],photo:row['photo'],status:row['status'], categories: [Category.all.sample])
+  product = Product.create!(name:row['name'],price:row['price'],quantity:row['quantity'],description:row['description'],photo:row['photo'],status:row['status'], categories: [Category.all.sample], merchant_id: Merchant.all.sample.id)
 puts "Product #{product.id} created "
 # puts "#{product.name} created in the category: #{product.categories.first.name}"
 end

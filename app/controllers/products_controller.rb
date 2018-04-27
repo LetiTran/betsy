@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
     @products = find_active_products
     # If using this path for displaying the logged in user's products:
-    if @user.id == params[:merchant_id].to_i
+    if @user && @user.id == params[:merchant_id].to_i
       @user_products = Product.where(merchant_id: @user.id).order(id: :desc)
     end
   end
