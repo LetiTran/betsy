@@ -5,7 +5,11 @@
 <section class="product-show-container">
   <article class="product-show-details">
     <div id="show-pic">
-      <%= image_tag(@product.photo) %>
+      <% if @product.photo %>
+      <%= image_tag(@product.photo, alt: "Product picture.") %>
+      <% else %>
+      <%= image_tag("No-image-available.jpg", alt: "Product does not have a picture.") %>
+      <% end %>
     </div>
     <div>
       <p>
