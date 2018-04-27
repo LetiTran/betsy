@@ -32,16 +32,23 @@ body {
 #show-pic {
   width: 250px;
   height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  border: thin solid grey;
 }
 
 #pic {
-  width: 150px;
+  width: 200px;
   height: 150px;
   margin-left: auto;
   margin-right: auto;
   border: 0;
   display: flex;
   justify-content: center;
+  border: thin solid grey;
 }
 
 .nav-drop p {
@@ -66,6 +73,7 @@ body {
 #login a {
   margin: 0;
 }
+
 .top-bar {
   background-color:  #009999;
   border-bottom: dotted;
@@ -79,12 +87,13 @@ body {
   color: black;
   border: black solid thin;
 }
+
 h1 {
   font-family: 'Pacifico', cursive;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .item-box {
@@ -124,6 +133,10 @@ h1 {
 .rating-container p, h4 {
   display: flex;
   justify-content: center;
+}
+
+.rating-container {
+  padding-top: 3em;
 }
 
 .rating-container ul {
@@ -192,7 +205,7 @@ table {
 background-color: #f5f5f5;
 } */
 
-.home-title {
+#home-title {
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -202,32 +215,102 @@ background-color: #f5f5f5;
 }
 
 #review {
+  display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+#review ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #review li {
   list-style: none;
   padding: 8px;
 }
-.product-show-container {
+
+.flash {
+
+}
+
+.merch-container {
   display: grid;
   grid-template:
-  "text1" "image"
-  "text2" "image";
+  "image"
+  "text";
+  padding: 2em;
 }
 
-#pic {
-  grid-area: image;
+.product-show-details {
+  display: flex;
+  justify-content: center;
 }
 
-.product-show-info {
-  grid-area: text1;
+.product-show-details #show-pic {
+  margin: 0;
 }
 
-.product-show-form {
-  grid-area: text2;
+.product-show-container {
+  border: solid thin grey;
+  padding-top: 1.5em;
+  width: 450px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.falsh {
+.new-product {
+  padding-right: .5em;
+  padding-left: .5em;
+  border: solid thin grey;
+  padding-top: 1.5em;
+  width: 450px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
+.product-form {
+  display: flex;
+  justify-content: center;
+}
+
+.product-show-details p {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin: 0;
+}
+
+.new_orderproduct {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  align-items: center;
+  margin: auto;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid thin grey;
+  padding-top: 1.5em;
+  width: 300px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.category-list li {
+  list-style: none;
+}
+
+.category-button, #submit {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-checkout {
+  padding: 30%;
+  padding-top: 2%;
 }

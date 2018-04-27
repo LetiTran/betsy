@@ -15,11 +15,11 @@ class Order < ApplicationRecord
   #   validates :email, presence: true,
   #   format: { with:  VALID_EMAIL },
   #   uniqueness: { case_sensitive: false }
-  #  end
-
-  def checking_out?
-    :status == "open"
-  end
+  # end
+  #
+  # def checking_out?
+  #   :status == "open"
+  # end
 
   def total
     total = 0
@@ -27,6 +27,11 @@ class Order < ApplicationRecord
       total += op.sub_total
     end
     return total
+  end
+
+  def cancel_order
+    self.status = "canceled" if self.status == "paid"
+    self.save
   end
 
 end

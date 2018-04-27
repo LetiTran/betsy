@@ -1,13 +1,12 @@
-<%= @category.name %>
-
+<h1><%= @category.name %></h1>
 
 <section class="item-box">
+  <% @category.products.each do |product| %>
   <div class="product-container">
-<% @category.products.each do |product| %>
-  <h4><%= link_to product.name, product_path(product.id) %></h4>
-  <div id="show-pic">
-    <%= image_tag(product.photo) %>
-  </div>
+    <h4><%= link_to product.name, product_path(product.id) %></h4>
+    <div id="show-pic">
+      <%= image_tag(product.photo) %>
+    </div>
     <div class="product-info">
       <p>
         <strong>Price: </strong> <%= format_price(product.price) %>
@@ -20,8 +19,5 @@
       </p>
     </div>
   </div>
-
-  </div>
   <% end %>
 </section>
- </section>

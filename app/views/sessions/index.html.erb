@@ -1,12 +1,11 @@
 <section class="user-profile">
 
-
   <% if @merchant.id == @user.id  %>
   <h1>Welcome <%= @merchant.username %> !</h1>
 
-  <h3><%= link_to("See Your Purchases Orders", orders_path, :class => "button")%></h3>
+  <h3><%= link_to("See Your Purchase Orders", orders_path, :class => "button")%></h3>
   <h3><%= link_to("See Your Products", user_products_path(@user.id), :class => "button")%></h3>
-  <h3><%= link_to("Add a new Product", new_product_path, :class => "button")%></h3>
+  <h3><%= link_to("Add Product", new_product_path, :class => "button")%></h3>
   <% end %>
 
   <% unless @total_revenue == 0 %> <!-- if there is revenue to show -->

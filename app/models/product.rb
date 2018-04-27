@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories, join_table: "category_product"
   has_many :reviews
 
-  validates :name, presence: true, length: { minimum: 1 }
+  validates :name, uniqueness: true, presence: true, length: { minimum: 1 }
   validate :has_atleast_one_category
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
@@ -18,7 +18,6 @@ class Product < ApplicationRecord
     return (sum/reviews.count)
   end
 
-
   def change_status
     self.status == "active" ? self.status = "retired" : self.status = "active"
     self.save
@@ -28,7 +27,7 @@ class Product < ApplicationRecord
 
   def has_atleast_one_category
     if categories.empty?
-      errors.add(:categories, "must have atleat one category")
+      errors.add(:categories, "must have atleast one category")
     end
   end
 

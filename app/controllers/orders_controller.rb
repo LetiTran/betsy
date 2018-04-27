@@ -38,8 +38,10 @@ class OrdersController < ApplicationController
     # If canceling an order:
     unless @order.status == "open"
       status = :success
-      flash[:result_text] = "Order #{@order} was canceled." if @order.update(status: "canceled")
+      flash[:result_text] = "Order #{@order.id} was canceled." if @order.cancel_order
       redirect_to order_path(@order.id)
+
+      # If competing an order by 'checking out':
     else   # _checkout_form comes here
       if @order.update(order_params)
         # @order.update(status: "paid")
