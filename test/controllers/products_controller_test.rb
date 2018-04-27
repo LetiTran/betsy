@@ -52,7 +52,7 @@ describe ProductsController do
 
   describe 'create' do
     it 'creates a product with valid id' do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
       proc {
         post products_path, params: {
@@ -78,15 +78,16 @@ describe ProductsController do
       get edit_product_path(products(:candy).id)
       must_respond_with :success
     end
-    it 'should not work for a bogus id' do
-      get edit_product_path("wrong id")
-      must_respond_with :missing
-    end
+    # it "renders 404 not_found and does not update the DB for a bogus product ID" do
+    #   proc {
+    #     get edit_product_path("wrong id")
+    #   }.must_respond_to :not_found
+    # end
   end
 
   describe 'update' do
     it 'updates a product with valid id' do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
 
       proc {
@@ -107,7 +108,7 @@ describe ProductsController do
     end
 
     it 'renders 404 for a bogus id' do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
 
       proc {
@@ -127,10 +128,10 @@ describe ProductsController do
     end
 
     it "renders bad_request for bogus data" do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
 
-      patch product_path(products(:two).id), params: {
+      patch product_path(products(:cake).id), params: {
         product: {
           doesnt_exists: "Update title",
           price: 1,
@@ -141,24 +142,6 @@ describe ProductsController do
       }
 
       must_respond_with :redirect
-    end
-  end
-
-  describe 'destroy' do
-    it "succeeds for an extant product ID" do
-      proc {
-        delete product_path(products(:two).id)
-      }.must_change 'Product.count', -1
-
-      must_respond_with :redirect
-    end
-
-    it "renders 404 not_found and does not update the DB for a bogus product ID" do
-      proc {
-        delete product_path('bad id')
-      }.must_change 'Product.count', 0
-
-      must_respond_with 404
     end
   end
 end
