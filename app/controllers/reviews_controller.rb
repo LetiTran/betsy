@@ -26,23 +26,23 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.product_id = @product.id
 
-   if @review.save
-     flash[:success] = "#{@review.rating} saved"
-     redirect_to product_path(@product.id)
-   else
-     flash[:alert] = "Could not create #{@review.rating}"
-     redirect_to product_path(@product.id)
-
-
-   end
- #end
+    if @review.save
+      flash[:status] = "success"
+      flash.now[:result_text]= "#{@review.rating} saved"
+      redirect_to product_path(@product.id)
+    else
+      flash[:status] = "failure"
+      flash.now[:result_text]= "Could not create #{@review.rating}"
+      flash.now[:messages] = @product.errors.messages
+      redirect_to product_path(@product.id)
+    end
   end
 
 
   private
 
   def review_params
-     return params.require(:review).permit(:rating, :comment,:product_id)
+    return params.require(:review).permit(:rating, :comment,:product_id)
   end
 
   def find_review

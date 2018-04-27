@@ -42,15 +42,19 @@ class SessionsController < ApplicationController
         @merchant = Merchant.build_from_github(auth_hash)
         successful_save = @merchant.save
         if successful_save
-          flash[:success] = "Logged in successfully"
+          flash[:status] = "success"
+          flash.now[:result_text]= "Logged in successfully"
           session[:merchant_id] = @merchant.id
           redirect_to homepage_path
         else
-          flash[:error] = "Some error happened in Merchant creation"
+          flash[:status] = "failure"
+          flash.now[:result_text]= "Some error happened in Merchant creation"
+          flash.now[:messages] = @merchant.errors.messages
           redirect_to homepage_path
         end
       else
-        flash[:success] = "Logged in successfully"
+        flash[:status] = "success"
+        flash.now[:result_text]= "Logged in successfully"
         session[:merchant_id] = @merchant.id
         redirect_to homepage_path
       end
@@ -62,8 +66,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:status] = "success"
+    flash.now[:result_text]= "You logged out!"
     session[:merchant_id] = nil
-    flash[:success] = "You logged out!"
     redirect_to homepage_path
   end
 

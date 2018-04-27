@@ -28,8 +28,9 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to order_path(@order.id)
     else
-      flash[:failure] = :failure
-      flash.now[:result_text]= "Error: Order was not created"
+      flash.now[:status] = "failure"
+      flash.now[:result_text] = "Order could not be created"
+      flash.now[:messages] = @order.errors.messages
       render :new
     end
   end
@@ -37,7 +38,7 @@ class OrdersController < ApplicationController
   def update
     # If canceling an order:
     unless @order.status == "open"
-      status = :success
+      flash.now[:status] = "success"
       flash[:result_text] = "Order #{@order.id} was canceled." if @order.cancel_order
       redirect_to order_path(@order.id)
 
@@ -45,13 +46,14 @@ class OrdersController < ApplicationController
     else   # _checkout_form comes here
       if @order.update(order_params)
         # @order.update(status: "paid")
-        status = :success
+        flash.now[:status] = "success"
         flash[:result_text] = "Checkout for order ##{@order.id} was successful."
         redirect_to orders_path
       else
-        status = :bad_request
-        flash[:result_text] = "Error: Cart could not be checked out. Please complete all fields."
-        render :edit, status: status
+        flash.now[:status] = "failure"
+        flash.now[:result_text] = "Cart could not be checked out. Please complete all fields."
+        flash.now[:messages] = @order.errors.messages
+        render :edit
       end
     end
   end
