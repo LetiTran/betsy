@@ -2,7 +2,7 @@
 <h1>Your orders</h1>
 
 <!-- product = Product.find(op.product_id)  -->
-<% if @orders.first.status != "open" && @orders.first %>
+<% if @orders.first && @orders.first.status != "open"  %>
 <table>
   <tr>
     <th>Order</th>
