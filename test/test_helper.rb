@@ -1,13 +1,11 @@
 require 'simplecov'
 SimpleCov.start
-
-
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
 require "minitest/reporters"  # for Colorized output
-require 'simplecov'
+
 
 #  For colorful output!
 Minitest::Reporters.use!(
@@ -18,6 +16,13 @@ Minitest::Reporters.use!(
 # simplecov
 if ENV['RAILS_ENV'] == 'test'
 
+ SimpleCov.start 'rails'
+ puts "required simplecov"
+end
+
+# Simplecov
+if ENV['RAILS_ENV'] == 'test'
+ require 'simplecov'
  SimpleCov.start 'rails'
  puts "required simplecov"
 end
