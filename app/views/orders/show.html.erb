@@ -16,10 +16,9 @@
   <p> <strong>Charged to card: </strong><%= " ************#{@order.cc_number[13]}#{@order.cc_number[14]}#{@order.cc_number[15]}" %> <span>  <%= "| Expiration date:".concat(@order.cc_expiration.to_formatted_s(:long)) if @order.cc_expiration  %></span></p>
   <p><strong>Shipping information: </strong><%= @order.address %> - <%= @order.zip_code %></p>
 
-
 </section>
 
-<table>
+<table class="order-table">
   <tr>
     <th>Item</th>
     <th>Quantity</th>
@@ -35,9 +34,7 @@
   <% end %>
 </table>
 
-
-
-<div >
+<div class="order-button">
   <% unless @order.status == "canceled"%>
   <%= link_to "Cancel this order", order_path(@order.id), method: :patch, :class => "button"%>
   <% end %>
