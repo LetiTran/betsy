@@ -16,7 +16,6 @@ describe Orderproduct do
     end
   end
 
-<<<<<<< HEAD
   describe "relations" do
     it "must belong to product" do
       orderproduct.must_respond_to :product
@@ -39,6 +38,4 @@ describe Orderproduct do
     # subtotal is called in product model but uses an orderproduct
   end
 
-=======
->>>>>>> e29aceedc74eebf6afbaa6c10dc0b2e3e7808ce7
 end
