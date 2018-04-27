@@ -1,23 +1,25 @@
 <h1>Products by <%= @merchant.username %></h1>
 
-<section class="item-box">
-  <% Product.where(merchant_id: @merchant.id).each do |product| %>
-  <div class="product-container">
-    <h4><%= product.name %></h4>
-    <a id="show-pic">
-      <%= image_tag(product.photo) %>
-    </a>
-    <div class="product-info">
-      <p>
-        <strong>Price: </strong> <%= format_price(product.price) %>
+<section>
+  <section class="item-box">
+    <% Product.where(merchant_id: @merchant.id).each do |product| %>
+    <div class="product-container">
+      <h4><%= link_to product.name, product_path(product.id) %></h4>
+      <a id="show-pic">
+        <%= image_tag(product.photo) %>
+      </a>
+      <div class="product-info">
         <p>
-          <strong>Stock: </strong> <%= product.quantity %>
+          <strong>Price: </strong> <%= format_price(product.price) %>
+          <p>
+            <strong>Stock: </strong> <%= product.quantity %>
+          </p>
         </p>
-      </p>
-      <p>
-        <%=link_to "Add a cart",orderproducts_path, class: 'button' %>
-      </p>
+        <p class="button">
+          <%=link_to "Add to cart", orderproducts_path %>
+        </p>
+      </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
+  </section>
 </section>
