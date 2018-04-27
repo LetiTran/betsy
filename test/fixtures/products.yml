@@ -7,7 +7,6 @@ candy:
   description: Great for sharing
   merchant_id: mercahts(:atul).id
   # orderproduct_id:
-  
   status: active
   photo: fruit_bouquet.jpg
 
