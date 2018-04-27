@@ -2,7 +2,7 @@
 
 <h1><%= @product.name %> details</h1>
 
-<section class-="product-show-container">
+<section class="product-show-container">
 
   <article class="product-show-details">
     <div id="show-pic">
@@ -10,11 +10,11 @@
     </div>
     <div>
       <p>
-      <span><strong>Price:</strong> <%= format_price(@product.price) %>
-      </span>
-      <% if @product.quantity == 0 %>
-      <span><h4>Product out of Stock</h4></span>
-      <% else %>
+        <span><strong>Price:</strong> <%= format_price(@product.price) %>
+        </span>
+        <% if @product.quantity == 0 %>
+        <span><h4>Product out of Stock</h4></span>
+        <% else %>
       </p>
       <p>
         <span><strong>Stock:</strong> <%= @product.quantity %></span>
@@ -36,14 +36,16 @@
     <%= f.label :quantity %>
     <%= f.select :quantity, options_for_select(1..@product.quantity), class: "select-width" %>
     <%= f.hidden_field :product_id, value: @product.id %>
-    <%= f.submit "Add to cart", class: "button" %>
-    <% end %>
   </p>
+  <%= f.submit "Add to cart", class: "button" %>
+  <% end %>
+
   <% end %>
 </section>
 
+
 <section class="rating-container">
-  <h4>Ratings Summary</h4>
+  <h4>Ratings & Reviews </h4>
   <p>
     <%="Average rating: #{@product.average_rating}" %>
   </p>
@@ -62,16 +64,14 @@
   <!-- Reviews: -->
   <ul>
     <% @product.reviews.length.times do |i| %>
-    <li> <strong>Review <%= "#{i+1}:  " %></strong><%="🍦" * @product.reviews[i].rating %></li>
-
-    <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
-    <li>Comment: "<%= @product.reviews[i].comment %>"</li>
-    <%else %>
-    <li>No comments</li>
-    <%end %>
-    <%end %>
+    <li> <strong>Rating <%= "#{i+1}:  " %></strong><%="🍦" * @product.reviews[i].rating %>
+      <% if @product.reviews[i].comment && @product.reviews[i].comment.length > 0%>
+      <strong>Comment: </strong>"<%= @product.reviews[i].comment %>"
+      <%else %>
+      <strong>Comment: </strong>None
+      <%end %>
+      <%end %>
+    </li>
   </ul>
   <% end %>
 </div>
-
-</section>
