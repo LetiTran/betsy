@@ -18,10 +18,12 @@ describe ProductsController do
   end
 
   describe 'index' do
-    it 'should get all products' do
+    it 'should get all products which are active' do
+      Product.where(status:"active")
       get products_path
       must_respond_with :success
     end
+    
 
     it 'should work with no products' do
       Product.destroy_all
@@ -78,7 +80,7 @@ describe ProductsController do
       get edit_product_path(products(:candy).id)
       must_respond_with :success
     end
-  
+
   end
 
   describe 'update' do
