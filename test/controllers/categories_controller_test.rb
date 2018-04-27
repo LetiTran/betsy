@@ -45,8 +45,24 @@ describe CategoriesController do
       }.must_change 'Category.count', 1
 
       # Assert
+        must_respond_with :redirect
+      must_redirect_to new_product_path
+    end
+
+    it" cannot create a category with invalid data" do
+      proc {
+        post categories_path, params: {
+          category: {
+            name: ""
+          }
+        }
+      }.must_change 'Category.count', 0
+
+      # Assert
       must_respond_with :redirect
-      must_redirect_to categories_path(Category.last.id)
+      must_redirect_to categories_path
+
+
     end
 
     it "should get create" do

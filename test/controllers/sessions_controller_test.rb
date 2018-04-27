@@ -4,7 +4,7 @@ describe SessionsController do
   describe "create" do
     it "should log in an existing user and redirect to homepage" do
       before_count = Merchant.count
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:lucy)
 
       perform_login(existing_merchant)
 
@@ -31,7 +31,7 @@ describe SessionsController do
 
     describe "destroy" do
       it "should logout a user" do
-        existing_merchant = merchants(:two)
+        existing_merchant = merchants(:atul)
 
         perform_logout(existing_merchant)
 

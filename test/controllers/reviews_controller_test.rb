@@ -38,7 +38,7 @@ describe ReviewsController do
 
       # Assert
       must_respond_with :redirect
-      must_redirect_to product_path(Product.last.id)
+      must_redirect_to product_path(products(:candy).id)
     end
 
     it " does not update the DB for bogus data" do

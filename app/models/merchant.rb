@@ -17,4 +17,6 @@ class Merchant < ApplicationRecord
       email: auth_hash[:info][:email],
       username: auth_hash[:info][:nickname])
   end
+
+
 end

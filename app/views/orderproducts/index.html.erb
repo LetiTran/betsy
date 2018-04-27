@@ -46,13 +46,16 @@
     <% end %>
   </table>
 
-  <p>
-    <strong>Total:</strong> <%=format_price(@order.first.total) %>
-  </p>
-  <p>
-    <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
-    <%= link_to "Clear cart", clearcart_path, class: "button" %>
-  </p>
+  <div class="cart-center">
+    <p>
+      <strong>Total:</strong> <%=format_price(@order.first.total) %>
+    </p>
+    <p>
+      <%= link_to "Checkout", edit_order_path(@orderproducts.first.order_id), class: "button" %>
+      <%= link_to "Clear cart", clearcart_path, class: "button" %>
+    </p>
+  </div>
+
 
   <% else %>
   <h3>Empty cart!</h3>
