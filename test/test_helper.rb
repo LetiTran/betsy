@@ -13,6 +13,12 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter
 )
+# simplecov
+if ENV['RAILS_ENV'] == 'test'
+
+ SimpleCov.start 'rails'
+ puts "required simplecov"
+end
 
 # Simplecov
 if ENV['RAILS_ENV'] == 'test'

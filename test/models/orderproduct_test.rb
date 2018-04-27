@@ -15,4 +15,5 @@ describe Orderproduct do
       orderproduct.errors.must_include :product
     end
   end
+
 end
