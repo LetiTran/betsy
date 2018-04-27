@@ -33,21 +33,22 @@ class OrderproductsController < ApplicationController
           orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
         end
       end
-      
+
       if orderproduct.save
-        status = :success
+        flash[:status] = "success"
         flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"
         reduce_inventory(orderproduct)
         redirect_to orderproducts_path
 
       else
-        status = :bad_request
+        flash[:status] = "failure"
         flash[:result_text] = "Error - products not added to your cart"
         render :new, status: status
       end
 
       # else user must log in
     else
+      flash[:status] = "failure"
       flash[:result_text] = "Must log in to create an order!"
       redirect_to homepage_path
     end
@@ -59,12 +60,12 @@ class OrderproductsController < ApplicationController
   def update
     if @orderproduct.update(orderproduct_params)
       reduce_inventory(orderproduct)
-      flash[:status] = :success
+      flash[:status] = "success"
       flash[:result_text] = "Cart updated!"
       reduce_inventory(orderproduct)
       redirect_to orderproducts_path
     else
-      flash.now[:status] = :failure
+      flash.now[:status] = "failure"
       flash.now[:result_text] = "Cart could not be updated"
       flash.now[:messages] = @orderproduct.errors.messages
       render :edit
@@ -74,7 +75,7 @@ class OrderproductsController < ApplicationController
   def destroy
     if @orderproduct.destroy
       add_inventory(@orderproduct)
-      flash[:status] = :success
+      flash[:status] = "success"
       flash[:result_text] = "Item successfully removed from your cart!"
       redirect_to orderproducts_path
     end

@@ -16,14 +16,14 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:status] = :success
+      flash[:status] = "success"
       flash[:result_text] = "Successfully added #{@category.name}"
 
       redirect_to new_product_path
 
       #categories_path(@category.id)
     else
-      flash[:status] = :failure
+      flash[:status] = "failure"
       flash[:result_text] = "Could not create this category"
       redirect_to categories_path
     end
@@ -31,10 +31,12 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:status] = :success
+      flash[:status] = "success"
+      flash[:result_text] = "Category updated!"
       redirect_to categories_path(@category)
     else
-      flash.now[:status] = :failure
+      flash.now[:status] = "failure"
+      flash[:result_text] = "Could not update this category"
       render :edit, status: :not_found
     end
   end

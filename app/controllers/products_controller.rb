@@ -26,11 +26,13 @@ class ProductsController < ApplicationController
     assign_merchant_id
 
     if @product.save
-      flash[:status] = :success
+      flash[:status] = "success"
+      flash.now[:result_text] = "#{@product.name} was created"
       redirect_to product_path(@product.id)
     else
-      flash[:failure] = :failure
-      flash.now[:result_text]= "Error: product was not added"
+      flash[:status] = "failure"
+      flash.now[:result_text]= "Error: product was not added."
+      flash.now[:messages] = @product.errors.messages
       render :new
     end
   end
@@ -44,12 +46,13 @@ class ProductsController < ApplicationController
 
     if @product.update(product_params)
 
-
-      flash[:success] = "#{@product.name} updated"
+      flash[:status] = "success"
+      flash.now[:result_text]= "#{@product.name} updated"
       redirect_to product_path(@product.id)
     else
-
-      flash[:alert] = "A problem occured : Could not update"
+      flash[:status] = "failure"
+      flash.now[:result_text]= "A problem occured : Could not update"
+      flash.now[:messages] = @product.errors.messages
       render :edit
     end
   end
