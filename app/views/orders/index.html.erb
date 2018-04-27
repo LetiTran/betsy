@@ -22,6 +22,7 @@
   </tbody>
 </table>
 <% else %>
-<p><strong>No orders yet.</strong></p>
+  <h4>You have no orders yet.</h4>
+  <p><%= link_to("Continue Shopping", new_product_path, :class => "button") %>
 <% end %>
 <section>
