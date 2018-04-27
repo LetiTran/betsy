@@ -1,13 +1,14 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new(name: "A product", price: 1, quantity: 2, categories: [Category.first, Category.last], merchant_id: Merchant.first.id) }
+  let(:product) { Product.new name: "A product", price: 1, quantity: 2, categories: [Category.first, Category.last], status:"active", merchant_id: Merchant.first.id }
 
   describe 'Validations' do
     it "must be valid" do
       product.must_be :valid?
     end
 
+    # Category:
     it "must have at least one category" do
       product.categories.delete_all
 
@@ -15,11 +16,21 @@ describe Product do
       product.errors.must_include :categories
     end
 
+    # Name:
     it "must have a name" do
       product.name = nil
 
       product.valid?.must_equal false
       product.errors.must_include :name
+    end
+
+    it "name must be unique" do
+      new_product = Product.new(name: products(:candy).name, price: 1, quantity: 2, categories: [Category.first, Category.last], status:"active", merchant_id: Merchant.first.id)
+
+      result = new_product.save
+
+      result.must_equal false
+      new_product.errors.messages.must_include :name
     end
 
     it "must have name length greater than zero" do
@@ -29,6 +40,7 @@ describe Product do
       product.errors.must_include :name
     end
 
+    # Quantity:
     it "must have a quantity" do
       product.quantity = nil
 
@@ -41,6 +53,14 @@ describe Product do
 
       product.valid?.must_equal false
       product.errors.must_include :quantity
+    end
+
+    # Price:
+    it 'price should be a number' do
+      product.price = "a string"
+
+      product.valid?.must_equal false
+      product.errors.must_include :price
     end
 
     it "must have a price" do
@@ -59,12 +79,9 @@ describe Product do
   end
 
   describe 'relations' do
-    it "has a list of orders" do
-      product.must_respond_to :orders
 
-      product.orders.each do |order|
-        order.must_be_kind_of Order
-      end
+    it 'belongs to a merchant' do
+      product.must_respond_to :merchant_id
     end
 
     it "has a list of categories" do
@@ -83,16 +100,66 @@ describe Product do
       end
     end
 
+    # it "has a list of orderproducts" do
+    #   product.must_respond_to :orderproduct
+    #
+    #   product.orderproducts.each do |orderproduct|
+    #     orderproduct.must_be_kind_of Orderproduct
+    #   end
+    # end
+    # TODO: why do we have a orderproducts_id there if it can have more than one orderproduct created for this product?
   end
 
+# Custom methods:
+
+  describe "average_rating" do
+    it "should return a string if there are no reviews for the product" do
+      Review.destroy_all
+      assert Review.all.empty?
+
+      product.average_rating.must_be_kind_of String
+      product.average_rating.must_equal "No reviews yet"
+    end
+
+    it "returns a avarage of the total of the reviews for the product" do
+      product.save
+
+      Review.create(rating: 2, comment: "A tasty candy", product_id: product.id)
+      Review.create(rating: 2, comment: "A tasty candy", product_id: product.id)
+
+      product.reviews.count.must_equal 2
+      product.average_rating.must_be_kind_of Float
+      product.average_rating.must_equal 2
+    end
+  end
+
+  describe "change_status" do
+    it "changes the status of a product to 'retired' if the status is equal 'active' " do
+      assert product.status == "active"
+
+      product.change_status.must_equal true
+      product.status.must_equal "retired"
+    end
+
+    it "changes the status of a product to 'active' if the status is equal 'retied' " do
+      product.status = "retired"
+      product.save
+      assert product.status == "retired"
+
+      product.change_status.must_equal true
+      product.status.must_equal "active"
+    end
+  end
+
+  describe "has_atleast_one_category" do
+    it "returns a custom error" do
+      product.categories.delete_all
+
+      assert product.categories.empty?
+      result = product.save
+
+      result.must_equal false
+      product.errors.must_include :categories
+    end
+  end
 end
-
-
-
-# TODO
-# Name must be present
-# Name must be unique
-# Price must be present
-# Price must be a number
-# Price must be greater than 0
-# Product must belong to a User

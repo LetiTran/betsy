@@ -2,8 +2,8 @@
 
 candy:
   rating: 2
-  comment: reviewtext
+  comment: A tasty candy
 
-two:
+cake:
   rating: 3
-  comment: MyString
+  comment: A pretty cake
