@@ -33,7 +33,7 @@ class OrderproductsController < ApplicationController
           orderproduct = Orderproduct.create_orderproduct(params['quantity'], params['product_id'], @order.id)
         end
       end
-
+      
       if orderproduct.save
         status = :success
         flash[:result_text] = "#{orderproduct.quantity} #{orderproduct.product.name} added to your cart!"

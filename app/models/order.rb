@@ -29,8 +29,8 @@ class Order < ApplicationRecord
     return total
   end
 
-  def change_status
-    self.status == "paid" ? self.status = "canceled" : self.status = "paid"
+  def cancel_order
+    self.status = "canceled" if self.status == "paid" 
     self.save
   end
 

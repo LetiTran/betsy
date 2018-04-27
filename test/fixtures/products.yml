@@ -2,7 +2,7 @@
 
 candy:
   name: Candy
-  price: 9.99
+  price: 10
   quantity: 7
   description: Great for sharing
   merchant_id: mercahts(:atul).id
@@ -13,7 +13,7 @@ candy:
 
 cake:
   name: Cake
-  price: 5.95
+  price: 6
   quantity: 20
   description: Delicious
   merchant_id: mercahts(:lucy).id
