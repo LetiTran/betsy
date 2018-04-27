@@ -125,6 +125,7 @@ describe Order do
     end
   end
 
+# Custom methods:
   describe "cancel_order" do
     it "changes the status of a 'paid' order to 'canceled'" do
       order.status = "paid"
