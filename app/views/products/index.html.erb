@@ -5,7 +5,11 @@
   <div class="product-container">
     <h4><%= link_to product.name, product_path(product.id) %></h4>
     <div id="show-pic">
-      <%= image_tag(product.photo) %>
+      <% if product.photo %>
+      <%= image_tag(product.photo, alt: "Product picture.") %>
+      <% else %>
+      <%= image_tag("No-image-available.jpg", alt: "Product does not have a picture.") %>
+      <% end %>
     </div>
     <div class="product-info">
       <p>
@@ -14,8 +18,10 @@
           <strong>Stock: </strong> <%= product.quantity %>
         </p>
       </p>
+      <% unless product.quantity == 0 %>
       <p class="button">
-        <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => product.quantity), method: :post %>
+        <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => 1), method: :post %>
+        <% end %>
       </p>
     </div>
   </div>

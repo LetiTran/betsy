@@ -15,7 +15,7 @@
 
     <div class="nav-drop">
       <p>
-        <%= link_to "Home", homepage_path, class: "button" %>
+          <%= link_to "Home", homepage_path, class: "button" %>
       </p>
     </div>
 
@@ -92,19 +92,18 @@
           </ul>
         </li>
       </ul>
-        <p>
-          <%= link_to "Log Out", logout_path, method: :delete, class: "button" %>
-          <% else %>
-        </p>
-        <p>
-          <%= link_to "Log In", github_login_path, class: "button" %>
-          <% end %>
-        </p>
-        <p>
-          <%= link_to "View cart", cart_path, class: "button" %>
-        </p>
-    </div>
-  </section>
+      <p><%= link_to "Log Out", logout_path, method: :delete, class: "button" %></p>
+
+      <p><%= link_to "View cart", cart_path, class: "button" %></p>
+
+      <% else %>
+    </p>
+    <p>
+      <%= link_to "Log In", github_login_path, class: "button" %>
+      <% end %>
+    </p>
+  </div>
+</section>
 </header>
 
 <body>
