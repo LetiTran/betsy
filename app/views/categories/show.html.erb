@@ -1,10 +1,12 @@
 <%= @category.name %>
+<section>
 <section class="item-box">
+  <div class="product-container">
 <% @category.products.each do |product| %>
-<div class="product-container">
   <h4><%= link_to product.name, product_path(product.id) %></h4>
-  <a id="pic" href="https://loremflickr.com"><img src="
-    https://loremflickr.com/280/200/dessert" alt="product pic"></a>
+  <div id="show-pic">
+    <%= image_tag(product.photo) %>
+  </div>
     <div class="product-info">
       <p>
         <strong>Price: </strong> <%= format_price(product.price) %>
@@ -16,5 +18,9 @@
         <%= link_to "Add to cart", url_for(:controller => 'orderproducts', :action => 'create', :product_id => product.id, :quantity => product.quantity), method: :post %>
       </p>
     </div>
-    <% end %>
   </div>
+
+  </div>
+  <% end %>
+</section>
+ </section>
