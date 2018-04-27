@@ -1,8 +1,7 @@
 require "test_helper"
 
 describe Order do
-  let(:order) { Order.new address: "123, Fake address", card_name: "A name", cc_number: "1234567891234567", cc_expiration: Date.new(2001,2) , cvv: "123", zip_code: "98005", email: "email@test.com"  }
-
+  let(:order) { Order.new address: "123, Fake address", card_name: "A name", cc_number: "1234567891234567", cc_expiration: Date.new(2001,2) , cvv: "123", zip_code: "98005", email: "email@test.com", merchant_id: merchants(:lucy).id  }
 
   describe 'validations' do
     it "must be valid" do
@@ -191,11 +190,12 @@ describe Order do
   end
 
   describe "relations" do
-    it "has a list of products" do
-      order.must_respond_to :products
+    it "has a list of orderproducts" do
 
-      order.products.each do |product|
-        product.must_be_kind_of Product
+      order.must_respond_to :orderproducts
+
+      order.orderproducts.each do |orderproduct|
+        orderproduct.must_be_kind_of Orderproduct
       end
     end
   end

@@ -86,3 +86,13 @@ describe Product do
   end
 
 end
+
+
+
+# TODO
+# Name must be present
+# Name must be unique
+# Price must be present
+# Price must be a number
+# Price must be greater than 0
+# Product must belong to a User

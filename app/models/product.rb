@@ -25,7 +25,7 @@ class Product < ApplicationRecord
   end
 
   private
-  
+
   def has_atleast_one_category
     if categories.empty?
       errors.add(:categories, "must have atleat one category")
