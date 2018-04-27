@@ -29,10 +29,9 @@ class Order < ApplicationRecord
     return total
   end
 
-  #
-  # def change_status
-  #   self.status == "active" ? self.status = "retired" : self.status = "active"
-  #   self.save
-  # end
+  def change_status
+    self.status == "paid" ? self.status = "canceled" : self.status = "paid"
+    self.save
+  end
 
 end

@@ -18,7 +18,6 @@ class Product < ApplicationRecord
     return (sum/reviews.count)
   end
 
-
   def change_status
     self.status == "active" ? self.status = "retired" : self.status = "active"
     self.save
