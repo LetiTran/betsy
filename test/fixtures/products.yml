@@ -2,10 +2,31 @@
 
 candy:
   name: Candy
-  price: 10
-  quantity: 1
+  price: 9.99
+  quantity: 7
+  description: Great for sharing
+  merchant_id: mercahts(:atul).id
+  # orderproduct_id:
+  status: active
+  photo: fruit_bouquet.jpg
 
-two:
-  name: MyString
-  price: 1
-  quantity: 1
+
+cake:
+  name: Cake
+  price: 5.95
+  quantity: 20
+  description: Delicious
+  merchant_id: mercahts(:lucy).id
+  # orderproduct_id:
+  status: active
+  photo: german_choco_cake.jpg
+
+flan:
+  name: Flan
+  price: 13
+  quantity: 9
+  description: Homemade and floppy
+  merchant_id: mercahts(:lucy).id
+  # orderproduct_id:
+  status: retired
+  photo: flan.jpg
