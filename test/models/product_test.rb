@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new name: "A product", price: 1, quantity: 2, categories: [Category.first, Category.last], status:"active", merchant_id: Merchant.first.id }
+  let(:product) { Product.new name: "A product", price: 1, quantity: 2, categories: [Category.first, Category.last], status:"active", merchant_id: Merchant.first.id, photo:"hi.jpg" }
 
   describe 'Validations' do
     it "must be valid" do
@@ -14,6 +14,14 @@ describe Product do
 
       product.valid?.must_equal false
       product.errors.must_include :categories
+    end
+
+    # Status:
+    it "must have a status" do
+      product.status = nil
+
+      product.valid?.must_equal false
+      product.errors.must_include :status
     end
 
     # Name:

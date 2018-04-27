@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   validate :has_atleast_one_category
   validates_numericality_of :quantity, presence: true, greater_than_or_equal_to: 0
   validates_numericality_of :price, presence: true, greater_than_or_equal_to: 0
+  validates :status, presence: true
 
 
   def average_rating
