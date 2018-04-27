@@ -21,7 +21,4 @@ class Orderproduct < ApplicationRecord
     quantity * self.product.price
   end
 
-
-
-
 end

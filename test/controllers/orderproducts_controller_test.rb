@@ -36,4 +36,15 @@ describe OrderproductsController do
     value(response).must_be :success?
   end
 
+
+  # 
+  # it "must increase orderproduct count" do
+  #   before = Orderproduct.all.count
+  #
+  #   newop = Orderproduct.create_orderproduct(products(:candy).quantity, products(:candy).id, orders(:open).id)
+  #   newop.save
+  #
+  #   Orderproduct.all.count.must_equal before +1
+  # end
+
 end

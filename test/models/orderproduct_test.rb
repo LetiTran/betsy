@@ -8,11 +8,44 @@ describe Orderproduct do
       orderproduct.must_be :valid?
     end
 
-    it "must have a product" do
-      orderproduct.product = nil
+    it "must have a quantity" do
+      orderproduct.quantity = nil
 
       orderproduct.valid?.must_equal false
-      orderproduct.errors.must_include :product
+      orderproduct.errors.must_include :quantity
     end
   end
+
+  describe "relations" do
+    it "must belong to product" do
+      orderproduct.must_respond_to :product
+    end
+
+    it "must belong to order" do
+      orderproduct.must_respond_to :order
+    end
+  end
+
+  describe "create orderproduct" do
+    it "must return a new orderproduct" do
+      newop = Orderproduct.create_orderproduct(products(:candy).quantity, products(:candy).id, orders(:open).id)
+
+      newop.must_be :valid?
+    end
+  end
+
+  describe "sub_total" do
+    # it "must return cost of product by quanity" do
+    #   candy = orderproducts(:one)
+    #   thing = Product.first
+    #
+    #   expectation = thing.price * candy.quantity
+    #   expectation = 20
+    #   result = candy.sub_total
+    #
+    #   result.must_equal expectation
+    # end
+  end
+
+
 end
