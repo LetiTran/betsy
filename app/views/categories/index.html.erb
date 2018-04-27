@@ -1,9 +1,11 @@
 <h1>Categories</h1>
-
 <section>
-  <ul>
-    <% @categories.each do |category|%>
-    <li><%= link_to category.name, category_path(category.id) %></li>
+  <section class="item-box">
+    <% @categories.each do |category| %>
+    <div class="product-container">
+      <p><%= link_to category.name, category_path(category.id) %></p>
+    </div>
     <% end %>
   </ul>
+  <%= link_to "Add category", new_category_path, class: "button" %>
 </section>

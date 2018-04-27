@@ -89,6 +89,7 @@
             <li>
               <%= link_to "Add a new Product", new_product_path, class: "button" %>
             </li>
+
           </ul>
         </li>
       </ul>
@@ -108,6 +109,8 @@
 </header>
 
 <body>
+<section calss="falsh">
+
 
   <% if flash[:result_text] or flash[:messages] %>
   <section class="status <%= flash[:status] %>">
@@ -123,6 +126,7 @@
     <% end %>
   </section>
   <% end %>
+</section>
 
   <%= yield %>
 

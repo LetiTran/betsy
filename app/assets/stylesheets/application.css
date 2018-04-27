@@ -209,3 +209,25 @@ background-color: #f5f5f5;
   list-style: none;
   padding: 8px;
 }
+.product-show-container {
+  display: grid;
+  grid-template:
+  "text1" "image"
+  "text2" "image";
+}
+
+#pic {
+  grid-area: image;
+}
+
+.product-show-info {
+  grid-area: text1;
+}
+
+.product-show-form {
+  grid-area: text2;
+}
+
+.falsh {
+
+}

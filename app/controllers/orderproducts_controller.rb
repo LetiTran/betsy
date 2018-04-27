@@ -58,7 +58,7 @@ class OrderproductsController < ApplicationController
 
   def update
     if @orderproduct.update(orderproduct_params)
-      #reduce_inventory(orderproduct)
+      reduce_inventory(orderproduct)
       flash[:status] = :success
       flash[:result_text] = "Cart updated!"
       reduce_inventory(orderproduct)
@@ -106,9 +106,9 @@ class OrderproductsController < ApplicationController
 
   end
   def add_inventory(orderproduct)
-   @orders.orderproducts.each do |orderproduct|
-      @product = Product.find_by(id: orderproduct.product_id)
-      @product.quantity += orderproduct.quantity
+    @order.first.orderproducts.each do |op|
+      @product = Product.find_by(id: op.product_id)
+      @product.quantity += op.quantity
       @product.save
     end
 
