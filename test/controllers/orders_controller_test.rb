@@ -6,11 +6,11 @@ describe OrdersController do
     describe 'index' do
       it 'should get all orders from the logged in user' do
         # Perform login for a user:
-        existing_merchant = merchants(:one)
+        existing_merchant = merchants(:atul)
         perform_login(existing_merchant)
 
         # Assign currente logged in user to the firts order in fixture
-        order1 = orders(:one)
+        order1 = orders(:paid)
         order1.merchant_id = existing_merchant.id
         order1.save
 
@@ -21,7 +21,7 @@ describe OrdersController do
       end
 
       it 'should work when merchant has no orders' do
-        existing_merchant = merchants(:one)
+        existing_merchant = merchants(:atul)
         perform_login(existing_merchant)
 
         Order.destroy_all
@@ -34,7 +34,7 @@ describe OrdersController do
 
   describe 'create' do
     it 'creates an order with valid id' do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
       proc {
         post orders_path, params: {
@@ -58,7 +58,7 @@ describe OrdersController do
     end
 
     it 'creates a product with valid id and open status' do
-      existing_merchant = merchants(:one)
+      existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
       proc {
         post orders_path, params: {

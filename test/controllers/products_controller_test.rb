@@ -80,7 +80,11 @@ describe ProductsController do
       get edit_product_path(products(:candy).id)
       must_respond_with :success
     end
-
+    # it "renders 404 not_found and does not update the DB for a bogus product ID" do
+    #   proc {
+    #     get edit_product_path("wrong id")
+    #   }.must_respond_to :not_found
+    # end
   end
 
   describe 'update' do
@@ -129,7 +133,7 @@ describe ProductsController do
       existing_merchant = merchants(:atul)
       perform_login(existing_merchant)
 
-      patch product_path(products(:candy).id), params: {
+      patch product_path(products(:cake).id), params: {
         product: {
           doesnt_exists: "Update title",
           price: 1,
@@ -142,6 +146,4 @@ describe ProductsController do
       must_respond_with :redirect
     end
   end
-
-
 end
