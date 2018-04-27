@@ -8,7 +8,7 @@ describe MerchantsController do
   end
 
   it "should get show" do
-    get merchant_path(merchants(:one).id)
+    get merchant_path(merchants(:atul).id)
 
     must_respond_with :success
   end
