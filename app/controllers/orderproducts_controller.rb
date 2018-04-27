@@ -83,7 +83,6 @@ class OrderproductsController < ApplicationController
   def clear_cart
     add_inventory(@orderproduct)
     Orderproduct.where(order_id: @order.first.id).delete_all
-
     redirect_to orderproducts_path
   end
 
@@ -101,18 +100,15 @@ class OrderproductsController < ApplicationController
   def reduce_inventory(orderproduct)
     @product = Product.find_by(id: orderproduct.product_id)
     @product.quantity -= orderproduct.quantity
-
     @product.save
-
   end
+
   def add_inventory(orderproduct)
     @order.first.orderproducts.each do |op|
       @product = Product.find_by(id: op.product_id)
       @product.quantity += op.quantity
       @product.save
     end
-
   end
-
 
 end

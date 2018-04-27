@@ -260,6 +260,16 @@ background-color: #f5f5f5;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+.new-product {
+  padding-right: .5em;
+  padding-left: .5em;
+  border: solid thin grey;
+  padding-top: 1.5em;
+  width: 450px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .product-form {
   display: flex;
   justify-content: center;
@@ -273,9 +283,29 @@ background-color: #f5f5f5;
 }
 
 .new_orderproduct {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    align-items: center;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  align-items: center;
+  margin: auto;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid thin grey;
+  padding-top: 1.5em;
+  width: 300px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.category-list li {
+  list-style: none;
+}
+
+.category-button, #submit {
+  display: flex;
+  justify-content: center;
 }
