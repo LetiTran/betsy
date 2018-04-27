@@ -23,7 +23,6 @@ describe MerchantsController do
 
   describe "create" do
     it "creates a valid merchant" do
-
       proc {
         post merchants_path, params: {
           merchant: {
@@ -35,6 +34,19 @@ describe MerchantsController do
 
       must_respond_with :redirect
       must_redirect_to merchants_path
+    end
+
+    it "does not add bad merchant to db" do
+      post works_path, params: {
+      merchant: {
+        username: merchants(:atul).username,
+        email: "yolo@yolo.com"
+      }
+    }
+
+    must_respond_with :bad_request
+  end
+
     end
   end
 

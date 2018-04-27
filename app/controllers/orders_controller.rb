@@ -10,12 +10,9 @@ class OrdersController < ApplicationController
     # @shipped_orders = Order.where(status:"paid")
 
     @orders = Order.where(merchant_id: @user.id).order(id: :desc)
-
   end
 
   def show
-
-
   end
 
   def new
