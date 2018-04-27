@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426171206) do
+ActiveRecord::Schema.define(version: 20180427233959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20180426171206) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
     t.bigint "product_id"
+    t.bigint "order_id"
     t.index ["order_id"], name: "index_orderproducts_on_order_id"
     t.index ["product_id"], name: "index_orderproducts_on_product_id"
   end
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20180426171206) do
     t.string "email"
     t.string "address"
     t.string "card_name"
-    t.string "string"
     t.string "cc_number"
     t.date "cc_expiration"
     t.string "cvv"
@@ -73,9 +72,11 @@ ActiveRecord::Schema.define(version: 20180426171206) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.bigint "merchant_id"
+    t.bigint "orderproduct_id"
     t.string "status"
     t.string "photo"
     t.index ["merchant_id"], name: "index_products_on_merchant_id"
+    t.index ["orderproduct_id"], name: "index_products_on_orderproduct_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -92,5 +93,6 @@ ActiveRecord::Schema.define(version: 20180426171206) do
   add_foreign_key "orderproducts", "products"
   add_foreign_key "orders", "merchants"
   add_foreign_key "products", "merchants"
+  add_foreign_key "products", "orderproducts"
   add_foreign_key "reviews", "products"
 end
