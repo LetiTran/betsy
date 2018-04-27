@@ -1,7 +1,8 @@
+<section class="user-profile">
 <h1>Your orders</h1>
 
 <!-- product = Product.find(op.product_id)  -->
-
+<% if @order %>
 <table>
   <tr>
     <th>Order</th>
@@ -20,3 +21,7 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p><strong>No orders yet.</strong></p>
+<% end %>
+<section>
