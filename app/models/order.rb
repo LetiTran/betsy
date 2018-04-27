@@ -30,8 +30,11 @@ class Order < ApplicationRecord
   end
 
   def cancel_order
-    self.status = "canceled" if self.status == "paid" 
+    self.status = "canceled" if self.status == "paid"
     self.save
   end
 
+  def find_total_of_product(op)
+    op.sub_total
+  end
 end
