@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: merchant-one
+atul:
+  username: Atul
   email: hello@hello.com
   provider: github
   uid: 1222
 
-two:
-  username: merchant-two
+lucy:
+  username: Lucy
   email: goodbye@goodbye.com
   provider: github
   uid: 22222
