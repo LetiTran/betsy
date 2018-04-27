@@ -4,19 +4,20 @@
   <% Product.where(merchant_id: @merchant.id).each do |product| %>
   <div class="product-container">
     <h4><%= product.name %></h4>
-    <a id="pic" href="https://loremflickr.com"><img src="
-      https://loremflickr.com/350/250/dessert" alt="product pic"></a>
-      <div class="product-info">
+    <a id="show-pic">
+      <%= image_tag(product.photo) %>
+    </a>
+    <div class="product-info">
+      <p>
+        <strong>Price: </strong> <%= format_price(product.price) %>
         <p>
-          <strong>Price: </strong> <%= format_price(product.price) %>
-          <p>
-            <strong>Stock: </strong> <%= product.quantity %>
-          </p>
+          <strong>Stock: </strong> <%= product.quantity %>
         </p>
-        <p>
-          <%=link_to "Add a cart",orderproducts_path, class: 'button' %>
-        </p>
-      </div>
+      </p>
+      <p>
+        <%=link_to "Add a cart",orderproducts_path, class: 'button' %>
+      </p>
     </div>
-    <% end %>
-  </section>
+  </div>
+  <% end %>
+</section>

@@ -3,9 +3,9 @@
 <h1><%= @product.name %> details</h1>
 
 <section class-="product-show-container">
-  <div id="pic">
-     <img "src=assets/images/<%=@product.photo%>"/>
-    </div>
+  <div id="show-pic">
+    <%= image_tag(@product.photo) %>
+  </div>
 
     <article>
       <% if @product.quantity == 0 %>

@@ -4,8 +4,9 @@
   <section class="item-box">
     <% @products.each do |product| %>
     <div class="product-container">
-      <a id="pic" href="https://loremflickr.com"><img src="
-        https://loremflickr.com/200/150/dessert" alt="product pic"></a>
+      <div id="pic">
+        <%= image_tag(product.photo) %>
+      </div>
         <div class="root-info">
             <h5><%= link_to product.name, product_path(product.id) %></h5>
             <span><strong>Price: </strong> <%= format_price(product.price) %></span>
