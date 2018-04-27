@@ -29,11 +29,20 @@
     <% p = Product.find_by(id: op.product_id) %>
     <td><%= link_to p.name, product_path(p.id)  %></td>
     <td><%= op.quantity %></td>
-    <td><%= format_price(p.price) %></td>
+    <td><%= format_price(@order.find_total_of_product(op)) %></td>
   </tr>
   <% end %>
 </table>
 
+<div class="cart-center">
+   <p>
+     <strong>Total:</strong> <%=format_price(@order.total) %>
+   </p>
+ </div>
+
+
+
+<div>
 <div class="order-button">
   <% unless @order.status == "canceled"%>
   <%= link_to "Cancel this order", order_path(@order.id), method: :patch, :class => "button"%>
