@@ -5,3 +5,6 @@ candy:
 
 chocolate:
   name: Chocolate
+
+cookie:
+  name: Cookie

@@ -19,10 +19,9 @@ class CategoriesController < ApplicationController
       flash[:status] = :success
       flash[:result_text] = "Successfully added #{@category.name}"
 
-      redirect_to
-      new_product_path
+      redirect_to new_product_path
 
-      # categories_path(@category.id)
+      #categories_path(@category.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not create this category"
