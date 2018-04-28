@@ -3,12 +3,6 @@ class OrdersController < ApplicationController
   before_action :find_user
 
   def index
-    # @orders = Order.all
-    # TODO: maybe put a function that would change the status of the order for shipped if more than 3 days since created
-    # @canceled_orders = Order.where(status:"canceled")
-    # @processing_orders = Order.where(status:"processing")
-    # @shipped_orders = Order.where(status:"paid")
-
     @orders = Order.where(merchant_id: @user.id).order(id: :desc)
   end
 
@@ -68,8 +62,4 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     render_404 unless @order
   end
-
-
-
-
 end

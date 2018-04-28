@@ -23,7 +23,7 @@ describe ProductsController do
       get products_path
       must_respond_with :success
     end
-    
+
 
     it 'should work with no products' do
       Product.destroy_all
@@ -63,7 +63,8 @@ describe ProductsController do
             price: 1,
             quantity: 2,
             :category_ids => [categories(:candy).id],
-            merchant_id: existing_merchant.id
+            merchant_id: existing_merchant.id,
+            status: "active"
           }
         }
       }.must_change 'Product.count', 1
@@ -80,11 +81,16 @@ describe ProductsController do
       get edit_product_path(products(:candy).id)
       must_respond_with :success
     end
-    # it "renders 404 not_found and does not update the DB for a bogus product ID" do
-    #   proc {
-    #     get edit_product_path("wrong id")
-    #   }.must_respond_to :not_found
-    # end
+
+    it "renders 404 not_found and does not update the DB for a bogus product ID" do
+      existing_merchant = merchants(:atul)
+      perform_login(existing_merchant)
+# binding.pry
+  get product_path("wrong id")
+
+      # Assert
+      must_respond_with 404
+    end
   end
 
   describe 'update' do
