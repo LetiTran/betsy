@@ -35,37 +35,38 @@ describe MerchantsController do
       must_respond_with :redirect
       must_redirect_to merchants_path
     end
-
-    it "does not add bad merchant to db" do
-      post works_path, params: {
-      merchant: {
-        username: merchants(:atul).username,
-        email: "yolo@yolo.com"
-      }
-    }
-
-    must_respond_with :bad_request
   end
 
+  describe "edit" do
+    it "should get edit for valid id" do
+      get edit_merchant_path(merchants(:atul).id)
+
+      must_respond_with :success
+    end
+
+    it "renders 404 and does not update DB for bad ID" do
+      get edit_merchant_path(nil)
+
+      must_respond_with 404
     end
   end
 
+  describe "update" do
+    it "should update merchant with valid id" do
+      new_username = "hellothere"
+
+      proc {
+        patch merchant_path(merchants(:atul).id),
+        params: {
+          merchant: {
+            username: new_username,
+            email: "hello@hello.com"
+          }
+        }
+      }.must_change 'Merchant.count', 0
+
+      must_respond_with :redirect
+      must_redirect_to merchant_path(merchants(:atul).id)
+    end
+  end
 end
-
-# it "should get create" do
-#   initial = Merchant.count
-#   post merchants_path
-#
-#   Merchant.count.must_equal initial + 1
-#   must_respond_with :redirect
-#   must_redirect_to merchants_path
-# end
-
-# it "should get edit" do
-# end
-#
-# it "should get update" do
-# end
-#
-# it "should get destroy" do
-# end
