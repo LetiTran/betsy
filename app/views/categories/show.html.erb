@@ -4,7 +4,7 @@
   <% @category.products.each do |product| %>
   <div class="product-container">
     <h4><%= link_to product.name, product_path(product.id) %></h4>
-    <div id="show-pic">
+    <div id="pic">
       <% if product.photo %>
       <%= image_tag(product.photo, alt: "Product picture.") %>
       <% else %>
